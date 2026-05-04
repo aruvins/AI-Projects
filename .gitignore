@@ -2,3 +2,39 @@
 Denoising Diffusion Probabilistic Models
 .gitignore
 YOLO26_Instance_Segmentation/images/.DS_Store
+RF-DETR Segmentation/rf-detr-medium.pth
+RF-DETR Segmentation/rf-detr-seg-medium.pt
+RF-DETR Segmentation/rf-detr-seg-nano.pt
+RF-DETR Segmentation/images/Animals_1.png
+RF-DETR Segmentation/images/Animals_2.png
+RF-DETR Segmentation/images/City.png
+RF-DETR Segmentation/images/Home.png
+RF-DETR Segmentation/images/Street.png
+RF-DETR Segmentation/output/background_replacement.jpg
+RF-DETR Segmentation/output/basic_segmentation.jpg
+RF-DETR Segmentation/output/BasketBall_web.mp4
+RF-DETR Segmentation/output/detection_vs_segmentation.jpg
+RF-DETR Segmentation/output/Football_web.mp4
+RF-DETR Segmentation/output/heatmap.jpg
+RF-DETR Segmentation/output/Horses_sv_web.mp4
+RF-DETR Segmentation/output/Horses_web.mp4
+RF-DETR Segmentation/output/individual_masks.jpg
+RF-DETR Segmentation/output/Kids_Playing_web.mp4
+RF-DETR Segmentation/output/mask_isolation.jpg
+RF-DETR Segmentation/output/multi_image_segmentation.jpg
+RF-DETR Segmentation/output/portrait_mode_multi.jpg
+RF-DETR Segmentation/output/segmented_BasketBall.mp4
+RF-DETR Segmentation/output/segmented_Football.mp4
+RF-DETR Segmentation/output/segmented_Horses_sv.mp4
+RF-DETR Segmentation/output/segmented_Horses.mp4
+RF-DETR Segmentation/output/segmented_Kids_Playing.mp4
+RF-DETR Segmentation/output/segmented_Street.mp4
+RF-DETR Segmentation/output/Street_web.mp4
+RF-DETR Segmentation/videos/BasketBall.mp4
+RF-DETR Segmentation/videos/Football.mp4
+RF-DETR Segmentation/videos/Horses.mp4
+RF-DETR Segmentation/videos/Kids_Playing.mp4
+RF-DETR Segmentation/videos/Street.mp4
+YOLO26_Instance_Segmentation/images/common_objects.jpg
+YOLO26_Instance_Segmentation/images/common_objects.jpg
+RF-DETR Segmentation/RF_DETR_Segmentation.ipynb
