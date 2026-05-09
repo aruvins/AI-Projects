@@ -1,39 +1,79 @@
-/.DS_Store
-Denoising Diffusion Probabilistic Models
 .gitignore
-YOLO26_Instance_Segmentation/images/.DS_Store
-RF-DETR Segmentation/rf-detr-medium.pth
-RF-DETR Segmentation/rf-detr-seg-medium.pt
-RF-DETR Segmentation/rf-detr-seg-nano.pt
-RF-DETR Segmentation/images/Animals_1.png
-RF-DETR Segmentation/images/Animals_2.png
-RF-DETR Segmentation/images/City.png
-RF-DETR Segmentation/images/Home.png
-RF-DETR Segmentation/images/Street.png
-RF-DETR Segmentation/output/background_replacement.jpg
-RF-DETR Segmentation/output/basic_segmentation.jpg
-RF-DETR Segmentation/output/BasketBall_web.mp4
-RF-DETR Segmentation/output/detection_vs_segmentation.jpg
-RF-DETR Segmentation/output/Football_web.mp4
-RF-DETR Segmentation/output/heatmap.jpg
-RF-DETR Segmentation/output/Horses_sv_web.mp4
-RF-DETR Segmentation/output/Horses_web.mp4
-RF-DETR Segmentation/output/individual_masks.jpg
-RF-DETR Segmentation/output/Kids_Playing_web.mp4
-RF-DETR Segmentation/output/mask_isolation.jpg
-RF-DETR Segmentation/output/multi_image_segmentation.jpg
-RF-DETR Segmentation/output/portrait_mode_multi.jpg
-RF-DETR Segmentation/output/segmented_BasketBall.mp4
-RF-DETR Segmentation/output/segmented_Football.mp4
-RF-DETR Segmentation/output/segmented_Horses_sv.mp4
-RF-DETR Segmentation/output/segmented_Horses.mp4
-RF-DETR Segmentation/output/segmented_Kids_Playing.mp4
-RF-DETR Segmentation/output/segmented_Street.mp4
-RF-DETR Segmentation/output/Street_web.mp4
-RF-DETR Segmentation/videos/BasketBall.mp4
-RF-DETR Segmentation/videos/Football.mp4
-RF-DETR Segmentation/videos/Horses.mp4
-RF-DETR Segmentation/videos/Kids_Playing.mp4
-RF-DETR Segmentation/videos/Street.mp4
-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs
-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs
+computer-Vision/Denoising_Diffusion_Probabilistic_Model/.DS_Store
+computer-Vision/Denoising_Diffusion_Probabilistic_Model/raw/t10k-images-idx3-ubyte
+computer-Vision/Denoising_Diffusion_Probabilistic_Model/raw/t10k-images-idx3-ubyte.gz
+computer-Vision/Denoising_Diffusion_Probabilistic_Model/raw/t10k-labels-idx1-ubyte
+computer-Vision/Denoising_Diffusion_Probabilistic_Model/raw/t10k-labels-idx1-ubyte.gz
+computer-Vision/Denoising_Diffusion_Probabilistic_Model/raw/train-images-idx3-ubyte
+computer-Vision/Denoising_Diffusion_Probabilistic_Model/raw/train-images-idx3-ubyte.gz
+computer-Vision/Denoising_Diffusion_Probabilistic_Model/raw/train-labels-idx1-ubyte
+computer-Vision/Denoising_Diffusion_Probabilistic_Model/raw/train-labels-idx1-ubyte.gz
+computer-Vision/RF-DETR Segmentation/.DS_Store
+computer-Vision/RF-DETR Segmentation/rf-detr-medium.pth
+computer-Vision/RF-DETR Segmentation/rf-detr-seg-medium.pt
+computer-Vision/RF-DETR Segmentation/rf-detr-seg-nano.pt
+computer-Vision/RF-DETR Segmentation/images/Animals_1.png
+computer-Vision/RF-DETR Segmentation/images/Animals_2.png
+computer-Vision/RF-DETR Segmentation/images/City.png
+computer-Vision/RF-DETR Segmentation/images/Home.png
+computer-Vision/RF-DETR Segmentation/images/Street.png
+computer-Vision/RF-DETR Segmentation/output/background_replacement.jpg
+computer-Vision/RF-DETR Segmentation/output/basic_segmentation.jpg
+computer-Vision/RF-DETR Segmentation/output/BasketBall_web.mp4
+computer-Vision/RF-DETR Segmentation/output/detection_vs_segmentation.jpg
+computer-Vision/RF-DETR Segmentation/output/Football_web.mp4
+computer-Vision/RF-DETR Segmentation/output/heatmap.jpg
+computer-Vision/RF-DETR Segmentation/output/Horses_sv_web.mp4
+computer-Vision/RF-DETR Segmentation/output/Horses_web.mp4
+computer-Vision/RF-DETR Segmentation/output/individual_masks.jpg
+computer-Vision/RF-DETR Segmentation/output/Kids_Playing_web.mp4
+computer-Vision/RF-DETR Segmentation/output/mask_isolation.jpg
+computer-Vision/RF-DETR Segmentation/output/multi_image_segmentation.jpg
+computer-Vision/RF-DETR Segmentation/output/portrait_mode_multi.jpg
+computer-Vision/RF-DETR Segmentation/output/segmented_BasketBall.mp4
+computer-Vision/RF-DETR Segmentation/output/segmented_Football.mp4
+computer-Vision/RF-DETR Segmentation/output/segmented_Horses_sv.mp4
+computer-Vision/RF-DETR Segmentation/output/segmented_Horses.mp4
+computer-Vision/RF-DETR Segmentation/output/segmented_Kids_Playing.mp4
+computer-Vision/RF-DETR Segmentation/output/segmented_Street.mp4
+computer-Vision/RF-DETR Segmentation/output/Street_web.mp4
+computer-Vision/RF-DETR Segmentation/videos/BasketBall.mp4
+computer-Vision/RF-DETR Segmentation/videos/Football.mp4
+computer-Vision/RF-DETR Segmentation/videos/Horses.mp4
+computer-Vision/RF-DETR Segmentation/videos/Kids_Playing.mp4
+computer-Vision/RF-DETR Segmentation/videos/Street.mp4
+.DS_Store
+.gitignore
+computer-Vision/YOLO26_Models/.DS_Store
+computer-Vision/YOLO26_Models/YOLO26_Instance_Segmentation/.DS_Store
+computer-Vision/YOLO26_Models/YOLO26_Instance_Segmentation/yolo26n-seg.pt
+computer-Vision/YOLO26_Models/YOLO26_Instance_Segmentation/images/common_objects.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26n-pose.pt
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Acro Yoga.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Boxing.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Dance 2.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Dance.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Game.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Gym.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Gymnastics.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Jump.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/karate.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Parkour.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Play.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Walk.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Yoga.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Yoga.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/comparison_Gym.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/comparison_Gymnastics.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/comparison_Yoga.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_Game.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_Play.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_styled_Acro Yoga.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_Walk.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_with_box_karate.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/keyframes_Dance 2.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_Boxing.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_Dance.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_Jump.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_styled_Parkour.mp4
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_with_box_Yoga.mp4
