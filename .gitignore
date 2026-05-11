@@ -77,3 +77,7 @@ computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/output
 computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_Jump.mp4
 computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_styled_Parkour.mp4
 computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_with_box_Yoga.mp4
+computer-Vision/Project_1_Semantic_Segmentation/data/oxford-iiit-pet
+computer-Vision/Project_1_Semantic_Segmentation/models/__pycache__
+computer-Vision/Project_1_Semantic_Segmentation/utils/__pycache__
+computer-Vision/Project_1_Semantic_Segmentation/utils/__pycache__

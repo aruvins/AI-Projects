@@ -6,19 +6,7 @@ The Computer Vision family of YOLO26 models represents a modern generation of re
 
 The primary advantage of YOLO-style models is their ability to process an image in a single forward pass through the network, enabling real-time inference while maintaining strong detection performance. This makes YOLO26 especially useful in applications such as autonomous systems, robotics, surveillance, medical imaging, industrial automation, sports analytics, and financial/computer vision research projects.
 
-This repository contains a series of projects exploring YOLO26 models across several computer vision domains. Current completed projects include:
-
-* Instance Segmentation
-* Keypoint / Pose Estimation
-
-Upcoming projects will focus on:
-
-* Object Detection
-* Multi-object Tracking
-* Real-time Video Analytics
-* Custom Dataset Training
-* Model Optimization & Deployment
-* Transfer Learning Experiments
+This repository contains a series of projects exploring YOLO26 models across several computer vision domains.
 
 ---
 
@@ -305,10 +293,6 @@ Key concepts explored:
 
 ---
 
-# Upcoming Projects
-
-## Object Detection
-
 Future projects will explore:
 
 * Bounding box regression
@@ -411,21 +395,6 @@ Topics explored:
 * Segmentation inference pipelines
 * GPU-accelerated computer vision workflows
 
----
-
-## Upcoming Projects
-
-### Planned Repository Additions
-
-* Object Detection Pipelines
-* Real-Time Video Inference
-* Multi-Object Tracking
-* Pose & Motion Analysis
-* TensorRT Optimization
-* ONNX Model Export
-* Custom Dataset Training
-* Transfer Learning Experiments
-* Edge Deployment Workflows
 
 ---
 

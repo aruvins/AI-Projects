@@ -218,48 +218,6 @@ Analyze temporal information in video streams.
 
 ---
 
-# Repository Structure
-
-```bash id="qftfpu"
-computer-vision/
-│
-├── object-detection/
-│   ├── yolo/
-│   ├── detr/
-│   └── custom-models/
-│
-├── segmentation/
-│   ├── semantic/
-│   ├── instance/
-│   └── sam/
-│
-├── tracking/
-│   ├── deepsort/
-│   └── multi-object/
-│
-├── classification/
-│
-├── ocr/
-│
-├── transformers/
-│   ├── vit/
-│   └── swin-transformer/
-│
-├── diffusion/
-│
-├── video-understanding/
-│
-├── edge-deployment/
-│
-├── datasets/
-│
-├── notebooks/
-│
-└── README.md
-```
-
----
-
 # Technologies & Frameworks
 
 ## Deep Learning
@@ -378,11 +336,11 @@ Projects in this repository aim to focus on:
 
 ## Computer Vision Repository
 
-[Computer Vision Repository](https://github.com/aruvins/AI-Projects/tree/main/computer-Vision?utm_source=chatgpt.com)
+[Computer Vision Repository](https://github.com/aruvins/AI-Projects/tree/main/computer-Vision)
 
 ## Main AI Projects Repository
 
-[AI Projects Repository](https://github.com/aruvins/AI-Projects?utm_source=chatgpt.com)
+[AI Projects Repository](https://github.com/aruvins/AI-Projects)
 
 ---
 
