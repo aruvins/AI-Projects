@@ -80,4 +80,5 @@ class UNet(nn.Module):
 
         u4 = self.up4(u3)
         u4 = torch.cat([u4, d1], dim=1)
+        u4 = self.conv4(u4)
         return self.final(u4)
