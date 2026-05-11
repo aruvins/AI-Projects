@@ -11,7 +11,12 @@ from utils.transforms import train_transform
 from utils.metrics import dice_score, iou_score
 
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+if torch.backends.mps.is_available():
+    DEVICE = "mps"
+elif torch.cuda.is_available():
+    DEVICE = "cuda"
+else:
+    DEVICE = "cpu"
 
 BATCH_SIZE = 8
 LEARNING_RATE = 1e-4
