@@ -81,3 +81,4 @@ computer-Vision/Project_1_Semantic_Segmentation/data/oxford-iiit-pet
 computer-Vision/Project_1_Semantic_Segmentation/models/__pycache__
 computer-Vision/Project_1_Semantic_Segmentation/utils/__pycache__
 computer-Vision/Project_1_Semantic_Segmentation/utils/__pycache__
+computer-Vision/Project_1_Semantic_Segmentation/unet_model.pth
