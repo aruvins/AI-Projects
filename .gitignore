@@ -3,6 +3,7 @@
 
 computer-Vision/Bonus-Denoising_Diffusion_Probabilistic_Model/data
 computer-Vision/Bonus-Denoising_Diffusion_Probabilistic_Model/Logs_Checkpoints
+computer-Vision/Bonus-Denoising_Diffusion_Probabilistic_Model/inference_results/20260513-183720.mp4
 computer-Vision/Bonus-HandwrittenDigits
 
 computer-Vision/Bonus-RF-DETR Segmentation/downloads
@@ -24,3 +25,4 @@ computer-Vision/Bonus-YOLO26_Models/YOLO26_Instance_Segmentation/yolo26n-seg.pt
 computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26n-pose.pt
 computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs
 computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs
+
