@@ -1,5 +1,8 @@
 .gitignore
+.DS_Store
+
 computer-Vision/Bonus-Denoising_Diffusion_Probabilistic_Model/data
+
 computer-Vision/Bonus-RF-DETR Segmentation/downloads
 computer-Vision/Bonus-RF-DETR Segmentation/images
 computer-Vision/Bonus-RF-DETR Segmentation/output
@@ -8,41 +11,6 @@ computer-Vision/Bonus-RF-DETR Segmentation/rf-detr-medium.pth
 computer-Vision/Bonus-RF-DETR Segmentation/rf-detr-seg-medium.pt
 computer-Vision/Bonus-RF-DETR Segmentation/rf-detr-seg-nano.pt
 
-.DS_Store
-.gitignore
-computer-Vision/YOLO26_Models/.DS_Store
-computer-Vision/YOLO26_Models/YOLO26_Instance_Segmentation/.DS_Store
-computer-Vision/YOLO26_Models/YOLO26_Instance_Segmentation/yolo26n-seg.pt
-computer-Vision/YOLO26_Models/YOLO26_Instance_Segmentation/images/common_objects.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26n-pose.pt
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Boxing.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Dance 2.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Dance.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Game.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Gym.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Gymnastics.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Jump.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/karate.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Parkour.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Play.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Walk.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Yoga.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Yoga.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/comparison_Gym.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/comparison_Gymnastics.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/comparison_Yoga.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_Game.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_Play.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_styled_Acro Yoga.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_Walk.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/images/output_with_box_karate.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/keyframes_Dance 2.jpg
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_Boxing.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_Dance.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_Jump.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_styled_Parkour.mp4
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs/videos/output_with_box_Yoga.mp4
 computer-Vision/Project_1_Semantic_Segmentation/data/oxford-iiit-pet
 computer-Vision/Project_1_Semantic_Segmentation/models/__pycache__
 computer-Vision/Project_1_Semantic_Segmentation/utils/__pycache__
@@ -50,5 +18,10 @@ computer-Vision/Project_1_Semantic_Segmentation/utils/__pycache__
 computer-Vision/Project_1_Semantic_Segmentation/unet_model.pth
 computer-Vision/Project_2_Segment_Anything_Model/checkpoints/sam_vit_b_01ec64.pth
 
-
-
+computer-Vision/Bonus-YOLO26_Models/YOLO26_Instance_Segmentation/yolo26n-seg.pt
+computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26n-pose.pt
+computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs
+computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs
+computer-Vision/Bonus-YOLO26_Models/YOLOv26/yolo26n.onnx
+computer-Vision/Bonus-YOLO26_Models/YOLOv26/yolo26s.pt
+computer-Vision/Bonus-YOLO26_Models/YOLOv26/yolo26n.pt
