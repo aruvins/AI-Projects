@@ -207,6 +207,12 @@ Segmentation Masks
 
 ---
 
+# Project Setup
+
+install 
+
+---
+
 # How This Project Works
 
 The project integrates pretrained SAM checkpoints into multiple segmentation workflows.
@@ -400,6 +406,13 @@ Install SAM:
 pip install git+https://github.com/facebookresearch/segment-anything.git
 ```
 
+Install SAM Checkpoint:
+
+```bash 
+
+curl -L -o sam_vit_b_01ec64.pth \                                        
+https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth
+```
 ---
 
 # Interactive Segmentation
@@ -449,30 +462,6 @@ This enables GPU acceleration on:
 * M3
 * Apple Silicon Macs
 
----
-
-# Challenges Encountered
-
-## MPS Float64 Limitation
-
-During development, automatic mask generation produced:
-
-```text id="jlwm1u"
-MPS framework doesn't support float64
-```
-
-This occurs because Apple’s Metal backend lacks full float64 support.
-
-Solution:
-
-* use CPU for automatic mask generation
-* use MPS for interactive inference
-
-This reinforced understanding of:
-
-* hardware acceleration constraints
-* backend compatibility
-* PyTorch device management
 
 ---
 
