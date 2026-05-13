@@ -22,6 +22,3 @@ computer-Vision/Bonus-YOLO26_Models/YOLO26_Instance_Segmentation/yolo26n-seg.pt
 computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26n-pose.pt
 computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs
 computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/outputs
-computer-Vision/Bonus-YOLO26_Models/YOLOv26/yolo26n.onnx
-computer-Vision/Bonus-YOLO26_Models/YOLOv26/yolo26s.pt
-computer-Vision/Bonus-YOLO26_Models/YOLOv26/yolo26n.pt
