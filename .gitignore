@@ -1,14 +1,12 @@
 .gitignore
-computer-Vision/Denoising_Diffusion_Probabilistic_Model/.DS_Store
-
-computer-Vision/RF-DETR Segmentation/.DS_Store
-computer-Vision/RF-DETR Segmentation/rf-detr-medium.pth
-computer-Vision/RF-DETR Segmentation/rf-detr-seg-medium.pt
-computer-Vision/RF-DETR Segmentation/rf-detr-seg-nano.pt
-computer-Vision/RF-DETR Segmentation/images
-computer-Vision/RF-DETR Segmentation/output
-computer-Vision/RF-DETR Segmentation/videos
-computer-Vision/RF-DETR Segmentation/downloads
+computer-Vision/Bonus-Denoising_Diffusion_Probabilistic_Model/data
+computer-Vision/Bonus-RF-DETR Segmentation/downloads
+computer-Vision/Bonus-RF-DETR Segmentation/images
+computer-Vision/Bonus-RF-DETR Segmentation/output
+computer-Vision/Bonus-RF-DETR Segmentation/videos
+computer-Vision/Bonus-RF-DETR Segmentation/rf-detr-medium.pth
+computer-Vision/Bonus-RF-DETR Segmentation/rf-detr-seg-medium.pt
+computer-Vision/Bonus-RF-DETR Segmentation/rf-detr-seg-nano.pt
 
 .DS_Store
 .gitignore
@@ -17,7 +15,7 @@ computer-Vision/YOLO26_Models/YOLO26_Instance_Segmentation/.DS_Store
 computer-Vision/YOLO26_Models/YOLO26_Instance_Segmentation/yolo26n-seg.pt
 computer-Vision/YOLO26_Models/YOLO26_Instance_Segmentation/images/common_objects.jpg
 computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26n-pose.pt
-computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Acro Yoga.jpg
+computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs
 computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Boxing.mp4
 computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Dance 2.mp4
 computer-Vision/YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/inputs/Dance.mp4
@@ -51,13 +49,6 @@ computer-Vision/Project_1_Semantic_Segmentation/utils/__pycache__
 computer-Vision/Project_1_Semantic_Segmentation/utils/__pycache__
 computer-Vision/Project_1_Semantic_Segmentation/unet_model.pth
 computer-Vision/Project_2_Segment_Anything_Model/checkpoints/sam_vit_b_01ec64.pth
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/Animals_1.png
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/Animals_2.png
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/BasketBall.mp4
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/City.png
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/Football.mp4
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/Home.png
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/Horses.mp4
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/Kids_Playing.mp4
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/Street.mp4
-computer-Vision/RF-DETR Segmentation/downloads/RF_DETR_Segmentation/Street.png
+
+
+
