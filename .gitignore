@@ -2,6 +2,8 @@
 .DS_Store
 
 computer-Vision/Bonus-Denoising_Diffusion_Probabilistic_Model/data
+computer-Vision/Bonus-Denoising_Diffusion_Probabilistic_Model/Logs_Checkpoints
+computer-Vision/Bonus-HandwrittenDigits
 
 computer-Vision/Bonus-RF-DETR Segmentation/downloads
 computer-Vision/Bonus-RF-DETR Segmentation/images
