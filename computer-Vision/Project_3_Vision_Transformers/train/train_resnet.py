@@ -66,3 +66,16 @@ for epoch in range(EPOCHS):
     print(
         f"Epoch Loss: {running_loss / len(train_loader):.4f}"
     )
+
+from utils.metrics import (
+    calculate_accuracy,
+    classification_metrics,
+    print_metrics
+)
+
+metrics = classification_metrics(
+    outputs,
+    labels
+)
+
+print_metrics(metrics)
