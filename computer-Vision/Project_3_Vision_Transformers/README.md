@@ -549,6 +549,13 @@ python train/compare_models.py
 
 ---
 
+# 6. Visualize Attention
+
+```bash id="jlwm7o"
+python utils/visualize_attention.py
+```
+
+
 # Expected Learning Outcomes
 
 This project explores:
@@ -603,31 +610,37 @@ Experiment with:
 
 ## Vision Transformer Paper
 
-[An Image is Worth 16x16 Words](https://arxiv.org/abs/2010.11929?utm_source=chatgpt.com)
+[An Image is Worth 16x16 Words](https://arxiv.org/abs/2010.11929)
+
+---
+
+## Attention Rollout
+[Quantifying Attention Flow in Transformers](https://arxiv.org/abs/2005.00928)
+
 
 ---
 
 ## Hugging Face Transformers
 
-[Hugging Face Transformers](https://huggingface.co/docs/transformers/index?utm_source=chatgpt.com)
+[Hugging Face Transformers](https://huggingface.co/docs/transformers/index)
 
 ---
 
 ## PyTorch
 
-[PyTorch](https://pytorch.org/?utm_source=chatgpt.com)
+[PyTorch](https://pytorch.org/)
 
 ---
 
 ## DeiT
 
-[DeiT Repository](https://github.com/facebookresearch/deit?utm_source=chatgpt.com)
+[DeiT Repository](https://github.com/facebookresearch/deit)
 
 ---
 
 ## Swin Transformer
 
-[Swin Transformer](https://github.com/microsoft/Swin-Transformer?utm_source=chatgpt.com)
+[Swin Transformer](https://github.com/microsoft/Swin-Transformer)
 
 ---
 
