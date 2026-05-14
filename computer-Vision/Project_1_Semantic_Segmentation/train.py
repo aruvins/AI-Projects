@@ -20,7 +20,8 @@ else:
 
 BATCH_SIZE = 8
 LEARNING_RATE = 1e-4
-NUM_EPOCHS = 20
+# NUM_EPOCHS = 20
+NUM_EPOCHS = 5 # Less training time but loses a significant amount of accuracy
 
 
 class PetSegmentationDataset(Dataset):
