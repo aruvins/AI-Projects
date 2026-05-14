@@ -243,6 +243,25 @@ However:
 * CNN receptive fields are local
 * long-range relationships are harder to model
 
+--- 
+Foundational CNN Paper
+
+A highly recommended beginner-friendly paper for understanding Convolutional Neural Networks is the AlexNet paper:
+
+AlexNet — ImageNet Classification with Deep Convolutional Neural Networks
+
+Published by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton.
+
+This paper introduced many of the techniques that became foundational in modern deep learning for computer vision, including:
+
+ReLU activations
+dropout regularization
+GPU-based training
+deep convolutional feature extraction
+
+Paper:
+[AlexNet Paper PDF](https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
+
 ---
 
 # Understanding Vision Transformers (ViTs)
