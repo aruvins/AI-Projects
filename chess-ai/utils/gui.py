@@ -1,5 +1,8 @@
 import pygame
 import chess
+from .ai import ChessAI
+
+
 
 # ----------------------------
 # Configuration
@@ -42,6 +45,9 @@ PIECE_UNICODE = {
 class ChessGUI:
 
     def __init__(self):
+        self.ai = ChessAI()
+        self.ai_enabled = True
+        
         self.game_over = False
         self.result = None
 
@@ -240,6 +246,10 @@ class ChessGUI:
             if move in self.board.legal_moves:
                 self.board.push(move)
 
+                if self.ai_enabled and not self.board.is_game_over():
+                    ai_move = self.ai.choose_move(self.board)
+                    if ai_move:
+                        self.board.push(ai_move)
                 # CHECK GAME STATE AFTER MOVE
                 if self.board.is_checkmate():
                     self.game_over = True

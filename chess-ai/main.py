@@ -1,68 +1,28 @@
-import chess
-import pygame
+import sys
 
-from gui import ChessGUI
-from engine import find_best_move
+def main():
+    print("\n♟️ Neural Chess AI (V1)")
+    print("----------------------")
+    print("1. Train model")
+    print("2. Play vs AI")
+    print("3. Exit\n")
 
+    choice = input("Select option: ").strip()
 
-AI_DEPTH = 3
+    if choice == "1":
+        from utils.train import train
+        train()
 
+    elif choice == "2":
+        from utils.gui import ChessGUI
 
-class ChessApp(ChessGUI):
+        gui = ChessGUI()
+        gui.run()
 
-    def __init__(self):
-
-        super().__init__()
-
-    def ai_move(self):
-
-        if (
-            not self.board.is_game_over()
-            and self.board.turn == chess.BLACK
-        ):
-
-            move = find_best_move(
-                self.board,
-                AI_DEPTH
-            )
-
-            if move:
-                self.board.push(move)
-
-    def run(self):
-
-        running = True
-
-        while running:
-
-            self.clock.tick(60)
-
-            for event in pygame.event.get():
-
-                if event.type == pygame.QUIT:
-                    running = False
-
-                elif (
-                    event.type == pygame.MOUSEBUTTONDOWN
-                    and self.board.turn == chess.WHITE
-                ):
-
-                    self.handle_click(
-                        pygame.mouse.get_pos()
-                    )
-
-            # AI move
-            self.ai_move()
-
-            # Draw board
-            self.draw_game_state()
-
-            pygame.display.flip()
-
-        pygame.quit()
+    else:
+        print("Exiting...")
+        sys.exit()
 
 
 if __name__ == "__main__":
-
-    app = ChessApp()
-    app.run()
+    main()
