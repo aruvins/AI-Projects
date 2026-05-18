@@ -31,7 +31,7 @@ def train():
 
         print(f"Epoch {epoch}: {total_loss:.4f}")
 
-    torch.save(model.state_dict(), "chess_net.pth")
+    torch.save(model.state_dict(), "model/chess_net.pth")
 
 
 if __name__ == "__main__":
