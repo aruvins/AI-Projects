@@ -1,6 +1,7 @@
 import torch
 import chess
 import numpy as np
+from train.mcts import MCTSNode, run_mcts
 
 from .model import ChessNet
 from .data_loader import board_to_tensor

@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-import torch.optim as optim
+
 
 class ChessNet(nn.Module):
     def __init__(self):
@@ -13,13 +13,21 @@ class ChessNet(nn.Module):
             nn.ReLU(),
         )
 
-        self.fc = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(128 * 8 * 8, 256),
-            nn.ReLU(),
-            nn.Linear(256, 1),
-        )
+        # shared trunk
+        self.fc = nn.Linear(128 * 8 * 8, 512)
+
+        # POLICY HEAD (move probabilities)
+        self.policy_head = nn.Linear(512, 64 * 64)
+
+        # VALUE HEAD (position evaluation)
+        self.value_head = nn.Linear(512, 1)
 
     def forward(self, x):
         x = self.conv(x)
-        return self.fc(x)
+        x = x.view(x.size(0), -1)
+        x = torch.relu(self.fc(x))
+
+        policy = self.policy_head(x)
+        value = torch.tanh(self.value_head(x))
+
+        return policy, value
