@@ -1,0 +1,14 @@
+torch
+torchvision
+opencv-python
+numpy
+matplotlib
+pytesseract
+easyocr
+paddleocr
+paddlepaddle
+pdf2image
+pymupdf
+camelot-py
+layoutparser
+Pillow

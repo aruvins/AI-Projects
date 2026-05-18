@@ -1,5 +1,6 @@
 .gitignore
 .DS_Store
+.vscode/settings.json
 
 computer-Vision/Bonus-Denoising_Diffusion_Probabilistic_Model/data
 computer-Vision/Bonus-Denoising_Diffusion_Probabilistic_Model/Logs_Checkpoints
@@ -29,3 +30,4 @@ computer-Vision/Bonus-YOLO26_Models/YOLO26_Keypoint_Estimation/yolo26_workspace/
 computer-Vision/Project_3_Vision_Transformers/models/__pycache__
 computer-Vision/Project_3_Vision_Transformers/data
 computer-Vision/Project_3_Vision_Transformers/utils/__pycache__
+
