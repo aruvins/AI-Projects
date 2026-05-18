@@ -30,7 +30,6 @@ Instead of learning from human games, the AI learns from **random chess position
 
 ## 📁 Project Structure
 
-```
 
 chess-ai/
 │
