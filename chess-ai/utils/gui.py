@@ -47,7 +47,7 @@ class ChessGUI:
     def __init__(self):
         self.ai = ChessAI()
         self.ai_enabled = True
-        
+
         self.game_over = False
         self.result = None
 
@@ -289,7 +289,7 @@ class ChessGUI:
 
                 elif event.type == pygame.MOUSEBUTTONDOWN:
 
-                    if not self.board.game_over:
+                    if not self.board.is_game_over():
 
                         self.handle_click(
                             pygame.mouse.get_pos()
