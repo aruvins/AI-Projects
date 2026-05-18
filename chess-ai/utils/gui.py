@@ -57,7 +57,7 @@ class ChessGUI:
         pygame.display.set_caption("Chess AI")
 
         self.clock = pygame.time.Clock()
-
+        self.coord_font = pygame.font.SysFont("arial", 18)
         self.board = chess.Board()
 
         self.selected_square = None
@@ -88,6 +88,27 @@ class ChessGUI:
                     )
                 )
 
+    def draw_coordinates(self):
+        letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
+
+        # Draw files (a–h) at bottom
+        for col in range(8):
+            text = self.coord_font.render(letters[col], True, (0, 0, 0))
+
+            x = col * SQ_SIZE + SQ_SIZE - 12
+            y = HEIGHT - 18
+
+            self.screen.blit(text, (x, y))
+
+        # Draw ranks (1–8) on left side
+        for row in range(8):
+            rank = str(8 - row)
+            text = self.coord_font.render(rank, True, (0, 0, 0))
+
+            x = 5
+            y = row * SQ_SIZE + 5
+
+            self.screen.blit(text, (x, y))
     # ----------------------------
     # Highlight Squares
     # ----------------------------
@@ -164,7 +185,8 @@ class ChessGUI:
         self.draw_board()
         self.highlight_squares()
         self.draw_pieces()
-
+        self.draw_coordinates()
+        
         if self.game_over:
             self.draw_game_over()
 
