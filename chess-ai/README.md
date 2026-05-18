@@ -1,4 +1,3 @@
-```markdown
 # ♟️ Neural Chess AI (V2 - Synthetic Data + Stockfish)
 
 A machine learning chess project that trains a neural network to evaluate chess positions using **synthetically generated board states** labeled by Stockfish.
@@ -48,7 +47,6 @@ chess-ai/
 │
 └── chess_net.pth              # Trained model (generated after training)
 
-````
 
 ---
 # Installation
