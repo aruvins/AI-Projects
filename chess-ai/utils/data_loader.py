@@ -1,7 +1,7 @@
 import chess
 import numpy as np
 from tqdm import tqdm
-import zstandard as zstd
+# import zstandard as zstd
 
 from .stockfish_eval import evaluate_board
 

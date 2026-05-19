@@ -1,6 +1,10 @@
 import pygame
 import chess
-from .ai import ChessAI
+from engines.ai import ChessAI
+
+from engines.lc0_engine import LC0Engine
+
+from engines.stockfish_engine import StockfishAI
 
 
 
@@ -8,8 +12,8 @@ from .ai import ChessAI
 # Configuration
 # ----------------------------
 
-WIDTH = 640
-HEIGHT = 640
+WIDTH = 960
+HEIGHT = 960
 
 DIMENSION = 8
 SQ_SIZE = WIDTH // DIMENSION
@@ -45,7 +49,8 @@ PIECE_UNICODE = {
 class ChessGUI:
 
     def __init__(self):
-        self.ai = ChessAI()
+        # self.ai = ChessAI()
+        self.ai = StockfishAI()
         self.ai_enabled = True
 
         self.game_over = False
@@ -205,6 +210,8 @@ class ChessGUI:
             )
 
             self.screen.blit(text, text_rect)
+
+            self.ai.close()  # Ensure engine is closed when game ends
     # ----------------------------
     # Convert Mouse Position
     # ----------------------------
@@ -276,18 +283,22 @@ class ChessGUI:
                 if self.board.is_checkmate():
                     self.game_over = True
                     self.result = "Checkmate!"
+                    self.ai.close()  # Ensure engine is closed when game ends
 
                 elif self.board.is_stalemate():
                     self.game_over = True
                     self.result = "Stalemate!"
+                    self.ai.close()  # Ensure engine is closed when game ends
 
                 elif self.board.is_insufficient_material():
                     self.game_over = True
                     self.result = "Draw (Insufficient material)"
+                    self.ai.close()  # Ensure engine is closed when game ends
 
                 elif self.board.is_fifty_moves():
                     self.game_over = True
                     self.result = "Draw (50-move rule)"
+                    self.ai.close()  # Ensure engine is closed when game ends
 
             self.selected_square = None
             self.valid_moves = []

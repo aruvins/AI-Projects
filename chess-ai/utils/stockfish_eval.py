@@ -5,7 +5,7 @@ from stockfish import Stockfish
 # macOS brew usually:
 STOCKFISH_PATH = "/opt/homebrew/bin/stockfish"
 
-stockfish = Stockfish(path=STOCKFISH_PATH, depth=12)
+stockfish = Stockfish(path=STOCKFISH_PATH, depth=18)
 
 
 def evaluate_board(board: chess.Board) -> float:
