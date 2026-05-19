@@ -25,28 +25,6 @@ Instead of learning from human games, the AI learns from **random chess position
 3. Neural network evaluates resulting positions
 4. AI selects the highest-scoring move
 
----
-
-## 📁 Project Structure
-
-
-chess-ai/
-│
-├── main.py                     # Entry point (menu system)
-├── requirements.txt
-├── README.md
-│
-├── chess_ai/
-│   ├── gui.py                  # Pygame chess interface
-│   ├── ai.py                  # Move selection logic
-│   ├── model.py               # Neural network (CNN)
-│   ├── train.py               # Training pipeline
-│   ├── synthetic_data.py      # NEW: random position generator
-│   ├── stockfish_eval.py      # Stockfish evaluation wrapper
-│   └── data_loader.py         # Board encoding utilities
-│
-└── chess_net.pth              # Trained model (generated after training)
-
 
 ---
 # Installation
