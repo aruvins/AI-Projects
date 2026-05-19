@@ -32,3 +32,14 @@ computer-Vision/Project_3_Vision_Transformers/models/__pycache__
 computer-Vision/Project_3_Vision_Transformers/data
 computer-Vision/Project_3_Vision_Transformers/utils/__pycache__
 
+computer-Vision/Project_5_Multi_Object_Tracking/venv
+computer-Vision/Project_5_Multi_Object_Tracking/yolov8n.pt
+computer-Vision/Project_5_Multi_Object_Tracking/data/videos/BasketBall.mp4
+computer-Vision/Project_5_Multi_Object_Tracking/data/videos/Boxing.mp4
+computer-Vision/Project_5_Multi_Object_Tracking/data/videos/Dance 2.mp4
+computer-Vision/Project_5_Multi_Object_Tracking/data/videos/Dance.mp4
+computer-Vision/Project_5_Multi_Object_Tracking/data/videos/Football.mp4
+computer-Vision/Project_5_Multi_Object_Tracking/data/videos/Horses.mp4
+computer-Vision/Project_5_Multi_Object_Tracking/data/videos/Kids_Playing.mp4
+computer-Vision/Project_5_Multi_Object_Tracking/outputs/tracked_output.mp4
+computer-Vision/Project_5_Multi_Object_Tracking/data/videos/Street.mp4
