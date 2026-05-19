@@ -8,7 +8,8 @@ ocr = PaddleOCR(
 
 
 results = ocr.predict(
-    "data/images/sample_document.png"
+    # "data/images/sample_document.png"
+    "data/images/OCRtest.png"
 )
 
 

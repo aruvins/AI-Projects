@@ -3,7 +3,8 @@ import pytesseract
 
 # Load image
 image = cv2.imread(
-    "data/images/sample_document.jpg"
+    # "data/images/sample_document.jpg"
+    "data/images/OCRtest.png"
 )
 
 # Convert to grayscale

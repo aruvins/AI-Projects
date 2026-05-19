@@ -5,7 +5,8 @@ import easyocr
 reader = easyocr.Reader(['en'])
 
 # Load image
-image_path = "data/images/sample_document.jpg"
+# image_path = "data/images/sample_document.jpg"
+image_path = "data/images/OCRtest.png"
 
 # OCR
 results = reader.readtext(image_path)

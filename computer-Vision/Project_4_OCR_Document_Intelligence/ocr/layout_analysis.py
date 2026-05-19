@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 
 
 # Load image
-image_path = "data/images/sample_document.png"
+# image_path = "data/images/sample_document.png"
+image_path = "data/images/OCRtest.png"
 
 image = cv2.imread(image_path)
 
