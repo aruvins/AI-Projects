@@ -111,6 +111,7 @@ Project_6_Diffusion_Models/
 │   ├── image_editing.py
 │   ├── image_to_image.py
 │   ├── synthetic_dataset.py
+│   ├── create_example.py
 │   └── gradio_app.py
 │
 └── venv/
