@@ -161,17 +161,18 @@ pip install -r requirements.txt
 ```txt
 torch
 torchvision
-diffusers
-transformers
-accelerate
-opencv-python
-pillow
-matplotlib
-numpy
-datasets
+diffusers==0.33.1
+transformers==4.51.3
+accelerate==1.6.0
+gradio==5.29.1
+gradio_client==1.10.1
+fastapi==0.115.12
+starlette==0.46.2
+pydantic==2.11.4
+huggingface_hub==0.30.2
 safetensors
-xformers
-gradio
+sentencepiece
+pillow
 ```
 
 ---
@@ -519,9 +520,71 @@ This project teaches:
 - Transformers
 - Gradio
 
-## Papers
-- Denoising Diffusion Probabilistic Models (DDPM)
-- High-Resolution Image Synthesis with Latent Diffusion Models
+# 📚 Key Research Papers
+
+This project is based on foundational work in diffusion models:
+
+## 1. Denoising Diffusion Probabilistic Models (DDPM)
+
+📄 Paper: https://arxiv.org/abs/2006.11239
+
+This paper introduces diffusion models as a generative framework that learns to reverse a gradual noising process.
+
+Key ideas:
+- Forward process adds Gaussian noise step-by-step
+- Reverse process learns to denoise iteratively
+- Produces high-quality samples without adversarial training
+
+---
+
+## 2. Improved Denoising Diffusion Probabilistic Models
+
+📄 Paper: https://arxiv.org/abs/2102.09672
+
+Improves DDPM sampling efficiency and training stability.
+
+Key ideas:
+- Better variance scheduling
+- Fewer sampling steps required
+- Improved likelihood and sample quality
+
+---
+
+## 3. High-Resolution Image Synthesis with Latent Diffusion Models (LDM)
+
+📄 Paper: https://arxiv.org/abs/2112.10752
+
+This is the core idea behind Stable Diffusion.
+
+Key ideas:
+- Perform diffusion in a **compressed latent space**
+- Use an autoencoder to reduce image dimensionality
+- Enables efficient high-resolution generation
+
+---
+
+## 4. Stable Diffusion Model (Practical Implementation)
+
+📄 Model + Technical Report:
+https://github.com/CompVis/stable-diffusion
+
+Built on LDM with:
+- Text conditioning via CLIP embeddings
+- U-Net denoising backbone
+- Cross-attention for prompt control
+
+---
+
+## 5. Inpainting via Diffusion Models
+
+📄 Related work:
+- RePaint: https://arxiv.org/abs/2201.09865  
+- Stable Diffusion Inpainting (Hugging Face): https://huggingface.co/docs/diffusers/api/pipelines/stable_diffusion/inpaint
+
+Key ideas:
+- Mask-guided denoising
+- Preserve unmasked regions
+- Generate missing content consistent with context
 
 ---
 
