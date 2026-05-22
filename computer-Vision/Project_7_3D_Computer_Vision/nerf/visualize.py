@@ -28,21 +28,45 @@ def render_image(model, H, W, focal, c2w, device):
 
     return rgb.detach().cpu().numpy()
 
-def create_orbit_poses(radius=2.0, n_frames=60):
+def create_orbit_poses(radius=2.0, elevation=0.3, n_frames=60):
     poses = []
 
     for t in range(n_frames):
         angle = 2 * np.pi * t / n_frames
 
+        # Calculate camera position on a sphere (adding slight elevation often looks better)
+        cam_x = radius * np.cos(angle)
+        cam_z = radius * np.sin(angle)
+        cam_y = elevation  # Keeps the camera slightly raised looking down
+
+        camera_position = np.array([cam_x, cam_y, cam_z])
+        target_position = np.array([0.0, 0.0, 0.0]) # Looking at origin
+        up_vector = np.array([0.0, 1.0, 0.0]) # Standard OpenGL up-vector
+
+        # Compute Look-At Rotation Matrix
+        # Note: Depending on your generate_rays convention (OpenGL vs. COLMAP), 
+        # you might need to flip signs for forward/right vectors.
+        forward = target_position - camera_position
+        forward = forward / np.linalg.norm(forward)
+
+        right = np.cross(up_vector, forward)
+        right = right / np.linalg.norm(right)
+
+        up = np.cross(forward, right)
+        up = up / np.linalg.norm(up)
+
+        # Construct the 4x4 camera-to-world (c2w) matrix
         c2w = np.eye(4)
-        c2w[0, 3] = radius * np.cos(angle)
-        c2w[2, 3] = radius * np.sin(angle)
+        c2w[0:3, 0] = right
+        c2w[0:3, 1] = up
+        c2w[0:3, 2] = -forward  # NeRF/OpenGL convention: camera looks down -Z
+        c2w[0:3, 3] = camera_position
 
         poses.append(torch.tensor(c2w, dtype=torch.float32))
 
     return poses
 
-def render_video(model, H, W, focal, device, output="nerf.mp4"):
+def render_video(model, H, W, focal, device, output="outputs/nerf/nerf.mp4"):
     poses = create_orbit_poses()
 
     frames = []

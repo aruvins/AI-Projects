@@ -1,5 +1,7 @@
 import torch
+
 from encoding import positional_encoding
+
 
 
 def volume_render(model, rays_o, rays_d, near=2.0, far=6.0, samples=64):
