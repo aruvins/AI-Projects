@@ -23,8 +23,8 @@ else:
 # Paths
 # ======================
 CHECKPOINT_DIR = "nerf/checkpoints"
-TOTAL_STEPS    = 1_000_000
-CKPT_EVERY     = 10_000   # save a checkpoint every N steps
+TOTAL_STEPS    = 100_000
+CKPT_EVERY     = 1000   # save a checkpoint every N steps
 
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
 os.makedirs("outputs/nerf", exist_ok=True)
@@ -108,7 +108,7 @@ for step in range(start_step, TOTAL_STEPS):
 # ======================
 model.eval()
 
-img = render_image(model, H, W, focal, poses[1].to(device), device)
+img = render_image(model, H, W, focal, poses[0].to(device), device)
 imageio.imwrite("outputs/nerf/render.png", (img * 255).astype(np.uint8))
 
 render_video(model, H, W, focal, device)
