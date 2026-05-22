@@ -13,7 +13,7 @@ from urllib.parse import urlparse
 DATASETS = {
     # NeRF dataset (small, fast, essential for training)
     "tiny_nerf": {
-        "url": "https://people.eecs.berkeley.edu/~bmild/nerf/tiny_nerf_data.npz",
+        "url": "https://github.com/bmild/nerf/raw/master/data/tiny_nerf_data.npz",
         "path": "data/nerf/tiny_nerf_data.npz",
         "type": "file"
     },
