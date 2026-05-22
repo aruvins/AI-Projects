@@ -4,6 +4,7 @@ import requests
 from pathlib import Path
 from tqdm import tqdm
 from urllib.parse import urlparse
+import subprocess
 
 
 # =========================
@@ -12,10 +13,10 @@ from urllib.parse import urlparse
 
 DATASETS = {
     # NeRF dataset (small, fast, essential for training)
-    "tiny_nerf": {
-        "url": "https://github.com/bmild/nerf/raw/master/data/tiny_nerf_data.npz",
-        "path": "data/nerf/tiny_nerf_data.npz",
-        "type": "file"
+        "tiny_nerf": {
+        "type": "kaggle",
+        "slug": "huabrother/tiny-nerf-data",
+        "path": "data/nerf"
     },
 
     # SfM dataset (classic multiview reconstruction)
@@ -37,6 +38,29 @@ DATASETS = {
 # =========================
 # UTILITIES
 # =========================
+
+def download_kaggle_dataset(dataset_slug, output_dir):
+    """
+    Downloads Kaggle dataset using Kaggle API CLI.
+    """
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+
+    print(f"\nDownloading Kaggle dataset: {dataset_slug}")
+
+    cmd = [
+        "kaggle",
+        "datasets",
+        "download",
+        "-d",
+        dataset_slug,
+        "-p",
+        output_dir,
+        "--unzip"
+    ]
+
+    subprocess.run(cmd, check=True)
+
+    print("Kaggle dataset download complete.\n")
 
 def create_dirs():
     """Create required dataset directories."""
@@ -106,18 +130,35 @@ def safe_extract(zip_path, extract_to):
 # =========================
 
 def download_dataset(name, config):
-    url = config["url"]
-    path = config["path"]
     dtype = config["type"]
 
+    # =========================
+    # Kaggle datasets
+    # =========================
+    if dtype == "kaggle":
+        download_kaggle_dataset(
+            config["slug"],
+            config["path"]
+        )
+        return
+
+    # =========================
+    # HTTP file/zip datasets
+    # =========================
+    url = config.get("url")
+    if url is None:
+        raise ValueError(f"Dataset {name} missing 'url' for type {dtype}")
+
+    path = config["path"]
+
     if Path(path).exists():
-        print(f"[SKIP] {name} already exists at {path}")
+        print(f"[SKIP] {name} already exists")
         return
 
     download_file(url, path)
 
-    if dtype == "zip":
-        extract_dir = Path(path).with_suffix("")  # remove .zip
+    if config["type"] == "zip":
+        extract_dir = Path(path).with_suffix("")
         safe_extract(path, extract_dir)
 
 
