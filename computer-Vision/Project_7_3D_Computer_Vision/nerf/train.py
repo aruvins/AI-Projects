@@ -37,7 +37,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=5e-4)
 # ======================
 # Training loop
 # ======================
-for step in range(20000):
+for step in range(100_000):
 
     idx = torch.randint(0, images.shape[0], (1,)).item()
 

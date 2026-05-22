@@ -28,27 +28,39 @@ def render_image(model, H, W, focal, c2w, device):
 
     return rgb.detach().cpu().numpy()
 
-def create_orbit_poses(radius=2.0, elevation=0.3, n_frames=60):
+def create_orbit_poses(radius=3.5, elevation=0.3, roll_angle_deg=0.0, n_frames=60):
     poses = []
+    roll_rad = np.radians(roll_angle_deg)
 
     for t in range(n_frames):
         angle = 2 * np.pi * t / n_frames
 
-        # Calculate camera position on a sphere (adding slight elevation often looks better)
+        # CHANGED: Swap axes so the orbit circles horizontally (left to right)
         cam_x = radius * np.cos(angle)
-        cam_z = radius * np.sin(angle)
-        cam_y = elevation  # Keeps the camera slightly raised looking down
+        cam_y = radius * np.sin(angle)
+        cam_z = elevation  # Constant height, looking slightly down if positive
 
         camera_position = np.array([cam_x, cam_y, cam_z])
         target_position = np.array([0.0, 0.0, 0.0]) # Looking at origin
-        up_vector = np.array([0.0, 1.0, 0.0]) # Standard OpenGL up-vector
 
-        # Compute Look-At Rotation Matrix
-        # Note: Depending on your generate_rays convention (OpenGL vs. COLMAP), 
-        # you might need to flip signs for forward/right vectors.
+        # Compute standard forward vector pointing at the origin
         forward = target_position - camera_position
         forward = forward / np.linalg.norm(forward)
 
+        # Base world up-vector (If Z is up, your base up vector should be [0, 0, 1])
+        base_up = np.array([0.0, 0.0, 1.0])
+
+        # Find a temporary right vector to help us compute a rolled up-vector
+        temp_right = np.cross(base_up, forward)
+        temp_right = temp_right / np.linalg.norm(temp_right)
+        
+        # Re-compute true world up for this position
+        true_up = np.cross(forward, temp_right)
+
+        # Tilt the up_vector on its side by blending the true_up and temp_right
+        up_vector = true_up * np.cos(roll_rad) + temp_right * np.sin(roll_rad)
+
+        # Recompute final camera coordinates with the new tilted up_vector
         right = np.cross(up_vector, forward)
         right = right / np.linalg.norm(right)
 
@@ -59,7 +71,7 @@ def create_orbit_poses(radius=2.0, elevation=0.3, n_frames=60):
         c2w = np.eye(4)
         c2w[0:3, 0] = right
         c2w[0:3, 1] = up
-        c2w[0:3, 2] = -forward  # NeRF/OpenGL convention: camera looks down -Z
+        c2w[0:3, 2] = -forward  
         c2w[0:3, 3] = camera_position
 
         poses.append(torch.tensor(c2w, dtype=torch.float32))
