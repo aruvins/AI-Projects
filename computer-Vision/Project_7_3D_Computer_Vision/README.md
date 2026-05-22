@@ -604,11 +604,6 @@ Instead of storing explicit surfaces, the network stores a continuous volumetric
 │   └── run_stereo.py
 │
 ├── sfm/
-│   ├── features.py
-│   ├── matching.py
-│   ├── essential_matrix.py
-│   ├── pose.py
-│   ├── triangulate.py
 │   └── reconstruction.py
 │
 ├── nerf/
