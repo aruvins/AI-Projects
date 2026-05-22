@@ -1,0 +1,76 @@
+import torch
+import numpy as np
+import imageio
+from model import NeRF
+from render import volume_render
+from rays import generate_rays
+from visualize import render_image, render_video
+
+# Device selection
+if torch.backends.mps.is_available():
+    device = "mps"
+elif torch.cuda.is_available():
+    device = "cuda"
+else:
+    device = "cpu"
+
+# ======================
+# Load TinyNeRF dataset
+# ======================
+data = np.load("./data/nerf/tiny_nerf_data.npz")
+
+images = data["images"]          # (N, H, W, 3)
+poses = data["poses"]            # (N, 4, 4)
+focal = float(data["focal"])
+
+H, W = images.shape[1], images.shape[2]
+
+images = torch.from_numpy(images).to(device)
+poses = torch.from_numpy(poses).to(device)
+
+# ======================
+# Model
+# ======================
+model = NeRF().to(device)
+optimizer = torch.optim.Adam(model.parameters(), lr=5e-4)
+
+# ======================
+# Training loop
+# ======================
+for step in range(20000):
+
+    idx = torch.randint(0, images.shape[0], (1,)).item()
+
+    target_img = images[idx]
+    c2w = poses[idx]
+
+    rays_o, rays_d = generate_rays(H, W, focal, c2w, device)
+
+    rays_o = rays_o.reshape(-1, 3)
+    rays_d = rays_d.reshape(-1, 3)
+    target = target_img.reshape(-1, 3)
+
+    # sample batch
+    batch_idx = torch.randint(0, rays_o.shape[0], (1024,))
+
+    pred = volume_render(model, rays_o[batch_idx], rays_d[batch_idx])
+    gt = target[batch_idx]
+
+    loss = ((pred - gt) ** 2).mean()
+
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+
+    if step % 50 == 0:
+        print(f"Step {step} Loss: {loss.item():.4f}")
+
+model.eval()
+
+# Render single image
+img = render_image(model, H, W, focal, poses[0].to(device), device)
+
+imageio.imwrite("outputs/nerf/render.png", (img * 255).astype(np.uint8))
+
+# Render orbit video
+render_video(model, H, W, focal, device)
