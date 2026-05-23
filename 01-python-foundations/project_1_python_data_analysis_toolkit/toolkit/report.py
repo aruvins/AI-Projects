@@ -11,9 +11,8 @@ def generate_report(df, stats, corr):
 
     return "\n".join(report)
 
-def save_report(report: str, filename="report.txt"):
+def save_report(report: str, filename="outputs/report.txt"):
     with open(filename, "w") as f:
         f.write(report)
 
     print(f"[INFO] Report saved to {filename}")
-    
