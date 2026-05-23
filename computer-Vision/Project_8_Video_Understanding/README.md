@@ -307,3 +307,79 @@ Once you understand this model, natural next steps are:
 
 **`unrar: command not found`** during UCF-101 download
 → Install it: `sudo apt install unrar` (Linux) or `brew install unar` (macOS). The script will also fall back to a `.tar.gz` mirror automatically.
+
+---
+ 
+## References
+ 
+### Foundational papers
+ 
+These are the papers this project is directly built on. Reading them in order is the best way to understand the progression of ideas.
+ 
+**Attention Is All You Need (Vaswani et al., 2017)**
+The original Transformer paper. Introduces the self-attention mechanism, multi-head attention, and the encoder-decoder architecture. Everything in this project traces back here.
+https://arxiv.org/abs/1706.03762
+ 
+**An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale — ViT (Dosovitskiy et al., 2020)**
+Applies the Transformer directly to images by splitting them into patches. The tubelet embedding and [CLS] token in our model are taken directly from this paper.
+https://arxiv.org/abs/2010.11929
+ 
+**Is Space-Time Attention All You Need for Video Understanding? — TimeSformer (Bertasius et al., 2021)**
+The first paper to apply ViT-style attention to video. Proposes dividing space and time attention into separate steps for efficiency. Very close in spirit to this project.
+https://arxiv.org/abs/2102.05095
+ 
+**ViViT: A Video Vision Transformer (Arnab et al., 2021)**
+Google's video transformer. Introduces the tubelet embedding used in this project and benchmarks several attention factorisation strategies on Kinetics.
+https://arxiv.org/abs/2103.15691
+ 
+**VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training (Tong et al., 2022)**
+Shows how to pre-train video transformers without labels by masking ~90% of patches and reconstructing them. A natural next step after supervised training.
+https://arxiv.org/abs/2203.12602
+ 
+---
+ 
+### Dataset
+ 
+**UCF101: A Dataset of 101 Human Actions Classes From Videos in The Wild (Soomro et al., 2012)**
+The dataset used in this project. 13,320 clips across 101 action categories collected from YouTube.
+https://arxiv.org/abs/1212.0402
+ 
+UCF-101 download page: https://www.crcv.ucf.edu/data/UCF101.php
+ 
+---
+ 
+### Background reading (beginner-friendly)
+ 
+These are articles and guides — no maths degree required.
+ 
+**The Illustrated Transformer — Jay Alammar**
+The clearest visual explanation of how attention and transformers work. Highly recommended before reading any of the papers above.
+http://jalammar.github.io/illustrated-transformer/
+ 
+**The Illustrated Self-Supervised Learning — Jay Alammar**
+Explains masked autoencoders and contrastive learning in the same approachable visual style. Useful context for VideoMAE.
+https://jalammar.github.io/illustrated-self-supervised-learning/
+ 
+**Attention? Attention! — Lilian Weng**
+A thorough written walkthrough of every attention variant — soft, hard, self, multi-head. Good reference to keep open while reading the code.
+https://lilianweng.github.io/posts/2018-06-24-attention/
+ 
+**A Recipe for Training Neural Networks — Andrej Karpathy**
+Practical advice on debugging training runs, choosing hyperparameters, and understanding loss curves. Directly applicable when training this model.
+http://karpathy.github.io/2019/04/25/recipe/
+ 
+---
+ 
+### Video lectures
+ 
+**Stanford CS231n — Convolutional Neural Networks for Visual Recognition**
+Covers CNNs, RNNs, and vision fundamentals. Lecture 10 covers video and temporal models specifically.
+https://cs231n.stanford.edu/
+ 
+**Andrej Karpathy — Let's build GPT from scratch (YouTube)**
+Builds a Transformer from scratch in ~2 hours of live coding. The architecture is the same as our TransformerBlock — just applied to text instead of video.
+https://www.youtube.com/watch?v=kCc8FmEb1nY
+ 
+**Yannic Kilcher — ViViT paper walkthrough (YouTube)**
+A 30-minute video explanation of the ViViT paper, which is the direct inspiration for this project.
+https://www.youtube.com/watch?v=TFwqBMT7Eeg
