@@ -22,3 +22,4 @@ def column_stats(df: pd.DataFrame, column: str):
     else:
         print(f"Column '{column}' not found in DataFrame.")
         return None
+    

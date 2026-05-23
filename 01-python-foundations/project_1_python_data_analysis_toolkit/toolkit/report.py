@@ -16,3 +16,4 @@ def save_report(report: str, filename="report.txt"):
         f.write(report)
 
     print(f"[INFO] Report saved to {filename}")
+    
