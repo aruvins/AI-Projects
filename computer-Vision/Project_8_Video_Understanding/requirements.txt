@@ -1,0 +1,17 @@
+# Video Transformer — Python dependencies
+# Install with:  pip install -r requirements.txt
+
+# Core deep learning framework
+# torch and torchvision versions must stay in sync:
+torch==2.12.0
+torchvision==0.27.0
+
+# Numerical computing
+numpy==2.4.4
+
+# Image loading (used by VideoFrameDataset)
+Pillow==12.1.1
+opencv-python==4.13.0.92    # alternative/faster frame loader
+
+# Progress bars (used during training)
+tqdm==4.67.1
