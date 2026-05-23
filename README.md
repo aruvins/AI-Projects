@@ -436,17 +436,19 @@ This roadmap is intentionally designed to build strong fundamentals first before
 
 ```bash
 AI-Projects/
-│
-├── computer-vision/
-├── nlp/
-├── generative-ai/
-├── reinforcement-learning/
-├── agents/
-├── multimodal/
-├── speech-audio/
-├── mlops/
-├── edge-ai/
-├── research/
+├── 01-python-foundations/
+├── 02-classical-machine-learning/
+├── 03-deep-learning-foundations/
+├── 04-computer-vision/
+├── 05-natural-language-processing/
+├── 06-mlops-and-infrastructure/
+├── 07-generative-ai/
+├── 08-ai-agents/
+├── 09-reinforcement-learning/
+├── 10-speech-and-audio-ai/
+├── 11-multimodal-ai/
+├── 12-edge-ai-and-optimization/
+├── 13-research-oriented-projects/
 │
 ├── datasets/
 ├── utilities/
