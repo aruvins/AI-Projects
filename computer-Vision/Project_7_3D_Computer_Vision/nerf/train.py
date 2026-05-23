@@ -106,9 +106,9 @@ for step in range(start_step, TOTAL_STEPS):
 # ======================
 # Final outputs
 # ======================
-model.eval()
+print(model.eval())
 
-img = render_image(model, H, W, focal, poses[0].to(device), device)
+img = render_image(model, H, W, focal, poses[83].to(device), device)
 imageio.imwrite("outputs/nerf/render.png", (img * 255).astype(np.uint8))
 
 render_video(model, H, W, focal, device)
