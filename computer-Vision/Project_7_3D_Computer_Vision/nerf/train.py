@@ -23,7 +23,7 @@ else:
 # Paths
 # ======================
 CHECKPOINT_DIR = "nerf/checkpoints"
-TOTAL_STEPS    = 1_000_000
+TOTAL_STEPS    = 300_000
 CKPT_EVERY     = 50_000   # save a checkpoint every N steps
 
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
