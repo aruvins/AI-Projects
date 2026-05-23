@@ -1,13 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from core.io_utils import save_plot
 
 def apply_transform(matrix, vectors):
-    transformed = []
-    for v in vectors:
-        transformed.append(np.dot(matrix, v))
-    return transformed
+    return [np.dot(matrix, v) for v in vectors]
 
-def plot_transform(original, transformed):
+
+def plot_transform(original, transformed, save_path=None, show=True):
     plt.figure()
 
     for v in original:
@@ -20,4 +19,9 @@ def plot_transform(original, transformed):
     plt.ylim(-10, 10)
     plt.grid()
     plt.title("Blue = Original | Red = Transformed")
-    plt.show()
+
+    if save_path:
+        save_plot(save_path)
+
+    if show:
+        plt.show()
