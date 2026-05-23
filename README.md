@@ -16,14 +16,86 @@ This project series is intended to:
 * Continuously expand into new areas of AI research and applications
 
 ---
-
 # Roadmap
 
-## Phase 1 — Foundations of Deep Learning
+A beginner-friendly roadmap designed to progressively build practical AI engineering skills from foundational concepts to advanced modern AI systems.
 
-Core concepts necessary for all advanced AI systems.
+The goal of this roadmap is to:
+- Learn AI step-by-step without skipping fundamentals
+- Build real projects instead of only following tutorials
+- Understand both theory and implementation
+- Develop production-level engineering skills
+- Create a strong long-term AI portfolio
 
-### Topics
+---
+
+# Phase 1 — Python & AI Foundations
+
+Before building advanced AI systems, focus on strong programming and mathematical foundations.
+
+## Topics
+
+* Python Fundamentals
+* Object-Oriented Programming
+* NumPy
+* Data Handling
+* Linear Algebra Basics
+* Calculus Basics
+* Probability & Statistics
+* Data Visualization
+* Intro to GPUs
+
+## Suggested Projects
+
+* NumPy Neural Network From Scratch
+* Gradient Descent Visualizer
+* Matrix Operations Playground
+* Simple Data Analysis Projects
+
+## Technologies
+
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Jupyter Notebook
+
+---
+
+# Phase 2 — Classical Machine Learning
+
+Learn the core ideas behind machine learning before deep learning.
+
+## Topics
+
+* Supervised Learning
+* Classification vs Regression
+* Train / Validation / Test Splits
+* Overfitting & Underfitting
+* Feature Engineering
+* Evaluation Metrics
+* Data Preprocessing
+
+## Suggested Projects
+
+* Titanic Survival Predictor
+* House Price Predictor
+* Spam Email Classifier
+* Stock Movement Baseline Predictor
+
+## Technologies
+
+* Scikit-learn
+* Pandas
+* Matplotlib
+
+---
+
+# Phase 3 — Deep Learning Foundations
+
+This phase introduces neural networks and modern deep learning.
+
+## Topics
 
 * Neural Networks
 * Backpropagation
@@ -33,30 +105,29 @@ Core concepts necessary for all advanced AI systems.
 * Attention Mechanisms
 * Transformers
 * Transfer Learning
-* Distributed Training
-* Quantization & Optimization
+* GPU Training Basics
 
-### Suggested Projects
+## Suggested Projects
 
 * MNIST Digit Classifier
+* Fashion-MNIST Classifier
 * CIFAR Image Classifier
+* Simple Text Classifier
 * Transformer From Scratch
-* GPU Training Benchmark Suite
-* Model Compression Experiments
 
-### Technologies
+## Technologies
 
-* Python
 * PyTorch
 * NumPy
 * CUDA
-* ONNX
 
 ---
 
-# Computer Vision
+# Phase 4 — Computer Vision
 
 Focus on image understanding, detection, segmentation, tracking, and video intelligence.
+
+> Existing computer vision projects are already completed and can be revisited later as more advanced skills develop.
 
 ## Completed / Existing Projects
 
@@ -65,6 +136,12 @@ Focus on image understanding, detection, segmentation, tracking, and video intel
 * Real-Time Vision Applications
 
 ## Future Projects
+
+### Beginner Vision
+
+* Transfer Learning Image Classifier
+* Data Augmentation Pipeline
+* Image Similarity Search
 
 ### Detection & Segmentation
 
@@ -89,7 +166,7 @@ Focus on image understanding, detection, segmentation, tracking, and video intel
 * AI Art Generation
 * Synthetic Dataset Generation
 
-### Technologies
+## Technologies
 
 * OpenCV
 * PyTorch
@@ -100,33 +177,43 @@ Focus on image understanding, detection, segmentation, tracking, and video intel
 
 ---
 
-# Natural Language Processing (NLP)
+# Phase 5 — Natural Language Processing (NLP)
 
-Explore language models, embeddings, retrieval systems, and conversational AI.
+Learn how modern language models and retrieval systems work.
 
-## Projects
+## Beginner Projects
 
-* Transformer From Scratch
 * Text Classification System
 * Sentiment Analysis Pipeline
-* RAG (Retrieval-Augmented Generation) System
-* AI Research Assistant
+* Text Summarizer
+* Chatbot Basics
+
+## Intermediate Projects
+
+* Transformer From Scratch
 * Document Q&A System
 * Vector Database Search Engine
+* RAG (Retrieval-Augmented Generation) System
+
+## Advanced Projects
+
+* AI Research Assistant
 * Local LLM Inference Stack
+* Long-Context Chat System
 
-## Advanced Topics
+## Topics
 
+* Tokenization
+* Embeddings
+* Attention
+* Transformers
+* Retrieval Systems
+* Prompt Engineering
 * Fine-Tuning LLMs
 * LoRA / QLoRA
-* Prompt Engineering
-* Instruction Tuning
-* Embedding Models
-* Tokenization
 * Context Compression
-* Long-Context Systems
 
-### Technologies
+## Technologies
 
 * HuggingFace Transformers
 * LangChain
@@ -138,7 +225,39 @@ Explore language models, embeddings, retrieval systems, and conversational AI.
 
 ---
 
-# Generative AI
+# Phase 6 — MLOps & AI Infrastructure
+
+Learn how real AI systems are deployed and maintained.
+
+## Topics
+
+* APIs for AI Models
+* Docker Basics
+* Experiment Tracking
+* Model Deployment
+* GPU Optimization
+* Monitoring
+* Distributed Training Basics
+
+## Suggested Projects
+
+* FastAPI Inference Server
+* Dockerized AI Services
+* Experiment Tracking Dashboard
+* Simple Model Deployment Pipeline
+
+## Technologies
+
+* FastAPI
+* Docker
+* MLflow
+* Weights & Biases
+* Kubernetes
+* Ray
+
+---
+
+# Phase 7 — Generative AI
 
 Build systems capable of generating text, images, audio, and video.
 
@@ -157,21 +276,50 @@ Build systems capable of generating text, images, audio, and video.
 * GANs
 * Diffusion Models
 * Autoregressive Models
-* Multimodal Models
 * Synthetic Data
-* AI Agents
+* Multimodal Models
 
 ---
 
-# Reinforcement Learning
+# Phase 8 — AI Agents & Autonomous Systems
 
-Learn decision-making systems and autonomous optimization.
+Combine LLMs, memory, planning, and tools into autonomous systems.
 
 ## Projects
 
+* Tool-Using AI Assistant
+* Autonomous Research Agent
+* Browser Automation Agent
+* AI Coding Agent
+* Multi-Agent Collaboration System
+
+## Topics
+
+* Tool Calling
+* Agent Memory
+* Planning Systems
+* Reflection Loops
+* Long-Term Memory
+* Autonomous Workflows
+
+---
+
+# Phase 9 — Reinforcement Learning
+
+Learn how AI systems make decisions through interaction and rewards.
+
+## Beginner Projects
+
+* Q-Learning Visualization
 * DQN Game Agent
+
+## Intermediate Projects
+
 * PPO Trading Simulator
 * Reinforcement Learning Robotics
+
+## Advanced Projects
+
 * Self-Playing AI Systems
 * Multi-Agent Simulation Environment
 
@@ -184,7 +332,7 @@ Learn decision-making systems and autonomous optimization.
 * Model-Based RL
 * Multi-Agent RL
 
-### Technologies
+## Technologies
 
 * Gymnasium
 * Stable-Baselines3
@@ -192,32 +340,9 @@ Learn decision-making systems and autonomous optimization.
 
 ---
 
-# AI Agents & Autonomous Systems
+# Phase 10 — Speech & Audio AI
 
-Build autonomous systems capable of reasoning, planning, and tool usage.
-
-## Projects
-
-* Autonomous Research Agent
-* AI Coding Agent
-* Multi-Agent Collaboration System
-* Browser Automation Agent
-* Tool-Using AI Assistant
-
-## Topics
-
-* Agent Memory
-* Planning Systems
-* Tool Calling
-* Reflection Loops
-* Long-Term Memory
-* Autonomous Workflows
-
----
-
-# Speech & Audio AI
-
-Work with audio generation, transcription, and speech understanding.
+Work with speech recognition, audio understanding, and generation.
 
 ## Projects
 
@@ -236,9 +361,9 @@ Work with audio generation, transcription, and speech understanding.
 
 ---
 
-# Multimodal AI
+# Phase 11 — Multimodal AI
 
-Combine vision, text, audio, and structured data into unified systems.
+Combine text, vision, audio, and structured data into unified AI systems.
 
 ## Projects
 
@@ -257,44 +382,9 @@ Combine vision, text, audio, and structured data into unified systems.
 
 ---
 
-# MLOps & AI Infrastructure
+# Phase 12 — Edge AI & Optimization
 
-Learn how to deploy, monitor, optimize, and scale AI systems.
-
-## Projects
-
-* ML Model Deployment Pipeline
-* FastAPI Inference Server
-* Dockerized AI Services
-* Kubernetes GPU Deployment
-* Experiment Tracking Dashboard
-* Distributed Training Infrastructure
-
-## Topics
-
-* CI/CD for ML
-* Model Serving
-* Monitoring
-* A/B Testing
-* Data Pipelines
-* Vector Databases
-* GPU Optimization
-
-### Technologies
-
-* Docker
-* Kubernetes
-* FastAPI
-* MLflow
-* Weights & Biases
-* Ray
-* Triton Inference Server
-
----
-
-# Edge AI & Optimization
-
-Deploy AI systems to constrained hardware environments.
+Deploy AI systems efficiently on constrained hardware.
 
 ## Projects
 
@@ -313,9 +403,9 @@ Deploy AI systems to constrained hardware environments.
 
 ---
 
-# Research-Oriented Projects
+# Phase 13 — Research-Oriented Projects
 
-Projects inspired by modern AI papers and frontier research.
+Explore frontier AI architectures and research-inspired systems.
 
 ## Areas
 
@@ -329,6 +419,18 @@ Projects inspired by modern AI papers and frontier research.
 * World Models
 
 ---
+
+# Long-Term Goal
+
+By following this roadmap, the objective is to gradually progress from:
+1. Writing simple machine learning models
+2. Building deep learning systems
+3. Deploying production AI applications
+4. Understanding modern research architectures
+5. Developing advanced autonomous AI systems
+
+This roadmap is intentionally designed to build strong fundamentals first before moving into advanced AI topics.
+
 
 # Repository Structure
 
