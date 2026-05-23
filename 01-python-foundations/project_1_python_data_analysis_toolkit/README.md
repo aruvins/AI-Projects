@@ -96,6 +96,7 @@ This project is the first step toward building:
 python-data-analysis-toolkit/
 │
 ├── data/
+├── outputs/
 ├── toolkit/
 ├── main.py
 ├── requirements.txt
