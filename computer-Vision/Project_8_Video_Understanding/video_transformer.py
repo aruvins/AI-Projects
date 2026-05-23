@@ -536,7 +536,7 @@ def train(args):
     if not train_manifest.exists():
         raise FileNotFoundError(
             f"Train manifest not found at {train_manifest}.\n"
-            "Run `python download_data.py --synthetic` first."
+            "Run `python download_data.py --output_dir ./data` first."
         )
 
     with open(class_map_file) as f:
@@ -1132,7 +1132,7 @@ def main():
         print("Tips:")
         print("  python video_transformer.py --visualize          # generate all plots")
         print("  python video_transformer.py --train --data ./data")
-        print("  (run 'python download_data.py --synthetic' first if no data yet)")
+        print("  (run 'python download_synthetic_data.py --output_dir ./data' first if no data yet)")
 
 
 if __name__ == "__main__":
