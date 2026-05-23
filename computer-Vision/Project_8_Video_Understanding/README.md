@@ -56,16 +56,12 @@ python video_transformer.py --train --data ./data --epochs 10
 
 ```bash
 # Download and preprocess UCF-101 (~6 GB, takes 10–30 min)
-https://www.crcv.ucf.edu/data/UCF101/UCF101.rar
+python download_data.py --output_dir ./data
 
 # Train (30 epochs is a good starting point)
 python video_transformer.py --train --data ./data --epochs 30
 ```
 
-> **Tip:** If you only want a quick real-data test, limit the number of videos:
-> ```bash
-> python download_data.py --output_dir ./data --max_videos 500
-> ```
 
 ---
 
