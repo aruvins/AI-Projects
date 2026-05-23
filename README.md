@@ -1,5 +1,7 @@
 # AI Projects Series
 
+* Every Project in each folder is intended to run on its own and is treated as a separate project
+
 A curated collection of hands-on AI projects covering the major domains of modern Artificial Intelligence, Machine Learning, and Deep Learning. This repository is designed to progressively build practical skills across Computer Vision, NLP, Generative AI, Reinforcement Learning, Agents, Multimodal Systems, and AI Infrastructure.
 
 ## Repository Goals
