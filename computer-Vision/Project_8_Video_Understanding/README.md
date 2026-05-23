@@ -41,7 +41,7 @@ source .venv/bin/activate        # macOS / Linux
 # .venv\Scripts\activate         # Windows (PowerShell)
 
 # 4. Generate a small fake dataset
-python download_data.py --synthetic
+python download_synthetic_data.py --output_dir ./data
 
 # 5. Verify the model works (no training, just a shape check)
 python video_transformer.py
