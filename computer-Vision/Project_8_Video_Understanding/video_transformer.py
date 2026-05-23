@@ -39,6 +39,7 @@ from torch.utils.data import Dataset, DataLoader
 # ══════════════════════════════════════════════════════════════════════════════
 #  1.  TUBELET EMBEDDING
 # ══════════════════════════════════════════════════════════════════════════════
+
 class TubeletEmbedding(nn.Module):
     """
     Splits a video tensor into (t_patch × h_patch × w_patch) non-overlapping
@@ -94,6 +95,7 @@ class TubeletEmbedding(nn.Module):
 # ══════════════════════════════════════════════════════════════════════════════
 #  2.  MULTI-HEAD SELF-ATTENTION (hand-rolled, no nn.MultiheadAttention)
 # ══════════════════════════════════════════════════════════════════════════════
+
 class MultiHeadSelfAttention(nn.Module):
     """
     Vanilla scaled dot-product attention with multiple heads.
@@ -147,6 +149,7 @@ class MultiHeadSelfAttention(nn.Module):
 # ══════════════════════════════════════════════════════════════════════════════
 #  3.  FEED-FORWARD NETWORK (MLP sub-layer)
 # ══════════════════════════════════════════════════════════════════════════════
+
 class FeedForward(nn.Module):
     """
     Two-layer MLP with GELU activation:
@@ -172,6 +175,7 @@ class FeedForward(nn.Module):
 # ══════════════════════════════════════════════════════════════════════════════
 #  4.  TRANSFORMER ENCODER BLOCK
 # ══════════════════════════════════════════════════════════════════════════════
+
 class TransformerBlock(nn.Module):
     """
     Pre-LayerNorm Transformer block (more stable training than post-LN):
@@ -212,6 +216,7 @@ class TransformerBlock(nn.Module):
 # ══════════════════════════════════════════════════════════════════════════════
 #  5.  POSITIONAL EMBEDDING
 # ══════════════════════════════════════════════════════════════════════════════
+
 class SpatioTemporalPE(nn.Module):
     """
     Learnable positional embedding: one vector per token (including [CLS]).
@@ -230,6 +235,7 @@ class SpatioTemporalPE(nn.Module):
 # ══════════════════════════════════════════════════════════════════════════════
 #  6.  FULL VIDEO TRANSFORMER
 # ══════════════════════════════════════════════════════════════════════════════
+
 class VideoTransformer(nn.Module):
     """
     End-to-end Video Transformer for action recognition.
@@ -358,6 +364,7 @@ class VideoTransformer(nn.Module):
 # ══════════════════════════════════════════════════════════════════════════════
 #  7.  DATASET
 # ══════════════════════════════════════════════════════════════════════════════
+
 class VideoFrameDataset(Dataset):
     """
     Reads pre-extracted frame folders produced by download_data.py.
@@ -446,6 +453,7 @@ class VideoFrameDataset(Dataset):
 # ══════════════════════════════════════════════════════════════════════════════
 #  8.  TRAINING LOOP
 # ══════════════════════════════════════════════════════════════════════════════
+
 class AverageMeter:
     def __init__(self):
         self.reset()
