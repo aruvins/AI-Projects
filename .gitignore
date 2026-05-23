@@ -67,3 +67,6 @@ chess-ai/venv
 # Phase 1 - Python Foundations
 01-python-foundations/project_1_python_data_analysis_toolkit/.venv
 01-python-foundations/project_1_python_data_analysis_toolkit/toolkit/__pycache__
+01-python-foundations/project_2_matrix_and_tensor/.venv
+01-python-foundations/project_2_matrix_and_tensor/demos/__pycache__
+01-python-foundations/project_2_matrix_and_tensor/visualizers/__pycache__
