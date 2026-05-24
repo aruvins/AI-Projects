@@ -133,14 +133,16 @@ This gives the slope at every point.
 This is the core learning equation used throughout AI.
 
 [
-x = x - \eta \cdot \nabla f(x)
+x = x - η · ∇f(x)
 ]
 
 Where:
 
-* (x) = parameter
-* (\eta) = learning rate
-* (\nabla f(x)) = gradient
+Where:
+
+- `x` = parameter
+- `η` = learning rate
+- `∇f(x)` = gradient
 
 In plain English:
 
