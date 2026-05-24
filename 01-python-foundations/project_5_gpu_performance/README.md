@@ -507,22 +507,17 @@ Batching doesn’t just make things faster — it also improves training stabili
 
 Bigger batch size:
 
-✔ faster GPU utilization
-
-✔ smoother gradients
-
-❌ more memory usage
-
-❌ can reduce generalization sometimes
+- ✔ faster GPU utilization
+- ✔ smoother gradients
+- ❌ more memory usage
+- ❌ can reduce generalization sometimes
 
 
 Smaller batch size:
 
-✔ more randomness (can help generalization)
-
-✔ less memory
-
-❌ slower training
+- ✔ more randomness (can help generalization)
+- ✔ less memory
+- ❌ slower training
 
 
 ---
