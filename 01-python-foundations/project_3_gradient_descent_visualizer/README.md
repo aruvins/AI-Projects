@@ -1,7 +1,5 @@
 # Gradient Descent Visualizer (Project 3)
 
-# Gradient Descent Visualizer
-
 A beginner-friendly AI project that teaches the core idea behind how neural networks learn.
 
 This project visualizes:
