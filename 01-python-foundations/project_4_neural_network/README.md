@@ -1,19 +1,5 @@
 # README.md
 
-![Prediction](output/predictions.png)
-
-### Architecture
-- Input layer: 2 features
-- Hidden layers: 256 → 128 → 64 neurons
-- Activation function: ReLU (between all hidden layers)
-- Output layer: 3 classes
-- Output activation: Softmax (probability distribution)
-
-### Training 
-- 20,000 Epochs
-- Learning Rate: 0.2
-- Optimization: gradient descent with manual backpropagation
-- Loss function: cross-entropy
 
 # Neural Network From Scratch
 
@@ -1130,6 +1116,23 @@ Try implementing:
 This is how deeper networks are built.
 
 ---
+
+# My Results
+
+![Prediction](output/predictions.png)
+
+### Architecture
+- Input layer: 2 features
+- Hidden layers: 256 → 128 → 64 neurons
+- Activation function: ReLU (between all hidden layers)
+- Output layer: 3 classes
+- Output activation: Softmax (probability distribution)
+
+### Training 
+- 20,000 Epochs
+- Learning Rate: 0.2
+- Optimization: gradient descent with manual backpropagation
+- Loss function: cross-entropy
 
 # Recommended Next Projects
 
