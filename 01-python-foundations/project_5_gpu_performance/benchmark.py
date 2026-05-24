@@ -1,11 +1,6 @@
 import time
 import numpy as np
-
-try:
-    import torch
-    HAS_TORCH = torch.cuda.is_available()
-except ImportError:
-    HAS_TORCH = False
+import torch
 
 
 # -----------------------------
@@ -28,18 +23,29 @@ def cpu_matmul(n):
 # -----------------------------
 
 def gpu_matmul(n):
-    device = "cuda"
-
+    if torch.cuda.is_available():
+        device = "cuda"
+    elif torch.backends.mps.is_available():
+        device = "mps"
+    else:
+        return None
+    
     a = torch.randn(n, n, device=device)
     b = torch.randn(n, n, device=device)
 
     # warmup
     _ = torch.matmul(a, b) # matrix multiplication
-    torch.cuda.synchronize()
+    if device == "cuda":
+        torch.cuda.synchronize()
+    elif device == "mps":
+        torch.mps.synchronize()
 
     start = time.time()
     _ = torch.matmul(a, b) # matrix multiplication
-    torch.cuda.synchronize()
+    if device == "cuda":
+        torch.cuda.synchronize()
+    elif device == "mps":
+        torch.mps.synchronize()
     end = time.time()
 
     return end - start
@@ -49,7 +55,7 @@ def gpu_matmul(n):
 # -----------------------------
 
 def run_benchmarks():
-    sizes = [128, 256, 512, 1024, 2048]
+    sizes = [128, 256, 512, 1024, 2048, 4096, 8192]
 
     results = {
         "size": [],
@@ -60,10 +66,7 @@ def run_benchmarks():
     for n in sizes:
         cpu_time = cpu_matmul(n)
 
-        if HAS_TORCH:
-            gpu_time = gpu_matmul(n)
-        else:
-            gpu_time = None
+        gpu_time = gpu_matmul(n)
 
         results["size"].append(n)
         results["cpu_time"].append(cpu_time)

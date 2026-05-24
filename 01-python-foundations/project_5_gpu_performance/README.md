@@ -6,6 +6,16 @@ This project benchmarks CPU vs GPU performance on matrix multiplication to revea
 
 ---
 
+# Hardware Note (MacBook Pro Compatibility)
+
+This benchmark was run on a MacBook Pro, which does not support NVIDIA CUDA acceleration. As a result, GPU computations were executed using Apple’s Metal Performance Shaders (MPS) backend instead of CUDA.
+
+CUDA is NVIDIA’s parallel computing platform designed specifically for accelerating deep learning workloads on NVIDIA GPUs. In contrast, MPS is Apple’s GPU acceleration framework that enables similar parallel computation on Apple Silicon devices (M1/M2/M3), allowing PyTorch to leverage the Mac’s integrated GPU for machine learning tasks.
+
+While both CUDA and MPS provide GPU acceleration, CUDA is more widely used in large-scale AI research and production environments due to NVIDIA’s dominance in deep learning hardware and ecosystem support.
+
+---
+
 # Why This Project Exists
 
 Modern AI systems like neural networks, transformers, and diffusion models rely almost entirely on one operation:

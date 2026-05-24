@@ -11,7 +11,7 @@ def plot_results(results):
     plt.plot(sizes, cpu, label="CPU (NumPy)")
 
     if gpu[0] is not None:
-        plt.plot(sizes, gpu, label="GPU (PyTorch CUDA)")
+        plt.plot(sizes, gpu, label="GPU (PyTorch MPS)")
 
     plt.xlabel("Matrix Size (N x N)")
     plt.ylabel("Time (seconds)")
