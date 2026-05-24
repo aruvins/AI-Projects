@@ -71,3 +71,5 @@ chess-ai/venv
 01-python-foundations/project_2_matrix_and_tensor/.venv
 01-python-foundations/project_2_matrix_and_tensor/demos/__pycache__
 01-python-foundations/project_2_matrix_and_tensor/visualizers/__pycache__
+
+01-python-foundations/project_3_gradient_descent_visualizer/.venv
