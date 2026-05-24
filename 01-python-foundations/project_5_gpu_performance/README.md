@@ -320,23 +320,209 @@ So training a model involves:
 
 ---
 
-# Why Batching Matters
+# What is batching?
 
-AI frameworks process data in batches:
+Instead of feeding a neural network **one data sample at a time**, we feed it **a group of samples together**.
 
-Instead of:
+That group is called a **batch**.
 
-```text
-1 sample at a time
+So instead of:
+
+```text id="b1"
+1 image → forward pass → update weights
+1 image → forward pass → update weights
+1 image → forward pass → update weights
 ```
 
-they process:
+we do:
 
-```text
-32 / 64 / 128 samples at once
+```text id="b2"
+32 images → forward pass → compute loss → update weights once
 ```
 
-This allows GPUs to maximize parallel usage.
+---
+
+# Why not just use one sample at a time?
+
+You technically *can*, but it is extremely inefficient.
+
+If you train one image at a time:
+
+* the GPU sits idle most of the time
+* computation is not parallelized
+* training is noisy and unstable
+
+This is called **stochastic gradient descent (batch size = 1)**.
+
+---
+
+# What batching actually does (step by step)
+
+Let’s say your batch size is 32.
+
+### Step 1 — Load data
+
+You take 32 samples:
+
+```text id="b3"
+X_batch = [x1, x2, ..., x32]
+```
+
+---
+
+### Step 2 — Forward pass (in parallel)
+
+Instead of processing one input vector:
+
+```text id="b4"
+output = model(x1)
+```
+
+you process the entire batch at once:
+
+```text id="b5"
+outputs = model(X_batch)
+```
+
+Behind the scenes, this becomes matrix operations like:
+
+```text id="b6"
+(32 × input_size) × (input_size × hidden_size)
+```
+
+This is where GPUs shine.
+
+---
+
+### Step 3 — Compute loss
+
+You compute loss for all 32 predictions:
+
+```text id="b7"
+loss = average(loss(x1), loss(x2), ..., loss(x32))
+```
+
+So instead of one error signal, you get a **more stable estimate of error**.
+
+---
+
+### Step 4 — Backpropagation
+
+Now gradients are computed using all 32 samples at once.
+
+This gives:
+
+* smoother gradients
+* less noise
+* more stable learning
+
+---
+
+### Step 5 — Update weights once
+
+Instead of updating after every single sample:
+
+```text id="b8"
+update weights 32 times
+```
+
+you do:
+
+```text id="b9"
+update weights 1 time (based on batch)
+```
+
+---
+
+# Why batching is faster (the key insight)
+
+GPUs are designed for **parallel math**, not sequential work.
+
+A GPU has:
+
+* thousands of small cores
+* optimized matrix multiplication hardware
+
+So when you give it a batch:
+
+```text id="b10"
+32 samples → one big matrix operation
+```
+
+it can compute everything simultaneously.
+
+---
+
+# Intuition: CPU vs GPU batching
+
+## CPU (bad at batching)
+
+A CPU is like:
+
+> 4–16 very smart workers doing tasks one after another
+
+So batching doesn’t help much.
+
+---
+
+## GPU (perfect for batching)
+
+A GPU is like:
+
+> 10,000 workers doing the same operation at the same time
+
+So batching turns:
+
+```text id="b11"
+32 small tasks
+```
+
+into:
+
+```text id="b12"
+1 large parallel task
+```
+
+---
+
+# Why batching improves learning quality
+
+Batching doesn’t just make things faster — it also improves training stability.
+
+### Without batching (batch size = 1):
+
+* very noisy updates
+* model “jumps around”
+* unstable convergence
+
+### With batching (32–128):
+
+* smoother gradient estimates
+* more stable learning
+* better final accuracy
+
+---
+
+# Tradeoff: batch size matters
+
+Bigger batch size:
+
+✔ faster GPU utilization
+✔ smoother gradients
+❌ more memory usage
+❌ can reduce generalization sometimes
+
+Smaller batch size:
+
+✔ more randomness (can help generalization)
+✔ less memory
+❌ slower training
+
+---
+
+# One-sentence summary
+
+> Batching is the process of grouping multiple training samples together so that neural networks can process them in parallel, making GPU computation fast and efficient while also stabilizing learning.
 
 ---
 
