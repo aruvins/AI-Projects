@@ -329,7 +329,9 @@ This project uses the ReLU activation function.
 
 ## Formula
 
-\mathrm{ReLU}(x)=\max(0,x)
+```text
+ReLU(x) = max(0, x)
+```
 
 This means:
 
