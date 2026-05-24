@@ -777,13 +777,20 @@ It does this by slightly adjusting weights in the direction that decreases error
 
 # Weight Update Rule
 
-w=w-\eta\nabla L
+
+```text
+w = w - η ∇L
+```
 
 Where:
 
-* (w) = weight
-* (\eta) = learning rate
-* (\nabla L) = gradient of the loss
+- `w` = weight
+- `η` = learning rate
+- `∇L` = gradient of the loss
+
+In plain English:
+
+> new weight = old weight − small step toward lower error
 
 ---
 
