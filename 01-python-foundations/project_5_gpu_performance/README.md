@@ -236,10 +236,35 @@ gpu_benchmark_suite/
 ```
 
 ---
-
 # How to Run
 
-## 1. Install dependencies
+## 1. change directory into project 3
+
+### macOS/Linux
+
+```bash
+cd 01-python-foundations/project_5_gpu_performance/
+```
+
+## 2. Create Virtual Environment
+
+### macOS/Linux
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### Windows
+
+```bash
+python -m venv .venv
+.venv\\Scripts\\activate
+```
+
+---
+
+## 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -247,7 +272,7 @@ pip install -r requirements.txt
 
 ---
 
-## 2. Run benchmark
+## 4. Run Benchmark
 
 ```bash
 python main.py
