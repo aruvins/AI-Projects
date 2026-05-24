@@ -31,7 +31,7 @@ Even though AI feels complex, at the hardware level it is mostly:
 This project helps you *see* why hardware matters by comparing:
 
 * CPU performance (NumPy)
-* GPU performance (PyTorch CUDA)
+* GPU performance (PyTorch MPS)
 
 ---
 
@@ -197,6 +197,8 @@ This benchmark compares CPU and GPU performance on:
   * 512 × 512
   * 1024 × 1024
   * 2048 × 2048
+  * 4096 x 4096
+  * 8192 x 8192
 
 Each test measures:
 
