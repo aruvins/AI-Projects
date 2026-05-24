@@ -330,5 +330,3 @@ After completing this project, you should understand:
 
 These ideas form the foundation of modern AI.
 
-```
-```
