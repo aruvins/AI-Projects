@@ -19,6 +19,8 @@ def plot_loss(loss_history):
 
     plt.savefig("output/training_loss.png")
 
+    plt.show()
+
 
 
 # -------------------------------------------------
@@ -36,6 +38,8 @@ def plot_accuracy(accuracy_history):
     plt.grid(True)
 
     plt.savefig("output/training_accuracy.png")
+
+    plt.show()
 
 
 # -------------------------------------------------
@@ -73,6 +77,7 @@ def plot_predictions(model, X, y):
         c=y,
         edgecolors="k"
     )
-    
     plt.title("Neural Network Decision Boundary")
     plt.savefig("output/predictions.png")
+
+    plt.show()
