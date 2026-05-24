@@ -1,5 +1,20 @@
 # README.md
 
+![Prediction](output/predictions.png)
+
+### Architecture
+- Input layer: 2 features
+- Hidden layers: 256 → 128 → 64 neurons
+- Activation function: ReLU (between all hidden layers)
+- Output layer: 3 classes
+- Output activation: Softmax (probability distribution)
+
+### Training 
+- 20,000 Epochs
+- Learning Rate: 0.2
+- Optimization: gradient descent with manual backpropagation
+- Loss function: cross-entropy
+
 # Neural Network From Scratch
 
 A beginner-friendly deep learning project that builds a fully functional neural network using only NumPy.
@@ -856,7 +871,7 @@ Deep learning is essentially this repeated cycle:
 2. Compute loss
 3. Backpropagation
 4. Compute gradients
-5. Update weights
+5. Gradient Descent (Weight Updates)
 6. Repeat
 ```
 

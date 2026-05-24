@@ -32,9 +32,9 @@ X, y = generate_spiral_data(
 
 model = NeuralNetwork(
     input_size=2,
-    hidden_size=64,
+    hidden_size=256,
     output_size=3,
-    learning_rate=0.1,
+    learning_rate=0.2,
 )
 
 
@@ -45,7 +45,7 @@ model = NeuralNetwork(
 history = model.train(
     X,
     y,
-    epochs=1000,
+    epochs=20000,
 )
 
 

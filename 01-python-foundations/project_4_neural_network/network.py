@@ -19,7 +19,13 @@ class NeuralNetwork:
         self.layer1 = Dense(input_size, hidden_size)
         self.activation1 = ReLU()
 
-        self.layer2 = Dense(hidden_size, output_size)
+        self.layer2 = Dense(hidden_size, 128)
+        self.activation2 = ReLU()
+
+        self.layer3 = Dense(128, 64)
+        self.activation3 = ReLU()
+
+        self.layer4 = Dense(64, output_size)
         self.softmax = Softmax()
 
         self.loss_function = CrossEntropyLoss()
@@ -29,7 +35,13 @@ class NeuralNetwork:
         activated1 = self.activation1.forward(output1)
         
         output2 = self.layer2.forward(activated1)
-        probabilities = self.softmax.forward(output2)
+        activated2 = self.activation2.forward(output2)
+
+        output3 = self.layer3.forward(activated2)
+        activated3 = self.activation3.forward(output3)
+
+        output4 = self.layer4.forward(activated3)
+        probabilities = self.softmax.forward(output4)
 
         return probabilities
 
@@ -55,16 +67,32 @@ class NeuralNetwork:
 
             # Backward pass
             grad_loss = self.loss_function.backward(predictions, y)
-            grad_layer2 = self.layer2.backward(
+            grad_layer4 = self.layer4.backward(
                 grad_loss,
                 self.learning_rate,
             )
 
-            grad_activation = self.activation1.backward(
+            grad_activation3 = self.activation3.backward(
+                grad_layer4
+            )
+            grad_layer3 = self.layer3.backward(
+                grad_activation3,
+                self.learning_rate,
+            )
+
+            grad_activation2 = self.activation2.backward(
+                grad_layer3
+            )
+            grad_layer2 = self.layer2.backward(
+                grad_activation2,
+                self.learning_rate,
+            )
+
+            grad_activation1 = self.activation1.backward(
                 grad_layer2,
             )
             self.layer1.backward(
-                grad_activation,
+                grad_activation1,
                 self.learning_rate,
             )
 
