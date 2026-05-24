@@ -1,0 +1,59 @@
+import os
+
+from data import generate_spiral_data
+from network import NeuralNetwork
+from visualization import (
+    plot_loss,
+    plot_accuracy,
+    plot_predictions,
+)
+
+
+# -------------------------------------------------
+# Create Output Folder
+# -------------------------------------------------
+
+os.makedirs("output", exist_ok=True)
+
+
+# -------------------------------------------------
+# Generate Dataset
+# -------------------------------------------------
+
+X, y = generate_spiral_data(
+    points_per_class=200,
+    num_classes=3,
+)
+
+
+# -------------------------------------------------
+# Create Neural Network
+# -------------------------------------------------
+
+model = NeuralNetwork(
+    input_size=2,
+    hidden_size=64,
+    output_size=3,
+    learning_rate=0.1,
+)
+
+
+# -------------------------------------------------
+# Train
+# -------------------------------------------------
+
+history = model.train(
+    X,
+    y,
+    epochs=1000,
+)
+
+
+# -------------------------------------------------
+# Save Visualizations
+# -------------------------------------------------
+
+plot_loss(history["loss"])
+plot_accuracy(history["accuracy"])
+plot_predictions(model, X, y)
+print("Saved outputs to output/")
