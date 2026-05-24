@@ -12,6 +12,13 @@ def quadratic_function(x):
     """
     return (x - 3)**2 + 2
 
+def quadratic_gradient(x):
+    """
+    The gradient of the quadratic function: f'(x) = 2 * (x - 3)
+    This is the derivative of the quadratic function.
+    """
+    return 2 * (x - 3)
+
 # ------------------------------------------------
 # Optional Additional Functions
 # ------------------------------------------------

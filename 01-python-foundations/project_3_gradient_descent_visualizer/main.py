@@ -40,4 +40,15 @@ ani = animate_path(
     results = results
 )
 
+# Save animation
+import os
+
+os.makedirs("output", exist_ok=True)
+
+output_path = os.path.join("output", "gradient_descent_visualization.gif")
+
+ani.save(output_path, writer="pillow", fps=4)
+
+print(f"Saved animation to: {output_path}")
+
 plt.show()
