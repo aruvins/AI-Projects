@@ -197,7 +197,15 @@ This is one of the most important intuitions in deep learning.
 
 # How to Run
 
-## 1. Create Virtual Environment
+## 1. change directory into project 3
+
+### macOS/Linux
+
+```bash
+cd 01-python-foundations/project_3_gradient_descent_visualizer/
+```
+
+## 2. Create Virtual Environment
 
 ### macOS/Linux
 
@@ -215,7 +223,7 @@ python -m venv .venv
 
 ---
 
-## 2. Install Dependencies
+## 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -223,7 +231,7 @@ pip install -r requirements.txt
 
 ---
 
-## 3. Run the Visualizer
+## 4. Run the Visualizer
 
 ```bash
 python main.py
