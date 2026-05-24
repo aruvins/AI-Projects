@@ -141,8 +141,8 @@ Where:
 Where:
 
 - `x` = parameter
-- `η` = learning rate
-- `∇f(x)` = gradient
+- `η` = learning rate (eta)
+- `∇f(x)` = gradient (a vector that points in the direction of the greatest rate of increase of a function)
 
 In plain English:
 
