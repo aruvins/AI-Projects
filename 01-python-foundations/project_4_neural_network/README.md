@@ -63,8 +63,6 @@ This process repeats layer after layer.
 
 # Core Deep Learning Concepts
 
-# Core Deep Learning Concepts
-
 ## 1. Forward Propagation
 
 Forward propagation is the process of sending information through the neural network to produce a prediction.
