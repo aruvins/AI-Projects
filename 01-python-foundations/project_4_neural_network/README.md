@@ -1134,6 +1134,8 @@ This is how deeper networks are built.
 - Optimization: gradient descent with manual backpropagation
 - Loss function: cross-entropy
 
+---
+
 # Recommended Next Projects
 
 After this project, consider learning:
