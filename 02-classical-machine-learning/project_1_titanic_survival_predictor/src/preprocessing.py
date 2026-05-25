@@ -21,6 +21,7 @@ def preprocess_data(df):
     df["Age"] = df["Age"].fillna(df["Age"].median())
     df["Embarked"] = df["Embarked"].fillna(df["Embarked"].mode()[0])
 
+
     # Encode categorical variables
     '''
     A label encoder is a simple way to convert categorical variables
@@ -37,6 +38,7 @@ def preprocess_data(df):
     # Features + target
     X = df.drop("Survived", axis=1)
     y = df["Survived"]
+
 
     # Train/test split
     '''
