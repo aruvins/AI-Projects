@@ -89,6 +89,49 @@ This project is the first step toward building:
 - full AI engineering systems
 
 ---
+# How to Run
+
+## 1. change directory into project 3
+
+### macOS/Linux
+
+```bash
+cd 01-python-foundations/project_1_python_data_analysis_toolkit/
+```
+
+## 2. Create Virtual Environment
+
+### macOS/Linux
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### Windows
+
+```bash
+python -m venv .venv
+.venv\\Scripts\\activate
+```
+
+---
+
+## 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+ 
+## 4. Run Toolkit
+
+```bash
+python main.py
+```
+
+---
 
 # 🧱 Project Structure (Expected)
 
