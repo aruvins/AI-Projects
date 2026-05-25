@@ -530,7 +530,7 @@ The raw score is passed through the sigmoid function:
 Where:
 
 - ```math 
-    \sigma(z) ``` = the output probability (final prediction between 0 and 1)  
+    \sigma(z) = the output probability (final prediction between 0 and 1)  
 - \( z \) = the raw model score (also called the **logit**)  
 - \( e \) = Euler’s number (~2.718), a mathematical constant  
 
