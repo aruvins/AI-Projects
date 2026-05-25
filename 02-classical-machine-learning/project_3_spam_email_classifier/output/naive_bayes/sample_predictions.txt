@@ -1,0 +1,3 @@
+SPAM: Congratulations! You won a free iPhone. Click here now!
+HAM: Hey, are we still on for dinner tonight?
+SPAM: Urgent: your account has been suspended, verify immediately
