@@ -1,8 +1,8 @@
 import numpy as np
 
-from layers import Dense
-from activations import ReLU, Softmax
-from losses import CrossEntropyLoss
+from src.layers import Dense
+from src.activations import ReLU, Softmax
+from src.losses import CrossEntropyLoss
 
 
 class NeuralNetwork:

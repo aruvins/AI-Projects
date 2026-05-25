@@ -1,8 +1,8 @@
 import os
 
-from data import generate_spiral_data
-from network import NeuralNetwork
-from visualization import (
+from src.data import generate_spiral_data
+from src.network import NeuralNetwork
+from src.visualization import (
     plot_loss,
     plot_accuracy,
     plot_predictions,
