@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-from functions import quadratic_function, quadratic_gradient, wavy_function, wavy_gradient
-from optimizer import gradient_descent
-from visualization import setup_plot, animate_path
+from src.functions import quadratic_function, quadratic_gradient, wavy_function, wavy_gradient
+from src.optimizer import gradient_descent
+from src.visualization import setup_plot, animate_path
 
 # ------------------------------------------------
 # Configuration 
