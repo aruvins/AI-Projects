@@ -57,12 +57,12 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ----------------------------
 models = {
     "naive_bayes": Pipeline([
-        ("tfidf", TfidfVectorizer(stop_words="english")),
-        ("clf", MultinomialNB())
+        ("tfidf", TfidfVectorizer(stop_words="english")), #TF-IDF vectorizer to convert text to numerical features
+        ("clf", MultinomialNB()) # Classifier to predict spam vs ham
     ]),
     "logistic_regression": Pipeline([
-        ("tfidf", TfidfVectorizer(stop_words="english")),
-        ("clf", LogisticRegression(max_iter=1000))
+        ("tfidf", TfidfVectorizer(stop_words="english")), #TF-IDF vectorizer to convert text to numerical features
+        ("clf", LogisticRegression(max_iter=1000)) # Classifier to predict spam vs ham
     ])
 }
 
