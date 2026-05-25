@@ -541,8 +541,8 @@ z = w_1x_1 + w_2x_2 + \dots + w_nx_n + b
 
 Where:
 
-- \( x_1, x_2, \dots, x_n \) = input features (Age, Fare, Sex, etc.)  
-- \( w_1, w_2, \dots, w_n \) = learned weights (importance of each feature)  
+- \( x_1, x_2, ... , x_n \) = input features (Age, Fare, Sex, etc.)  
+- \( w_1, w_2, ... , w_n \) = learned weights (importance of each feature)  
 - \( b \) = bias term (adjustment constant)  
 
 
