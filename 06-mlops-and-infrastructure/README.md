@@ -245,22 +245,4 @@ After completing this phase, you will be able to:
 
 After Phase 6, you will move into:
 
-> Advanced AI Systems & Research
-
-Where you will work on:
-- multimodal models
-- advanced LLM systems
-- AI agents
-- research-inspired architectures
-
----
-
-# 🧠 Final Note
-
-Phase 6 is where AI becomes engineering.
-
-You move from:
-> “building models”
-
-to:
-> “building systems that run in the real world at scale”
+> Generative AI

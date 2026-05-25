@@ -258,22 +258,12 @@ After completing this phase, you will be able to:
 
 After Phase 7, you will move into:
 
-> Advanced AI Systems (Agents + Multimodal Intelligence)
+> AI Agents & Autonomous Systems
 
 Where generative models are combined with:
-- reasoning systems
-- tool use
-- memory
-- autonomous behavior
-
----
-
-# 🧠 Final Note
-
-Phase 7 is where AI becomes creative.
-
-You move from:
-> “models that predict patterns”
-
-to:
-> “systems that generate entirely new content”
+* Tool Calling
+* Agent Memory
+* Planning Systems
+* Reflection Loops
+* Long-Term Memory
+* Autonomous Workflows
