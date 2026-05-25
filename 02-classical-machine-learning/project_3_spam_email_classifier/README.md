@@ -557,15 +557,4 @@ If you want to level this up:
 * Streamlit web app
 * Real-time email classifier
 
----
-
-# 🧠 Summary
-
-You built a full machine learning pipeline:
-
-```
-Raw Text → TF-IDF → Model → Prediction → Evaluation → Visualization
-```
-
-This is the same core pipeline used in real production spam filters.
 
