@@ -87,5 +87,4 @@ chess-ai/venv
 
 02-classical-machine-learning/project_2_house_price_predictor/.venv
 02-classical-machine-learning/project_2_house_price_predictor/src/__pycache__
-02-classical-machine-learning/project_2_house_price_predictor/outputs/model/linear_regression.pkl
 02-classical-machine-learning/project_2_house_price_predictor/outputs/model/random_forest.pkl
