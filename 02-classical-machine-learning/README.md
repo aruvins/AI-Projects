@@ -237,27 +237,6 @@ Same model, different features → performance comparison.
 
 ---
 
-## 🔴 Project 10 — End-to-End ML Pipeline System
-
-### 🎯 Goal
-Combine everything into a production-style ML system.
-
-### Concepts
-- full ML pipeline design
-- preprocessing pipelines
-- reproducibility
-- model serialization
-
-### Outcome
-A reusable ML pipeline that can:
-- load data
-- preprocess
-- train model
-- evaluate model
-- save model
-
----
-
 # 🧰 Technologies Used
 
 - Scikit-learn
