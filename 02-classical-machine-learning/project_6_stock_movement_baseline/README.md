@@ -18,6 +18,7 @@ project_6_stock_movement_baseline/
 │
 ├── output/
 │   ├── feature_coefficients.png
+│   ├── model_training_fit.png
 │   └── results.txt
 │
 ├── main.py
