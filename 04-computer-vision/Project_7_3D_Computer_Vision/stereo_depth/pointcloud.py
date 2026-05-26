@@ -49,7 +49,7 @@ def visualize_pointcloud(pcd):
     # Look down the +Z direction from slightly behind the origin
     view_ctl.set_front([0, 0, -1])  # Direction the camera is looking
     view_ctl.set_up([0, -1, 0])     # Keeps your ground plane on the bottom (Y is down)
-    view_ctl.set_lookat([0, 0, 0]) # Target point in front of the camera
+    view_ctl.set_lookat([0, 0, 5]) # Target point in front of the camera
     
     vis.run()
     vis.destroy_window()
