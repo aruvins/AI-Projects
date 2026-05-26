@@ -3,264 +3,230 @@ import cv2
 import numpy as np
 import open3d as o3d
 
-def parse_camera_and_angles(data_dir):
+def parse_camera_parameters(par_file_path):
     """
-    Parses temple_par.txt for matrices and temple_ang.txt to map the
-    precise angular tracking of each frame for baseline optimization.
+    Parses temple_par.txt to map the 4-digit frame ID string (e.g., '0001') 
+    to its 3x4 Projection Matrix.
     """
-    par_file = os.path.join(data_dir, "temple_par.txt")
-    ang_file = os.path.join(data_dir, "temple_ang.txt")
-    
-    camera_data = {}
-    
-    # 1. Parse Parameters
-    with open(par_file, 'r') as f:
+    camera_matrices = {}
+    if not os.path.exists(par_file_path):
+        raise FileNotFoundError(f"Could not find parameter file at: {par_file_path}")
+        
+    with open(par_file_path, 'r') as f:
         lines = f.readlines()
+        
+    print(f"Reading camera parameters from {par_file_path}...")
     for line in lines[1:]:
         tokens = line.strip().split()
-        if not tokens: continue
-        filename = tokens[0]
-        digit_id = "".join(filter(str.isdigit, filename))
-        if not digit_id: continue
+        if not tokens:
+            continue
         
+        filename = tokens[0]  # e.g., "temple0001.png"
+        
+        digit_id = "".join(filter(str.isdigit, filename))
+        if not digit_id:
+            continue
+            
         values = np.array([float(x) for x in tokens[1:]])
+        
         K = values[0:9].reshape((3, 3))
         R = values[9:18].reshape((3, 3))
         t = values[18:21].reshape((3, 1))
+        
         Rt = np.hstack((R, t))
         P = np.dot(K, Rt)
         
-        # Calculate optical center of camera: C = -R^T * t
-        camera_center = -np.dot(R.T, t).ravel()
+        camera_matrices[digit_id] = P
         
-        camera_data[digit_id] = {"P": P, "K": K, "center": camera_center, "angle": 0.0}
+    print(f"Successfully cached calibration for {len(camera_matrices)} frames.")
+    return camera_matrices
 
-    # 2. Parse Angles for baseline screening
-    if os.path.exists(ang_file):
-        with open(ang_file, 'r') as f:
-            for line in f:
-                tokens = line.strip().split()
-                if len(tokens) >= 2:
-                    filename = tokens[-1]
-                    digit_id = "".join(filter(str.isdigit, filename))
-                    if digit_id in camera_data:
-                        camera_data[digit_id]["angle"] = float(tokens[1])
-                        
-    return camera_data
-
-def match_and_triangulate_exquisite(img1_path, img2_path, cam1, cam2):
+def match_and_triangulate(img1_path, img2_path, P1, P2):
     img1 = cv2.imread(img1_path)
     img2 = cv2.imread(img2_path)
-    if img1 is None or img2 is None: return None, None
+    
+    if img1 is None or img2 is None:
+        return None, None
 
-    sift = cv2.SIFT_create(nfeatures=20000, contrastThreshold=0.03, edgeThreshold=10)
+    # Use SIFT to extract keypoints
+    sift = cv2.SIFT_create(nfeatures=1_000_000)
     kp1, desc1 = sift.detectAndCompute(img1, None)
     kp2, desc2 = sift.detectAndCompute(img2, None)
-    if desc1 is None or desc2 is None: return None, None
-
-    # Sub-pixel coordinate tracking
-    gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-    gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-    pts1_raw = np.float32([kp.pt for kp in kp1]).reshape(-1, 1, 2)
-    pts2_raw = np.float32([kp.pt for kp in kp2]).reshape(-1, 1, 2)
-    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
     
-    pts1_refined = cv2.cornerSubPix(gray1, pts1_raw, (3, 3), (-1, -1), criteria).squeeze()
-    pts2_refined = cv2.cornerSubPix(gray2, pts2_raw, (3, 3), (-1, -1), criteria).squeeze()
+    if desc1 is None or desc2 is None:
+        return None, None
 
-    bf = cv2.BFMatcher(cv2.NORM_L2)
-    matches = bf.knnMatch(desc1, desc2, k=2)
+    # FLANN Matching
+    FLANN_INDEX_KDTREE = 1
+    index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
+    search_params = dict(checks=50)
+    flann = cv2.FlannBasedMatcher(index_params, search_params)
     
-    pts1_matched, pts2_matched, colors_matched = [], [], []
+    try:
+        matches = flann.knnMatch(desc1, desc2, k=2)
+    except Exception:
+        return None, None
+    
+    good_matches = []
+    pts1 = []
+    pts2 = []
+    colors = []
+    
     for m, n in matches:
-        if m.distance < 0.80 * n.distance:
-            pt1 = pts1_refined[m.queryIdx]
-            pts1_matched.append(pt1)
-            pts2_matched.append(pts2_refined[m.trainIdx])
+        # --- ENHANCEMENT 1: Loosened from 0.75 to 0.82 to accept significantly more surface points ---
+        if m.distance < 0.7 * n.distance:
+            good_matches.append(m)
+            pt1 = kp1[m.queryIdx].pt
+            pts1.append(pt1)
+            pts2.append(kp2[m.trainIdx].pt)
+            
             x, y = int(pt1[0]), int(pt1[1])
-            x, y = min(max(x, 0), img1.shape[1] - 1), min(max(y, 0), img1.shape[0] - 1)
-            colors_matched.append(img1[y, x][::-1] / 255.0)
+            x = min(max(x, 0), img1.shape[1] - 1)
+            y = min(max(y, 0), img1.shape[0] - 1)
+            colors.append(img1[y, x][::-1] / 255.0)
 
-    if len(pts1_matched) < 40: return None, None
+    if len(good_matches) < 15:
+        return None, None
 
-    pts1_arr, pts2_arr = np.array(pts1_matched), np.array(pts2_matched)
-    
-    # Fundamental RANSAC verification
-    _, mask = cv2.findFundamentalMat(pts1_arr, pts2_arr, cv2.FM_RANSAC, 0.8, 0.999)
-    if mask is None: return None, None
-    mask = mask.ravel() == 1
+    pts1 = np.float32(pts1).T
+    pts2 = np.float32(pts2).T
 
-    pts1_final = pts1_arr[mask].T
-    pts2_final = pts2_arr[mask].T
-    colors_final = np.array(colors_matched)[mask]
-
-    points_4d = cv2.triangulatePoints(cam1["P"], cam2["P"], pts1_final, pts2_final)
+    # Triangulate
+    points_4d = cv2.triangulatePoints(P1, P2, pts1, pts2)
     points_3d = points_4d[:3, :] / points_4d[3, :]
     
-    return points_3d.T, colors_final
+    return points_3d.T, np.array(colors)
 
 def main():
     data_dir = "data/sfm/temple/temple"
-    camera_matrices = parse_camera_and_angles(data_dir)
-    img_files = sorted([f for f in os.listdir(data_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))])
+    par_file = os.path.join(data_dir, "temple_par.txt")
     
-    all_points, all_colors = [], []
+    try:
+        camera_matrices = parse_camera_parameters(par_file)
+    except Exception as e:
+        print(f"Error loading parameter file: {e}")
+        return
     
-    print("⏳ Running Baseline-Filtered Triangulation...")
-    for i in range(len(img_files)):
-        for j in range(i + 1, min(i + 5, len(img_files))):
-            id1 = "".join(filter(str.isdigit, img_files[i]))
-            id2 = "".join(filter(str.isdigit, img_files[j]))
-            if id1 not in camera_matrices or id2 not in camera_matrices: continue
-            
-            cam1, cam2 = camera_matrices[id1], camera_matrices[id2]
-            
-            angle_diff = abs(cam1["angle"] - cam2["angle"])
-            if angle_diff < 4.0 or angle_diff > 25.0:
-                continue
-                
-            pts_3d, colors = match_and_triangulate_exquisite(
-                os.path.join(data_dir, img_files[i]), os.path.join(data_dir, img_files[j]), cam1, cam2
-            )
-            if pts_3d is not None:
-                all_points.append(pts_3d)
-                all_colors.append(colors)
-
-    if not all_points:
-        print("❌ Error: No 3D points were generated from triangulation.")
+    all_files = sorted(os.listdir(data_dir))
+    img_extensions = ('.png', '.jpg', '.jpeg')
+    img_files = [f for f in all_files if f.lower().endswith(img_extensions)]
+    
+    print(f"Found {len(img_files)} images in directory structural scan.")
+    if len(img_files) == 0:
+        print(f"Check your data directory path. Read 0 image assets from: {data_dir}")
         return
 
-    final_points = np.vstack(all_points)
+    all_points_3d = []
+    all_colors = []
+    
+    # --- ENHANCEMENT 2: OVERLAPPING STEP MATCHING ---
+    # Instead of matching frame 1 only to frame 2, we match frame 1 to frames 2, 3, and 4.
+    # This leverages the circular, high-overlap nature of the Middlebury sequence.
+    look_ahead_steps = 3 
+    pairs_computed = 0
+    
+    print(f"Beginning multi-view triangulation (Look-ahead depth: {look_ahead_steps})...")
+    for i in range(len(img_files)):
+        for step in range(1, look_ahead_steps + 1):
+            if i + step >= len(img_files):
+                continue
+                
+            file1 = img_files[i]
+            file2 = img_files[i + step]
+            
+            id1 = "".join(filter(str.isdigit, file1))
+            id2 = "".join(filter(str.isdigit, file2))
+            
+            if id1 not in camera_matrices or id2 not in camera_matrices:
+                continue
+                
+            P1 = camera_matrices[id1]
+            P2 = camera_matrices[id2]
+            
+            img1_path = os.path.join(data_dir, file1)
+            img2_path = os.path.join(data_dir, file2)
+            
+            pts_3d, colors = match_and_triangulate(img1_path, img2_path, P1, P2)
+            
+            if pts_3d is not None:
+                all_points_3d.append(pts_3d)
+                all_colors.append(colors)
+                pairs_computed += 1
+                if pairs_computed % 20 == 0 or pairs_computed == 1:
+                    print(f"Successfully processed {pairs_computed} spatial image pairs...")
+
+    print("\nReconstruction passes complete! Finalizing point cloud filtering...")
+    
+    if not all_points_3d:
+        print("Error: Still no 3D points were successfully triangulated.")
+        return
+        
+    final_points = np.vstack(all_points_3d)
     final_colors = np.vstack(all_colors)
     
     pcd = o3d.geometry.PointCloud()
     pcd.points = o3d.utility.Vector3dVector(final_points)
     pcd.colors = o3d.utility.Vector3dVector(final_colors)
     
-    print(f"Raw Point Count: {len(pcd.points)}")
-    pcd = pcd.voxel_down_sample(voxel_size=0.0015) 
-    print(f"Post-Voxel Homogenized Count: {len(pcd.points)}")
+    # Filter noisy artifact points
+    pts_array = np.asarray(pcd.points)
+    distances = np.linalg.norm(pts_array, axis=1)
     
-    pcd, ind = pcd.remove_statistical_outlier(nb_neighbors=45, std_ratio=0.6)
-    pcd = pcd.select_by_index(ind)
-   
-    # Calculate geometric anchor centers
-    mesh_center = pcd.get_center()
+    # --- ENHANCEMENT 3: Expanded crop radius slightly to allow for the broader, denser point spread ---
+    max_radius = 0.35
+    inside_sphere_indices = np.where(distances < max_radius)[0]
+    cropped_pcd = pcd.select_by_index(inside_sphere_indices)
     
-    # 1. High-Precision Normal Estimation BEFORE transformations
-    print("Estimating high-precision surface normals from camera viewpoints...")
-    pcd.estimate_normals(search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=0.010, max_nn=30))
+    # Statistical outlier removal
+    cl, ind = cropped_pcd.remove_statistical_outlier(nb_neighbors=50, std_ratio=0.2)
+    cleaned_pcd = cropped_pcd.select_by_index(ind)
     
-    all_cam_centers = np.array([cam["center"] for cam in camera_matrices.values()])
-    mean_cam_center = np.mean(all_cam_centers, axis=0)
-    pcd.orient_normals_towards_camera_location(camera_location=mean_cam_center)
-
-    # Perform geometry transformations safely now
-    pcd.translate(-mesh_center)
-    R_align = pcd.get_rotation_matrix_from_xyz((-np.pi / 2, 0, 0))
-    pcd.rotate(R_align, center=(0, 0, 0))
+    colors = np.asarray(cleaned_pcd.colors)
     
-    # 2. Compute High-Resolution Poisson Mesh
-    print("Computing high-fidelity Poisson Surface Reconstruction...")
-    mesh, densities = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(pcd, depth=10)
-    print(f"Poisson Base Mesh: {len(mesh.vertices)} vertices, {len(mesh.triangles)} triangles.")
-
-    # 3. HIGH-PRECISION DENSITY TRIMMING
-    print("Trimming low-density boundary bubbles...")
-    densities = np.asarray(densities)
-    # The true corrected normals allow us to aggressively clear the ghost walls
-    trim_threshold = np.percentile(densities, 24) 
-    vertices_to_remove = densities < trim_threshold
-    mesh.remove_vertices_by_mask(vertices_to_remove)
-
-    # 4. Topology Correction
-    mesh.remove_degenerate_triangles()
-    mesh.remove_duplicated_triangles()
-    mesh.remove_non_manifold_edges()
+    # Convert RGB to perceived grayscale brightness
+    brightness = 0.299 * colors[:, 0] + 0.587 * colors[:, 1] + 0.114 * colors[:, 2]
+    bright_indices = np.where(brightness > 0.22)[0]
+    cleaned_pcd = cleaned_pcd.select_by_index(bright_indices)
     
-    # 5. Non-Destructive Taubin Smoothing
-    print("Polishing flat surfaces with Taubin filter...")
-    if len(mesh.triangles) > 0:
-        mesh = mesh.filter_smooth_taubin(number_of_iterations=6, lambda_filter=0.5, mu=-0.53)
+    print(f"Success! Generated a dense point cloud with {len(cleaned_pcd.points)} points.")
     
-    # 6. AGGRESSIVE FLOATING ISLAND PURGE
-    print("Purging disconnected floating mesh fragments...")
-    if len(mesh.triangles) > 0:
-        triangle_clusters, cluster_n_triangles, _ = mesh.cluster_connected_triangles()
-        triangle_clusters = np.asarray(triangle_clusters)
-        cluster_n_triangles = np.asarray(cluster_n_triangles)
-        
-        large_clusters = np.where(cluster_n_triangles > (len(mesh.triangles) * 0.12))[0]
-        triangles_to_remove = ~np.isin(triangle_clusters, large_clusters)
-        mesh.remove_triangles_by_mask(triangles_to_remove)
-        mesh.remove_unreferenced_vertices()
-
-    # 7. FIXED PHOTO-REALISTIC MULTI-VIEW GEOMETRIC TEXTURING
-    print("Projecting photo-realistic textures onto clean geometry...")
-    mesh_vertices = np.asarray(mesh.vertices)
-    vertex_colors = np.zeros_like(mesh_vertices)
-    vertex_weights = np.zeros((len(mesh_vertices), 1))
+    # Orient around fixed centroid
+    print("Centering and orienting point cloud upright...")
+    mesh_center = cleaned_pcd.get_center()
+    cleaned_pcd.translate(-mesh_center)
     
-    # FIXED: Multiply by R_align.T to project correctly back into original camera space
-    orig_vertices = np.dot(mesh_vertices, R_align.T) + mesh_center
+    R_correct = cleaned_pcd.get_rotation_matrix_from_xyz((-np.pi / 2, 0, 0))
+    cleaned_pcd.rotate(R_correct, center=(0, 0, 0))
 
-    for filename in img_files:
-        digit_id = "".join(filter(str.isdigit, filename))
-        if digit_id not in camera_matrices: continue
-        
-        cam = camera_matrices[digit_id]
-        img = cv2.imread(os.path.join(data_dir, filename))
-        if img is None: continue
-        h, w, _ = img.shape
-        
-        pts_3d_homo = np.hstack((orig_vertices, np.ones((len(orig_vertices), 1))))
-        pts_2d_homo = np.dot(cam["P"], pts_3d_homo.T).T
-        
-        valid_depth = pts_2d_homo[:, 2] > 0.1
-        pts_2d = pts_2d_homo[:, :2] / pts_2d_homo[:, 2:3]
-        
-        x_img = np.round(pts_2d[:, 0]).astype(int)
-        y_img = np.round(pts_2d[:, 1]).astype(int)
-        
-        in_frame = (x_img >= 0) & (x_img < w) & (y_img >= 0) & (y_img < h) & valid_depth
-        
-        if np.any(in_frame):
-            colors_sampled = img[y_img[in_frame], x_img[in_frame]][:, ::-1] / 255.0
-            cam_vector = cam["center"] - orig_vertices[in_frame]
-            cam_dist = np.linalg.norm(cam_vector, axis=1, keepdims=True)
-            
-            # Distance-weighted priority mapping
-            weight = 1.0 / (cam_dist + 1e-6)
-            vertex_colors[in_frame] += colors_sampled * weight
-            vertex_weights[in_frame] += weight
-
-    valid_weights = (vertex_weights > 0).squeeze()
-    vertex_colors[valid_weights] /= vertex_weights[valid_weights]
-    vertex_colors[~valid_weights] = [0.70, 0.67, 0.62] # Warm architectural stone fallback
-    mesh.vertex_colors = o3d.utility.Vector3dVector(vertex_colors)
-
-    mesh.compute_vertex_normals()
-
-    # --- ADVANCED PRESENTATION ENGINE ---
-    print("Launching final clean architectural viewport...")
+    output_mesh_path = "outputs/sfm/temple_reconstruction.pcd"
+    o3d.io.write_point_cloud(output_mesh_path, cleaned_pcd)
+    print(f"Saved locally centered point cloud to '{output_mesh_path}'")
+    
+    coord_frame = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.1, origin=[0, 0, 0])
+    
+    # Initialize advanced visualizer
     vis = o3d.visualization.Visualizer()
-    vis.create_window(window_name="Middlebury Temple - Complete Textured Surface", width=1280, height=960)
+    vis.create_window(window_name="Middlebury Temple SfM (Custom View)", width=1024, height=768)
     
-    vis.add_geometry(mesh)
+    # --- ENHANCEMENT 4: Add shading and scale point sizing automatically ---
+    cleaned_pcd.estimate_normals(
+        search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=0.02, max_nn=30)
+    )
+    cleaned_pcd.orient_normals_towards_camera_location(camera_location=[0, 0, 1])
     
-    # Render Styling Controls
-    render_opt = vis.get_render_option()
-    render_opt.background_color = np.array([0.05, 0.05, 0.05])  
-    render_opt.light_on = True                                   
-    render_opt.mesh_show_back_face = True                        
+    vis.add_geometry(cleaned_pcd)
+    vis.add_geometry(coord_frame)
     
     ctr = vis.get_view_control()
     ctr.set_lookat([0.0, 0.0, 0.0])
-    ctr.set_front([0.25, 0.15, 0.95]) 
+    ctr.set_front([0.0, 0.0, 1.0]) 
     ctr.set_up([0.0, 1.0, 0.0])
-    ctr.set_zoom(0.8)
     
-    print("Rendering complete! Enjoy your clean, sharp, photo-textured temple model.")
+    # Closer zoom and thicker rendering splats to create an absolute solid surface appearance
+    ctr.set_zoom(0.22)
+    render_opt = vis.get_render_option()
+    render_opt.point_size = 3.5 
+    
     vis.run()
     vis.destroy_window()
 
