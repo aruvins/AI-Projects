@@ -122,8 +122,7 @@ Instead of a static CSV file, this script dynamically streams daily market candl
 
 | Feature | Description | Math Concept |
 | --- | --- | --- |
-| **Return** | Today's percentage gain or loss |
-\frac{\text{Close}_t - \text{Close}_{t-1}}{\text{Close}_{t-1}} |
+| **Return** | Today's percentage gain or loss | \frac{\text{Close_t} - \text{Close_t-1}}{\text{Close_t-1}} |
 | **MA_5** | Fast trend tracking | $\frac{\text{Close}_t}{\text{Mean of last 5 days}}$ |
 | **MA_20** | Medium trend tracking | $\frac{\text{Close}_t}{\text{Mean of last 20 days}}$ |
 | **Vol_10** | Market noise / risk gauge | Standard Deviation of the past 10 daily returns |
