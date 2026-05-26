@@ -12,8 +12,6 @@ from sklearn.metrics import (
     roc_auc_score
 )
 
-from sklearn.datasets import fetch_openml
-
 # ---------------------------------------------------
 # Setup
 # ---------------------------------------------------
