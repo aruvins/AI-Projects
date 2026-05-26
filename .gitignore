@@ -77,6 +77,7 @@ chess-ai/venv
 
 01-python-foundations/project_4_neural_network/.venv
 01-python-foundations/project_4_neural_network/__pycache__
+01-python-foundations/project_4_neural_network/src/__pycache__
 
 01-python-foundations/project_5_gpu_performance/.venv
 01-python-foundations/project_5_gpu_performance/__pycache__
@@ -91,4 +92,5 @@ chess-ai/venv
 
 02-classical-machine-learning/project_3_spam_email_classifier/.venv
 02-classical-machine-learning/project_3_spam_email_classifier/src/__pycache__
-01-python-foundations/project_4_neural_network/src/__pycache__
+
+02-classical-machine-learning/project_4_iris_flower_classifier/.venv
