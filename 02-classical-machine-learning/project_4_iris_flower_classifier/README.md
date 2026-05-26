@@ -100,12 +100,16 @@ This helps measure how well the model performs on unseen data.
 
 ### 2. Feature Scaling
 
-The dataset contains measurements like:
+Machine learning models often perform better when all features are on a similar numerical scale.
 
-* petal length
-* sepal width
+For example:
 
-Some values are larger than others.
+| Feature | Example Values |
+|---|---|
+| Petal Length | 1.0 - 6.9 |
+| Petal Width | 0.1 - 2.5 |
+
+Without scaling, features with larger values can dominate distance calculations.
 
 We use:
 
@@ -113,12 +117,29 @@ We use:
 StandardScaler()
 ```
 
-to normalize the data so every feature is on a similar scale.
+to standardize each feature using the formula:
 
-This improves performance for models like:
+```math
+z = \frac{x - \mu}{\sigma}
+```
 
-* KNN
-* SVM
+Where:
+
+* (x) = original value
+* (mu) = mean of the feature
+* (sigma) = standard deviation of the feature
+
+After scaling:
+- the mean becomes approximately 0
+- the standard deviation becomes 1
+
+This ensures every feature contributes more equally during training.
+
+Scaling is especially important for:
+- KNN → uses distance calculations
+- SVM → builds optimal decision boundaries based on feature space distances
+
+Without scaling, models may become biased toward features with larger numeric ranges.
 
 ---
 
