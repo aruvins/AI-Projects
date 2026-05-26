@@ -1,0 +1,19 @@
+📊 Stock Movement Prediction Results
+
+Training Accuracy: 0.5484
+Testing Accuracy (Out-of-Sample): 0.5815
+
+📝 Out-of-Sample Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.25      0.01      0.01       165
+           1       0.58      0.99      0.73       234
+
+    accuracy                           0.58       399
+   macro avg       0.42      0.50      0.37       399
+weighted avg       0.45      0.58      0.44       399
+
+Saved feature directional analysis to: output/feature_coefficients.png
+Saved training data visualization to: output/model_training_fit.png
+Market actual up-days in test set: 58.65%
+Model prediction hit rate: 58.15%
