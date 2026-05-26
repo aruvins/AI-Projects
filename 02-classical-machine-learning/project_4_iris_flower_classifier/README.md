@@ -23,6 +23,7 @@ project_project_4_iris_flower_classifier/
 │   ├── knn_dataset_visualization.png
 │   ├── svm_confusion_matrix.png
 │   ├── svm_dataset_visualization.png
+│   ├── model_accuracy_comparison.png
 │   └── results.txt
 │
 ├── main.py
@@ -513,15 +514,19 @@ output/
 Example files:
 
 ```text
-knn_confusion_matrix.png
-svm_confusion_matrix.png
-decision_tree_confusion_matrix.png
-
-knn_dataset_visualization.png
-svm_dataset_visualization.png
-decision_tree_dataset_visualization.png
-
-model_accuracy_comparison.png
+output/
+├── decision_tree_confusion_matrix.png
+├── decision_tree_dataset_visualization.png
+│
+├── knn_confusion_matrix.png
+├── knn_dataset_visualization.png
+│
+├── svm_confusion_matrix.png
+├── svm_dataset_visualization.png
+│
+├── model_accuracy_comparison.png
+│
+└── results.txt
 ```
 
 # 🧠 Example Output
