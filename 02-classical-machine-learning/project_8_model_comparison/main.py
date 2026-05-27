@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,7 +18,11 @@ from sklearn.metrics import (
     accuracy_score,
     precision_score,
     recall_score,
-    f1_score
+    f1_score,
+    roc_auc_score,
+    roc_curve,
+    confusion_matrix,
+    ConfusionMatrixDisplay
 )
 
 # Models
@@ -30,7 +35,17 @@ from sklearn.ensemble import (
 from sklearn.neighbors import KNeighborsClassifier
 
 # =========================================================
-# 1. Load Dataset
+# 1. Create Outputs Folder
+# =========================================================
+
+OUTPUT_DIR = "outputs"
+
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+print(f"\nOutputs will be saved to: {OUTPUT_DIR}/")
+
+# =========================================================
+# 2. Load Dataset
 # =========================================================
 
 data = load_breast_cancer()
@@ -38,14 +53,10 @@ data = load_breast_cancer()
 X = pd.DataFrame(data.data, columns=data.feature_names)
 y = pd.Series(data.target)
 
-print("\nDataset Shape:")
-print(X.shape)
-
-print("\nTarget Distribution:")
-print(y.value_counts())
+print("\nDataset Shape:", X.shape)
 
 # =========================================================
-# 2. Train/Test Split
+# 3. Train/Test Split
 # =========================================================
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -57,7 +68,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # =========================================================
-# 3. Define Models
+# 4. Define Models
 # =========================================================
 
 models = {
@@ -73,10 +84,12 @@ models = {
 }
 
 # =========================================================
-# 4. Benchmark Models
+# 5. Benchmark Models
 # =========================================================
 
 results = []
+
+plt.figure(figsize=(10, 7))
 
 for name, model in models.items():
 
@@ -84,15 +97,18 @@ for name, model in models.items():
     print(name)
     print("="*60)
 
-    # Create pipeline
+    # -----------------------------------------------------
+    # Pipeline
+    # -----------------------------------------------------
+
     pipeline = Pipeline([
         ("scaler", StandardScaler()),
         ("model", model)
     ])
 
-    # ---------------------------------------------
+    # -----------------------------------------------------
     # Cross Validation
-    # ---------------------------------------------
+    # -----------------------------------------------------
 
     cv_scores = cross_val_score(
         pipeline,
@@ -102,58 +118,163 @@ for name, model in models.items():
         scoring="accuracy"
     )
 
-    print(f"Cross Validation Scores: {cv_scores}")
     print(f"Mean CV Accuracy: {cv_scores.mean():.4f}")
 
-    # ---------------------------------------------
-    # Train Model
-    # ---------------------------------------------
+    # -----------------------------------------------------
+    # Train
+    # -----------------------------------------------------
 
     pipeline.fit(X_train, y_train)
 
-    # ---------------------------------------------
+    # -----------------------------------------------------
     # Predictions
-    # ---------------------------------------------
+    # -----------------------------------------------------
 
     y_pred = pipeline.predict(X_test)
 
-    # ---------------------------------------------
+    y_prob = pipeline.predict_proba(X_test)[:, 1]
+
+    # -----------------------------------------------------
     # Metrics
-    # ---------------------------------------------
+    # -----------------------------------------------------
 
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
+    roc_auc = roc_auc_score(y_test, y_prob)
 
-    print(f"Test Accuracy : {accuracy:.4f}")
-    print(f"Precision     : {precision:.4f}")
-    print(f"Recall        : {recall:.4f}")
-    print(f"F1 Score      : {f1:.4f}")
+    print(f"Accuracy : {accuracy:.4f}")
+    print(f"Precision: {precision:.4f}")
+    print(f"Recall   : {recall:.4f}")
+    print(f"F1 Score : {f1:.4f}")
+    print(f"ROC-AUC  : {roc_auc:.4f}")
+
+    # -----------------------------------------------------
+    # Save Results
+    # -----------------------------------------------------
 
     results.append({
         "Model": name,
         "CV Accuracy": cv_scores.mean(),
-        "Test Accuracy": accuracy,
+        "Accuracy": accuracy,
         "Precision": precision,
         "Recall": recall,
-        "F1 Score": f1
+        "F1 Score": f1,
+        "ROC-AUC": roc_auc
     })
 
+    # =====================================================
+    # 6. ROC Curve Visualization
+    # =====================================================
+
+    fpr, tpr, _ = roc_curve(y_test, y_prob)
+
+    plt.plot(
+        fpr,
+        tpr,
+        label=f"{name} (AUC={roc_auc:.3f})"
+    )
+
+    # =====================================================
+    # 7. Confusion Matrix Visualization
+    # =====================================================
+
+    cm = confusion_matrix(y_test, y_pred)
+
+    disp = ConfusionMatrixDisplay(
+        confusion_matrix=cm
+    )
+
+    disp.plot()
+
+    plt.title(f"Confusion Matrix - {name}")
+
+    filename = f"confusion_matrix_{name.replace(' ', '_')}.png"
+
+    plt.savefig(os.path.join(OUTPUT_DIR, filename))
+
+    plt.close()
+
 # =========================================================
-# 5. Create Results Table
+# 8. Save ROC Curves
+# =========================================================
+
+plt.plot([0, 1], [0, 1], linestyle="--")
+
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+
+plt.title("ROC Curve Comparison")
+
+plt.legend()
+
+plt.tight_layout()
+
+plt.savefig(os.path.join(OUTPUT_DIR, "roc_curves.png"))
+
+plt.close()
+
+# =========================================================
+# 9. Create Results DataFrame
 # =========================================================
 
 results_df = pd.DataFrame(results)
 
-print("\n" + "="*60)
-print("FINAL MODEL COMPARISON")
-print("="*60)
+results_df = results_df.sort_values(
+    by="F1 Score",
+    ascending=False
+)
 
-print(results_df.sort_values(by="F1 Score", ascending=False))
+print("\nFinal Results:")
+print(results_df)
 
 # =========================================================
-# 6. Hyperparameter Tuning
+# 10. Save CSV Results
+# =========================================================
+
+csv_path = os.path.join(
+    OUTPUT_DIR,
+    "benchmark_results.csv"
+)
+
+results_df.to_csv(csv_path, index=False)
+
+print(f"\nResults saved to: {csv_path}")
+
+# =========================================================
+# 11. Model Comparison Visualization
+# =========================================================
+
+plt.figure(figsize=(12, 6))
+
+plt.bar(
+    results_df["Model"],
+    results_df["F1 Score"]
+)
+
+plt.ylabel("F1 Score")
+
+plt.title("Model Performance Comparison")
+
+plt.xticks(rotation=15)
+
+plt.tight_layout()
+
+comparison_path = os.path.join(
+    OUTPUT_DIR,
+    "model_comparison.png"
+)
+
+plt.savefig(comparison_path)
+
+plt.close()
+
+print(f"Model comparison chart saved to:")
+print(comparison_path)
+
+# =========================================================
+# 12. Hyperparameter Tuning
 # =========================================================
 
 print("\n" + "="*60)
@@ -184,11 +305,11 @@ grid_search.fit(X_train, y_train)
 print("\nBest Parameters:")
 print(grid_search.best_params_)
 
-print("\nBest Cross Validation Score:")
+print("\nBest CV Score:")
 print(grid_search.best_score_)
 
 # =========================================================
-# 7. Evaluate Best Model
+# 13. Evaluate Best Model
 # =========================================================
 
 best_model = grid_search.best_estimator_
@@ -202,18 +323,4 @@ print(f"Precision: {precision_score(y_test, y_pred):.4f}")
 print(f"Recall   : {recall_score(y_test, y_pred):.4f}")
 print(f"F1 Score : {f1_score(y_test, y_pred):.4f}")
 
-# =========================================================
-# 8. Visualization
-# =========================================================
-
-plt.figure(figsize=(10, 5))
-
-plt.bar(results_df["Model"], results_df["F1 Score"])
-
-plt.ylabel("F1 Score")
-plt.title("Model Comparison")
-
-plt.xticks(rotation=15)
-
-plt.tight_layout()
-plt.show()
+print("\nProject Complete!")
