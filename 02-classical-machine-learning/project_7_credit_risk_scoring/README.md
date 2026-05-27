@@ -720,20 +720,27 @@ The model prediction evolves like this:
 
 Initial prediction:
 
+```math
 F_0(x)
+```
 
 After first correction:
 
+```math
 F_1(x)=F_0(x)+h_1(x)
+```
 
 After second correction:
 
+```math
 F_2(x)=F_1(x)+h_2(x)
+```
 
 Eventually:
 
+```math
 F_M(x)=\sum_{m=1}^{M} h_m(x)
-
+```
 Where:
 
 * each (h_m(x)) is a small corrective tree
