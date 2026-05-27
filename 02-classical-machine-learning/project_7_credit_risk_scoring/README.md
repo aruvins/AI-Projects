@@ -743,7 +743,7 @@ F_M(x)=\sum_{m=1}^{M} h_m(x)
 ```
 Where:
 
-* each (h_m(x)) is a small corrective tree
+* each $(h_m(x))$ is a small corrective tree
 
 ---
 
