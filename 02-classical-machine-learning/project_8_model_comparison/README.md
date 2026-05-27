@@ -14,30 +14,51 @@ This project is designed to teach one of the most important real-world ML skills
 
 ---
 
-# 📌 Table of Contents
+# ⚙️ Installation
 
-1. Introduction
-2. Why Model Comparison Matters
-3. What Is Benchmarking?
-4. Supervised Learning Review
-5. Classification Problems
-6. Machine Learning Pipelines
-7. Cross-Validation Explained
-8. Data Leakage Explained
-9. Model Benchmarking
-10. Hyperparameter Tuning
-11. Grid Search Explained
-12. Models Used
-13. Evaluation Metrics
-14. ROC Curves
-15. Confusion Matrices
-16. Why Multiple Metrics Matter
-17. Feature Scaling
-18. Overfitting vs Underfitting
-19. Visualization System
-20. Real-World Applications
-21. How to Run the Project
-22. Future Improvements
+## 1. CD into Repository
+
+```bash
+cd 02-classical-machine-learning/project_8_model_comparison
+
+```
+
+---
+
+## 2. Create Virtual Environment
+
+### Mac/Linux
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+
+```
+
+### Windows
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+
+```
+
+---
+
+## 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# 4. Run The Project
+
+```bash
+python main.py
+
+```
 
 ---
 
@@ -112,7 +133,7 @@ Without benchmarking:
 
 ---
 
-# 🧠 Supervised Learning Review
+# 🧠 Supervised Learning
 
 This project uses:
 
@@ -244,41 +265,278 @@ Pipelines automate this correctly.
 
 ---
 
-# 🔄 Cross-Validation Explained
+# 🔄 Cross-Validation Explained 
 
-A single train/test split can be misleading.
+Cross-validation is one of the most important concepts in machine learning evaluation.
 
-Maybe:
+Its purpose is to answer this question:
 
-* you got lucky
-* or unlucky
+> “How well will this model perform on unseen data?”
 
-Cross-validation reduces randomness.
+A single train/test split often gives unreliable answers because performance can vary depending on:
+
+* randomness
+* dataset composition
+* outliers
+* class distribution
+
+Cross-validation reduces this problem by evaluating the model multiple times on different subsets of the data.
 
 ---
 
-# 📦 5-Fold Cross Validation
+# 🧠 The Core Problem With One Train/Test Split
 
-The dataset is divided into 5 sections.
+Suppose you split data like this:
 
-Process:
-
-```text id="wsjlwm"
-Fold 1 → validate
-Fold 2 → validate
-Fold 3 → validate
-Fold 4 → validate
-Fold 5 → validate
+```text id="f90cxq"
+80% → Training
+20% → Testing
 ```
 
-Each iteration:
+You train the model once and get:
 
-* trains on 4 folds
-* validates on 1 fold
+```text id="jjlwm4"
+Accuracy = 96%
+```
 
-Final score =
+Looks great.
 
-> average across all folds
+But what if:
+
+* the test set happened to be unusually easy?
+* or unusually difficult?
+
+Then your estimate may be misleading.
+
+---
+
+# 📉 Example of Split Variability
+
+Imagine your dataset has:
+
+* 1000 samples
+* some difficult edge cases
+* some noisy data
+
+If your test split accidentally contains:
+
+* mostly easy examples
+
+your model may appear much better than it truly is.
+
+Another random split might produce:
+
+| Split   | Accuracy |
+| ------- | -------- |
+| Split A | 96%      |
+| Split B | 89%      |
+| Split C | 92%      |
+
+Which one is correct?
+
+This uncertainty is exactly why cross-validation exists.
+
+---
+
+# 📦 The Big Idea of Cross-Validation
+
+Instead of testing:
+
+* once
+
+Cross-validation tests:
+
+* many times
+
+using different train/validation splits.
+
+This produces:
+
+* a distribution of scores
+* a more reliable performance estimate
+
+---
+
+# 🔄 K-Fold Cross Validation
+
+The most common version is:
+
+> K-Fold Cross Validation
+
+The dataset is divided into:
+
+* (K) equal sections called folds.
+
+Example:
+
+```python id="jlwm7m"
+cv=5
+```
+
+means:
+
+* 5 folds
+
+---
+
+# 📊 Visualizing 5-Fold Cross Validation
+
+Suppose we have this dataset:
+
+```text id="jlwm3k"
+[1][2][3][4][5]
+```
+
+Each block is a fold.
+
+---
+
+# Iteration 1
+
+```text id="jlwm5u"
+VALIDATE → [1]
+
+TRAIN → [2][3][4][5]
+```
+
+---
+
+# Iteration 2
+
+```text id="jlwm2r"
+VALIDATE → [2]
+
+TRAIN → [1][3][4][5]
+```
+
+---
+
+# Iteration 3
+
+```text id="jlwm6j"
+VALIDATE → [3]
+
+TRAIN → [1][2][4][5]
+```
+
+---
+
+# Iteration 4
+
+```text id="jlwm1z"
+VALIDATE → [4]
+
+TRAIN → [1][2][3][5]
+```
+
+---
+
+# Iteration 5
+
+```text id="jlwm0t"
+VALIDATE → [5]
+
+TRAIN → [1][2][3][4]
+```
+
+---
+
+# 🧠 Important Observation
+
+Every sample gets used:
+
+* for training
+* AND for validation
+
+This is powerful because:
+
+* no data is wasted
+* evaluation becomes more robust
+
+---
+
+# 📈 Final Cross-Validation Score
+
+Suppose the fold accuracies are:
+
+| Fold | Accuracy |
+| ---- | -------- |
+| 1    | 0.94     |
+| 2    | 0.96     |
+| 3    | 0.91     |
+| 4    | 0.95     |
+| 5    | 0.93     |
+
+Final CV score:
+
+```math
+CV\ Score=\frac{0.94+0.96+0.91+0.95+0.93}{5}
+```
+
+Result:
+
+```text id="jlwm8v"
+Mean CV Accuracy = 0.938
+```
+
+This estimate is much more reliable than:
+
+* one random split
+
+---
+
+# 📉 Variance Matters Too
+
+Cross-validation also reveals:
+
+> stability
+
+Suppose:
+
+| Fold Scores |
+| ----------- |
+| 0.99        |
+| 0.98        |
+| 0.45        |
+| 0.97        |
+| 0.99        |
+
+Average:
+
+* looks decent
+
+BUT:
+
+* performance is inconsistent
+
+This suggests:
+
+* instability
+* overfitting
+* data sensitivity
+
+---
+
+# 📏 Mean vs Standard Deviation
+
+Cross-validation often reports:
+
+| Metric             | Meaning             |
+| ------------------ | ------------------- |
+| Mean               | Average performance |
+| Standard deviation | Stability           |
+
+Example:
+
+```text id="jlwm9n"
+Accuracy = 0.94 ± 0.02
+```
+
+Meaning:
+
+* average = 94%
+* variation is small
+* model is stable
 
 ---
 
@@ -286,17 +544,269 @@ Final score =
 
 Cross-validation provides:
 
-* more stable estimates
-* less variance
-* fairer model comparison
+---
 
-Instead of:
+## 1. Better Generalization Estimates
 
-> “How good was this one split?”
+It better approximates:
 
-it asks:
+> real-world unseen performance.
 
-> “How consistently good is this model?”
+---
+
+## 2. Reduced Randomness
+
+Performance depends less on:
+
+* lucky splits
+* unlucky splits
+
+---
+
+## 3. Better Model Comparison
+
+Suppose:
+
+| Model               | Single Split Accuracy |
+| ------------------- | --------------------- |
+| Logistic Regression | 94%                   |
+| Random Forest       | 95%                   |
+
+Looks close.
+
+But cross-validation may reveal:
+
+| Model               | Mean CV Accuracy |
+| ------------------- | ---------------- |
+| Logistic Regression | 94% ± 1%         |
+| Random Forest       | 95% ± 8%         |
+
+The Random Forest is much less stable.
+
+---
+
+# ⚠️ Important: Validation ≠ Test Set
+
+A common beginner mistake:
+
+```text id="jlwm4x"
+Train → Validation → Test
+```
+
+Cross-validation happens ONLY inside:
+
+* training/validation
+
+The final test set should remain untouched until the very end.
+
+---
+
+# 🧪 Proper Workflow
+
+Correct process:
+
+```text id="jlwm2c"
+1. Split train/test
+2. Perform cross-validation on training set
+3. Choose best model
+4. Evaluate ONCE on test set
+```
+
+This prevents:
+
+* overfitting to the test set
+
+---
+
+# ⚡ Computational Cost
+
+Cross-validation is more expensive.
+
+Example:
+
+| Method       | Number of Trainings |
+| ------------ | ------------------- |
+| Single Split | 1                   |
+| 5-Fold CV    | 5                   |
+| 10-Fold CV   | 10                  |
+
+If hyperparameter tuning is also used:
+
+```text id="jlwm7f"
+100 parameter combinations
+×
+5 folds
+=
+500 trainings
+```
+
+This becomes computationally heavy.
+
+---
+
+# 🔍 Stratified Cross Validation
+
+In classification problems, we often use:
+
+```python id="jlwm3a"
+StratifiedKFold
+```
+
+This preserves:
+
+* class distribution in each fold
+
+Example:
+
+| Dataset | 90% Negative / 10% Positive |
+
+Each fold keeps:
+
+* roughly the same ratio
+
+This is critical for:
+
+* imbalanced datasets
+
+---
+
+# 📦 Leave-One-Out Cross Validation (LOOCV)
+
+Extreme version:
+
+```text id="jlwm5m"
+Train on ALL samples except 1
+Validate on that 1 sample
+Repeat for every sample
+```
+
+If dataset size = 1000:
+
+* 1000 trainings
+
+Very accurate:
+
+* but extremely slow
+
+---
+
+# 🧠 Bias vs Variance Tradeoff
+
+Choosing (K) affects evaluation behavior.
+
+---
+
+## Smaller K (e.g. 3)
+
+* faster
+* higher bias
+* less stable
+
+---
+
+## Larger K (e.g. 10)
+
+* slower
+* lower bias
+* better estimates
+
+Common choices:
+
+* 5-fold
+* 10-fold
+
+---
+
+# 🚨 Common Beginner Mistakes
+
+---
+
+## 1. Data Leakage
+
+Scaling BEFORE cross-validation:
+
+❌ Wrong:
+
+```python id="jlwm1e"
+scaler.fit_transform(X)
+cross_val_score(...)
+```
+
+The scaler saw all data.
+
+---
+
+## Correct:
+
+Use pipelines:
+
+```python id="jlwm0s"
+Pipeline([
+    ("scaler", StandardScaler()),
+    ("model", LogisticRegression())
+])
+```
+
+---
+
+# 2. Using Test Data Repeatedly
+
+If you keep checking test performance:
+
+* you indirectly optimize for the test set
+
+This contaminates evaluation.
+
+---
+
+# 3. Ignoring Variance
+
+Two models with similar averages may have:
+
+* very different stability
+
+Always consider:
+
+* mean
+* standard deviation
+
+---
+
+# 🌎 Real-World Importance
+
+Cross-validation is used heavily in:
+
+* Kaggle competitions
+* academic ML research
+* production ML systems
+* medical AI
+* financial modeling
+
+Without proper validation:
+
+* models can fail catastrophically in production.
+
+---
+
+# 🧠 Intuition Summary
+
+Cross-validation works like this:
+
+```text id="jlwm8p"
+1. Split data into folds
+2. Train on most folds
+3. Validate on remaining fold
+4. Repeat many times
+5. Average the results
+```
+
+Instead of asking:
+
+> “Did the model perform well once?”
+
+Cross-validation asks:
+
+> “Does the model perform well consistently across many different subsets of the data?”
 
 ---
 
@@ -323,7 +833,9 @@ Each model has:
 
 Logistic Regression predicts probabilities using:
 
+```math
 P(y=1)=\frac{1}{1+e^{-z}}
+```
 
 Where:
 
@@ -477,7 +989,9 @@ This project evaluates multiple metrics.
 
 Measures overall correctness:
 
+```math
 Accuracy=\frac{Correct\ Predictions}{Total\ Predictions}
+```
 
 ---
 
@@ -512,7 +1026,9 @@ F1 balances:
 * precision
 * recall
 
+```math
 F1=2\cdot\frac{Precision\cdot Recall}{Precision+Recall}
+```
 
 Useful for:
 
@@ -665,22 +1181,6 @@ Benchmarking systems are used in:
 * model monitoring frameworks
 
 Large companies benchmark hundreds of models before deployment.
-
----
-
-# ▶️ How to Run the Project
-
-Install dependencies:
-
-```bash id="3zjlwm"
-pip install pandas numpy scikit-learn matplotlib
-```
-
-Run the project:
-
-```bash id="djlwm8"
-python main.py
-```
 
 ---
 
