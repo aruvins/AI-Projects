@@ -59,6 +59,7 @@ chess-ai/venv
 04-computer-Vision/Project_7_3D_Computer_Vision/sfm/__pycache__
 04-computer-Vision/Project_7_3D_Computer_Vision/outputs/sfm/Screen Recording 2026-05-22 at 3.12.46 PM.mov
 04-computer-Vision/Project_7_3D_Computer_Vision/outputs/stereo/Screen Recording 2026-05-22 at 2.39.39 PM.mov
+04-computer-vision/Project_7_3D_Computer_Vision/outputs/sfm/Screen Recording 2026-05-26 at 5.06.16 PM.mov
 04-computer-Vision/Project_7_3D_Computer_Vision/nerf/__pycache__
 
 04-computer-Vision/Project_8_Video_Understanding/.venv
@@ -98,4 +99,5 @@ chess-ai/venv
 02-classical-machine-learning/project_5_customer_churn_predictor/.venv
 
 02-classical-machine-learning/project_6_stock_movement_baseline/.venv
-04-computer-vision/Project_7_3D_Computer_Vision/outputs/sfm/Screen Recording 2026-05-26 at 5.06.16 PM.mov
+
+02-classical-machine-learning/project_7_credit_risk_scoring/.venv
