@@ -105,3 +105,7 @@ chess-ai/venv
 02-classical-machine-learning/project_8_model_comparison/.venv
 
 02-classical-machine-learning/project_9_feature_engineering/.venv
+
+# Phase 3 - Deep Learning Foundations
+03-deep-learning-foundations/project_1_neural_network/.venv
+03-deep-learning-foundations/project_1_neural_network/utils/__pycache__
