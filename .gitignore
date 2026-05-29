@@ -109,3 +109,8 @@ chess-ai/venv
 # Phase 3 - Deep Learning Foundations
 03-deep-learning-foundations/project_1_neural_network/.venv
 03-deep-learning-foundations/project_1_neural_network/utils/__pycache__
+
+03-deep-learning-foundations/project_2_mnist_digits/.venv
+
+03-deep-learning-foundations/project_2_mnist_digits/data
+03-deep-learning-foundations/project_2_mnist_digits/utils/__pycache__
