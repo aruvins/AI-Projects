@@ -747,6 +747,7 @@ self.fc_layers = nn.Sequential(
     nn.Dropout(0.5),
     nn.Linear(256, 10)
 )
+```
 
 It takes:
 
