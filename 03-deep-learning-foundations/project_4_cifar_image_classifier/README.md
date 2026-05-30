@@ -717,7 +717,6 @@ This is passed into the classifier (fully connected layers), which:
 - decides what object is present
 - outputs probabilities for each class
 
-````markdown
 ---
 
 # 🧠 Classifier (Fully Connected Layers)
@@ -748,7 +747,6 @@ self.fc_layers = nn.Sequential(
     nn.Dropout(0.5),
     nn.Linear(256, 10)
 )
-````
 
 It takes:
 
