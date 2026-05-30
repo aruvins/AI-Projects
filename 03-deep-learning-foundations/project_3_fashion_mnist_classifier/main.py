@@ -84,13 +84,6 @@ test_loader = DataLoader(
 
 model = FashionClassifier().to(DEVICE)
 
-criterion = nn.CrossEntropyLoss()
-
-optimizer = torch.optim.Adam(
-    model.parameters(),
-    lr=0.001
-)
-
 # --------------------------------------------------
 # Training
 # --------------------------------------------------
