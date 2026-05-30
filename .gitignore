@@ -120,11 +120,4 @@ chess-ai/venv
 
 03-deep-learning-foundations/project_4_cifar_image_classifier/.venv
 03-deep-learning-foundations/project_4_cifar_image_classifier/utils/__pycache__
-03-deep-learning-foundations/project_4_cifar_image_classifier/data/cifar-10-batches-py/test_batch
-03-deep-learning-foundations/project_4_cifar_image_classifier/data/cifar-10-python.tar.gz
-03-deep-learning-foundations/project_4_cifar_image_classifier/data/cifar-10-batches-py/batches.meta
-03-deep-learning-foundations/project_4_cifar_image_classifier/data/cifar-10-batches-py/data_batch_1
-03-deep-learning-foundations/project_4_cifar_image_classifier/data/cifar-10-batches-py/data_batch_2
-03-deep-learning-foundations/project_4_cifar_image_classifier/data/cifar-10-batches-py/data_batch_3
-03-deep-learning-foundations/project_4_cifar_image_classifier/data/cifar-10-batches-py/data_batch_4
-03-deep-learning-foundations/project_4_cifar_image_classifier/data/cifar-10-batches-py/data_batch_5
+03-deep-learning-foundations/project_4_cifar_image_classifier/data
