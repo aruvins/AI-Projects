@@ -121,3 +121,7 @@ chess-ai/venv
 03-deep-learning-foundations/project_4_cifar_image_classifier/.venv
 03-deep-learning-foundations/project_4_cifar_image_classifier/utils/__pycache__
 03-deep-learning-foundations/project_4_cifar_image_classifier/data
+
+03-deep-learning-foundations/project_5_cnn_visualization/.venv
+03-deep-learning-foundations/project_5_cnn_visualization/utils/__pycache__
+03-deep-learning-foundations/project_5_cnn_visualization/data
