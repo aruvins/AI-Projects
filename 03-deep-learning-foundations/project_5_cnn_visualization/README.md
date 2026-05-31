@@ -89,11 +89,11 @@ cnn-visualization-toolkit/
 │   ├── dataset.py
 │   ├── model.py
 │   ├── trainer.py
+│   ├── visualize.py
 │   ├── feature_visualizer.py
 │   └── filter_visualizer.py
 │
-├── train.py
-├── visualize.py
+├── main.py
 ├── requirements.txt
 └── README.md
 ```
@@ -139,12 +139,12 @@ pip install -r requirements.txt
 
 ---
 
-# How To Run
+# 4. Run the Project
 
-## Step 1 — Train the CNN
+## Train the CNN and visualize
 
 ```bash
-python train.py
+python main.py
 ```
 
 This will:
@@ -161,10 +161,8 @@ cnn_model.pth
 
 ---
 
-## Step 2 — Generate Visualizations
-
-```bash
-python visualize.py
+```python
+visualize()
 ```
 
 This will generate:
