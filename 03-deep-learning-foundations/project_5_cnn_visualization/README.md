@@ -401,6 +401,41 @@ After Max Pooling:
 [6 8]
 ```
 
+---
+
+Max Pooling works by taking the max out of each pool
+```text
+[1 2]
+[4 7]
+```
+Max = 7
+
+```text
+[5 3]
+[2 1]
+```
+Max = 5
+
+```text
+[6 3]
+[2 5]
+```
+Max = 6
+
+```text
+[8 2]
+[1 4]
+```
+Max = 8
+
+Final Max Pooling
+
+```text
+[7 5]
+[6 8]
+```
+
+---
 Benefits:
 
 * reduces computation
