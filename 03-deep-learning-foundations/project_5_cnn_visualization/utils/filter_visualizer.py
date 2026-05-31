@@ -17,7 +17,7 @@ def visualize_filters(conv_layer, filename):
         if f.shape[0] == 3:
             ax.imshow(f.permute(1, 2, 0).numpy())
         else:
-            ax.imshow(f[0].numpy(),cmap="gray")
+            ax.imshow(f[0].numpy())
         ax.axis("off")
 
     plt.tight_layout()
