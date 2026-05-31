@@ -447,7 +447,10 @@ Benefits:
 
 # Hierarchical Feature Learning
 
-CNNs learn visual concepts hierarchically.
+CNNs learn visual concepts hierarchically. 
+
+* This is shown in feature_maps/
+    * Notice how each layer focuses on a larger feature of the image
 
 ---
 
