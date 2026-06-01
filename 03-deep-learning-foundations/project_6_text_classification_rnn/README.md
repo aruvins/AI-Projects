@@ -692,7 +692,7 @@ This dramatically improves learning and is one of the key innovations that enabl
 
 ---
 
-# Summary
+# Summary on encodings and embeddings
 
 Integer encoding and embeddings serve different purposes:
 
