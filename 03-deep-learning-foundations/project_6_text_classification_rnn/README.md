@@ -267,6 +267,53 @@ This mapping is called the vocabulary.
 
 ---
 
+### Side Note on Special Tokens
+
+Special Tokens
+<pad> (Padding Token)
+
+Used to make all sequences the same length.
+
+Neural networks process data in batches, and each batch requires uniform tensor shapes.
+
+Example:
+
+Sentence A: I loved this movie
+Sentence B: Amazing film
+
+After padding:
+
+I loved this movie
+Amazing film <pad> <pad>
+
+Purpose:
+
+Ensures consistent sequence length
+Allows batching during training
+Has no semantic meaning
+
+---
+
+<unk> (Unknown Token)
+
+Used for words that are not in the vocabulary.
+
+Example:
+
+"I loved this cinematography"
+
+If "cinematography" is not in the vocabulary:
+
+"I loved this <unk>"
+
+Purpose:
+
+Handles unseen or rare words
+Prevents model failure on out-of-vocabulary inputs
+Acts as a fallback representation
+
+---
+
 # Step 2 — Integer Encoding
 
 Now every word can be replaced by its corresponding ID.
