@@ -1466,7 +1466,7 @@ and produces a decision.
 For example:
 
 ```math id="k8v9ds"
-f_t = σ(W_f [h_{t-1}, x_t] + b_f)
+f_t = σ * (W_f * [h_{t-1}, x_t] + b_f)
 ```
 
 Where:
