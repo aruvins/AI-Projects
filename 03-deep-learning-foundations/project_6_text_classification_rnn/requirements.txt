@@ -1,4 +1,18 @@
-torch
-torchtext
-matplotlib
-pandas
+# Core Deep Learning
+torch>=2.2.0
+torchvision>=0.17.0
+torchaudio>=2.2.0
+
+# Text + NLP datasets (REPLACES torchtext completely)
+datasets>=2.19.0
+huggingface_hub>=0.23.0
+
+# Data handling
+numpy<2.0.0
+pandas>=2.0.0
+
+# Visualization
+matplotlib>=3.8.0
+
+# Optional but useful for NLP preprocessing
+tqdm>=4.66.0

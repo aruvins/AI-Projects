@@ -25,7 +25,7 @@ class RNNClassifier(nn.Module):
 
     def forward(self, x):
         embedded = self.embedding(x)
-        output, hidden = self.rnn(embedded)
+        _, hidden = self.rnn(embedded)
 
         hidden = hidden.squeeze(0)
 

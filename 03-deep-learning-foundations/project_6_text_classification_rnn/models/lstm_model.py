@@ -25,7 +25,7 @@ class LSTMClassifier(nn.Module):
 
     def forward(self, x):
         embedded = self.embedding(x)
-        output, (hidden, cell) = self.lstm(embedded)
+        _,(hidden, _) = self.lstm(embedded)
 
         hidden = hidden.squeeze(0)
 

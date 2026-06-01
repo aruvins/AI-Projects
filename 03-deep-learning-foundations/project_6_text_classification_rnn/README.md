@@ -1736,3 +1736,55 @@ Transformer Text Classification
 where recurrence is replaced by self-attention.
 
 Understanding RNNs and LSTMs first provides valuable intuition for why Transformers became the dominant architecture in modern Natural Language Processing.
+
+---
+
+# 📚 References
+
+## 🧠 Deep Learning & NLP Fundamentals
+
+* [Understanding LSTM Networks (Colah’s Blog)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/?utm_source=chatgpt.com)
+  One of the most intuitive explanations of LSTM architecture, gates, and memory flow.
+
+* [PyTorch RNN Documentation](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html?utm_source=chatgpt.com)
+  Official PyTorch documentation for Recurrent Neural Networks.
+
+* [PyTorch LSTM Documentation](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html?utm_source=chatgpt.com)
+  Official reference for LSTM implementation and parameters.
+
+---
+
+## 🧾 Word Embeddings & NLP Concepts
+
+* [Word Embeddings Explained (Jay Alammar)](https://jalammar.github.io/illustrated-word2vec/?utm_source=chatgpt.com)
+  Visual explanation of how embeddings capture semantic relationships between words.
+
+* [Word2Vec Paper (Mikolov et al.)](https://arxiv.org/abs/1301.3781?utm_source=chatgpt.com)
+  Foundational paper introducing distributed word representations.
+
+---
+
+## 📊 Sequence Modeling & NLP Theory
+
+* [CS224N Stanford Lecture Notes (NLP with Deep Learning)](https://web.stanford.edu/class/cs224n/?utm_source=chatgpt.com)
+  Academic lecture series covering RNNs, LSTMs, and modern NLP architectures.
+
+* [Sequence Modeling Overview (Towards Data Science)](https://towardsdatascience.com/sequence-models-and-long-short-term-memory-networks-3b7b1535bfc3?utm_source=chatgpt.com)
+  Practical explanation of sequence modeling concepts in deep learning.
+
+---
+
+## 📦 Datasets & Tools
+
+* [Hugging Face Datasets Documentation](https://huggingface.co/docs/datasets/?utm_source=chatgpt.com)
+  Official documentation for loading and processing NLP datasets like IMDB.
+
+* [IMDB Dataset (Stanford AI)](https://ai.stanford.edu/~amaas/data/sentiment/?utm_source=chatgpt.com)
+  Original IMDB sentiment dataset used for binary classification tasks.
+
+---
+
+## ⚙️ Frameworks
+
+* [PyTorch Official Website](https://pytorch.org/?utm_source=chatgpt.com)
+  Deep learning framework used to implement RNN and LSTM models.

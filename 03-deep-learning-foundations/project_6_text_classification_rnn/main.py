@@ -3,8 +3,11 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+
+
 from utils.vocabulary import build_vocab
-from data.dataset import create_dataloader
+from utils.dataset import create_loader
+from utils.imbd_loader import load_imdb
 from utils.trainer import train_epoch, train_model
 from utils.visualize import plot_metrics, compare_models
 from utils.predictor import predict
@@ -20,34 +23,11 @@ DEVICE = (
     else "cpu"
 )
 
-# Example texts and labels (1 is a positive review and 0 is negative) -> Labels are the correct answer
-texts = [
-    "this movie was amazing",
-    "i loved this film",
-    "terrible movie",
-    "worst acting ever",
-    "fantastic story",
-    "bad film"
-]
+# Training data
+train_texts, train_labels, test_texts, test_labels, vocab = load_imdb()
 
-labels = [
-    1,
-    1,
-    0,
-    0,
-    1,
-    0
-]
-
-# load vocab
-vocab = build_vocab(texts)
-
-# download training data
-loader = create_dataloader(
-    texts,
-    labels,
-    vocab
-)
+train_loader = create_loader(train_texts, train_labels, vocab)
+test_loader = create_loader(test_texts, test_labels, vocab)
 
 # --------------------------- RNN Model ----------------------------
 rnn_model = RNNClassifier(
@@ -58,7 +38,7 @@ rnn_model = RNNClassifier(
 print("\nTraining RNN...\n")
 rnn_losses, rnn_accuracies = train_model(
     rnn_model,
-    loader,
+    train_loader,
     DEVICE
 )
 
@@ -76,7 +56,7 @@ lstm_model = LSTMClassifier(
 print("\nTraining LSTM...\n")
 lstm_losses, lstm_accuracies = train_model(
     lstm_model,
-    loader,
+    train_loader,
     DEVICE
 )
 plot_metrics(
@@ -92,6 +72,7 @@ compare_models(
     rnn_accuracies,
     lstm_accuracies
 )
+
 # --------------------------------------------------------------------------
 # --------------------------- Sample Predictions ---------------------------
 # --------------------------------------------------------------------------

@@ -9,11 +9,17 @@ class TextDataset(Dataset):
         self.labels = labels
         self.vocab = vocab
 
+    def encode(self, text):
+        return torch.tensor([
+            self.vocab.get(w, self.vocab["<unk>"])
+            for w in text
+        ])
+    
     def __len__(self):
         return len(self.texts)
     
     def __getitem__(self, idx):
-        tokens = self.texts[idx].lower().split()
+        tokens = self.texts[idx]
         encoded = [self.vocab.get(word, self.vocab["<unk>"]) for word in tokens]
 
         return(torch.tensor(encoded), torch.tensor(self.labels[idx]))
@@ -31,7 +37,12 @@ def collate_fn(batch):
     
     return texts, labels
 
-def create_dataloader(texts, labels, vocab, batch_size = 32):
+def create_loader(texts, labels, vocab, batch_size=32):
     dataset = TextDataset(texts, labels, vocab)
 
-    return DataLoader(dataset, batch_size= batch_size, shuffle= True, collate_fn = collate_fn)
+    return DataLoader(
+        dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        collate_fn=collate_fn
+    )
