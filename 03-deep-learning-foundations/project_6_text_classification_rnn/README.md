@@ -267,7 +267,7 @@ This mapping is called the vocabulary.
 
 ---
 
-### Side Note on Special Tokens
+## Side Note on Special Tokens
 
 Special Tokens
 <pad> (Padding Token)
