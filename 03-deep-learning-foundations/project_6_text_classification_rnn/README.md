@@ -692,7 +692,7 @@ This dramatically improves learning and is one of the key innovations that enabl
 
 ---
 
-# Summary on encodings and embeddings
+# Summary on Encodings and Embeddings
 
 Integer encoding and embeddings serve different purposes:
 
@@ -758,9 +758,322 @@ bad movie not good
 good movie not bad
 ```
 
-but mean different things.
+but mean completely different things.
 
 Sequence models process information in order and learn relationships between words over time.
+
+---
+
+## Why Order Matters
+
+In NLP, meaning is not only in the words — it is in how they are arranged.
+
+For example:
+
+```text
+not good
+```
+
+is negative,
+
+but:
+
+```text
+good not
+```
+
+is grammatically broken and semantically unclear.
+
+This means the model must understand **structure**, not just vocabulary.
+
+---
+
+## Fixed-Length Models Fail
+
+Traditional neural networks (like simple feedforward networks) treat inputs as independent.
+
+They assume:
+
+```text
+word1, word2, word3 are unrelated inputs
+```
+
+So:
+
+```text
+bad movie not good
+```
+
+and
+
+```text
+good movie not bad
+```
+
+would look almost identical if you just average or sum embeddings.
+
+This is a major limitation.
+
+---
+
+## The Key Idea Behind Sequence Models
+
+Sequence models introduce the concept of **memory**.
+
+Instead of processing all words at once, they read text step by step:
+
+```text
+Word 1 → Word 2 → Word 3 → Word 4
+```
+
+At each step, the model updates its internal understanding.
+
+---
+
+## Step-by-Step Intuition
+
+Consider the sentence:
+
+```text
+The movie was not good
+```
+
+The model processes it like this:
+
+```text
+Step 1: "The" → start context
+Step 2: "movie" → update context (topic = film)
+Step 3: "was" → grammatical connector
+Step 4: "not" → introduces negation (VERY important signal)
+Step 5: "good" → final sentiment word
+```
+
+At the end, the model does NOT just see “good”.
+
+It sees:
+
+```text
+good + not → negative sentiment
+```
+
+---
+
+## Hidden State = Memory
+
+The core of sequence modeling is the **hidden state**.
+
+At each time step:
+
+```math
+h_t = f(x_t, h_{t-1})
+```
+
+Where:
+
+* `x_t` = current word
+* `h_{t-1}` = previous memory
+* `h_t` = updated memory
+
+So the model is constantly asking:
+
+```text
+"What have I seen so far?"
+```
+
+---
+
+## Information Accumulates Over Time
+
+As words are processed, meaning builds up gradually.
+
+Example:
+
+```text
+"I really did not expect this movie to be so good"
+```
+
+Early words:
+
+```text
+"I really did not expect"
+→ neutral / uncertain context
+```
+
+Later words:
+
+```text
+"so good"
+→ strong positive signal
+```
+
+Final prediction depends on **entire sequence history**, not just last word.
+
+---
+
+## Direction of Processing
+
+Most RNNs and LSTMs process sequences in one direction:
+
+```text
+Left → Right
+```
+
+So they read:
+
+```text
+bad → movie → not → good
+```
+
+Each word influences the next hidden state.
+
+This is called **autoregressive processing**.
+
+---
+
+## Why This Is Powerful
+
+Sequence modeling allows networks to learn:
+
+* word order importance
+* negation (“not good” vs “good”)
+* context dependency
+* long-range relationships
+* sentence structure patterns
+
+---
+
+## The Problem with Long Sequences
+
+As sequences get longer:
+
+```text
+The movie started slowly, the acting was fine, the story was okay, the pacing was a bit off, but the ending was amazing
+```
+
+The model must remember:
+
+```text
+"ending was amazing"
+```
+
+while not forgetting earlier context.
+
+This becomes difficult for vanilla RNNs.
+
+---
+
+## Why Memory Matters
+
+Without memory:
+
+```text
+"not good"
+→ model sees only "good"
+→ wrong prediction
+```
+
+With memory:
+
+```text
+model remembers "not"
+→ flips meaning of "good"
+→ correct prediction
+```
+
+---
+
+## Sequence Models Learn Patterns
+
+Instead of memorizing sentences, they learn patterns like:
+
+```text
+"not + positive word → negative sentiment"
+```
+
+or
+
+```text
+"very + good → strong positive sentiment"
+```
+
+This is called **representation learning over time**.
+
+---
+
+## Temporal Dependency
+
+A key idea:
+
+```text
+Earlier words affect later understanding
+```
+
+This is called **temporal dependency**.
+
+Example:
+
+```text
+Although the movie was boring at first, ...
+```
+
+The word “although” signals:
+
+```text
+expect contrast later
+```
+
+So the model anticipates a shift in sentiment.
+
+---
+
+## Summary Intuition
+
+Sequence modeling is about teaching a neural network to:
+
+* read step-by-step
+* maintain memory
+* update understanding over time
+* interpret meaning based on context
+* handle word order sensitivity
+
+---
+
+## Connection to RNNs and LSTMs
+
+RNNs implement sequence modeling using:
+
+```text
+simple hidden memory
+```
+
+LSTMs improve this by adding:
+
+```text
+selective memory (gates)
+```
+
+This allows them to decide:
+
+* what to remember
+* what to forget
+* what to emphasize
+
+---
+
+## Big Picture
+
+Sequence models answer one key question:
+
+```text
+How do we give neural networks memory so they can understand ordered data like language?
+```
+
+This idea is the foundation for:
+
+* RNNs
+* LSTMs
+* GRUs
+* Transformers (modern evolution)
 
 ---
 
@@ -779,7 +1092,7 @@ Current Word
       +
 Previous Memory
       ↓
- New Memory
+New Memory
 ```
 
 The hidden state is updated repeatedly as the sequence is processed.
