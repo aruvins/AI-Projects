@@ -1,5 +1,6 @@
-🟡 Project 6 — Text Classification with RNN/LSTM
-🎯 Goal
+# 🟡 Project 6 — Text Classification with RNN/LSTM
+
+## 🎯 Goal
 
 Learn how neural networks process sequential data such as text, sentences, and time-series information.
 
