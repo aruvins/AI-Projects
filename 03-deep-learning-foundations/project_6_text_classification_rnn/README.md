@@ -1111,8 +1111,6 @@ movie
 
 The network reads one word at a time and continuously updates its internal memory.
 
----
-
 # Hidden States
 
 The hidden state stores information learned from previous words.
@@ -1152,6 +1150,193 @@ not
 ```
 
 from earlier in the sentence.
+
+---
+
+## How Hidden States Actually Work
+
+A hidden state is essentially the model’s **internal memory vector** at each time step.
+
+It is not a single value — it is a vector of numbers, for example:
+
+```text
+h_t = [0.12, -0.44, 0.87, ...]
+```
+
+This vector stores compressed information about everything seen so far in the sequence.
+
+---
+
+At each step, the RNN combines two things:
+
+```text
+Current input (word embedding)
++
+Previous hidden state (memory)
+```
+
+and produces a new hidden state.
+
+---
+
+Mathematically:
+
+```math
+h_t = tanh(W*x_t + U*h_{t-1} + b)
+```
+
+Where:
+
+* `x_t` = current word embedding
+* `h_{t-1}` = previous memory
+* `W` = weights for input
+* `U` = weights for memory
+* `b` = bias term
+
+---
+
+## Step-by-Step Intuition
+
+Let’s break it down:
+
+### Step 1: First word
+
+```text
+"I"
+```
+
+The model has no prior context, so:
+
+```text
+h_1 = f("I")
+```
+
+Memory now contains basic sentence context.
+
+---
+
+### Step 2: Second word
+
+```text
+"movie"
+```
+
+Now the model combines:
+
+```text
+h_2 = f("movie", h_1)
+```
+
+So it updates memory to represent:
+
+* subject = sentence is about a movie
+
+---
+
+### Step 3: Third word
+
+```text
+"not"
+```
+
+Now this becomes important:
+
+```text
+h_3 = f("not", h_2)
+```
+
+The hidden state now stores a **negation signal**, even if indirectly.
+
+---
+
+### Step 4: Fourth word
+
+```text
+"good"
+```
+
+Now the model processes:
+
+```text
+h_4 = f("good", h_3)
+```
+
+Even though "good" is positive on its own, the hidden state already contains “not”.
+
+So the final meaning becomes:
+
+```text
+NEGATIVE sentiment
+```
+
+---
+
+## Why This Feels Like Memory
+
+The hidden state acts like a rolling summary of the sentence.
+
+Instead of storing all words, the model compresses them into a vector:
+
+```text
+All previous words → single memory vector
+```
+
+This is why it is called a **recurrent** network — it repeatedly reuses its own output.
+
+---
+
+## What the Hidden State Learns
+
+Over training, hidden states start encoding patterns like:
+
+* sentiment direction (positive/negative)
+* sentence topic (movie, product, review)
+* negation structure (“not”, “never”, “no”)
+* intensity (“very”, “extremely”)
+* word dependencies across time
+
+---
+
+## Important Limitation
+
+While hidden states store memory, they are not perfect.
+
+As sequences get longer:
+
+```text
+memory becomes compressed repeatedly
+```
+
+This can cause earlier information to fade away.
+
+For example:
+
+```text
+"I really loved the beginning of the movie which was slow but interesting..."
+```
+
+By the end, early details may be weakened.
+
+---
+
+## Why This Leads to LSTMs
+
+This limitation is called the **vanishing memory problem**.
+
+It is one of the main reasons LSTMs were introduced — they improve how information is preserved over long sequences using a dedicated cell state.
+
+---
+
+## Key Intuition
+
+A hidden state is:
+
+* a summary of everything seen so far
+* updated at every word
+* reused for the next prediction
+* the core “memory mechanism” of RNNs
+
+Without hidden states, an RNN would have no way to remember earlier words in a sentence.
 
 ---
 
@@ -1196,12 +1381,11 @@ The cell state acts as long-term memory.
 This allows information to travel through many time steps with minimal loss.
 
 ---
-
 # LSTM Architecture
 
 An LSTM contains three gates:
 
-```text
+```text id="kq9x8c"
 Forget Gate
 Input Gate
 Output Gate
@@ -1215,7 +1399,7 @@ These gates control information flow.
 
 Determines what information should be removed from memory.
 
-```text
+```text id="1v8qmw"
 Important?
     ↓
 Keep
@@ -1231,7 +1415,7 @@ Forget
 
 Determines what new information should be stored.
 
-```text
+```text id="x7p2ld"
 New Information
       ↓
 Store in Memory
@@ -1243,13 +1427,206 @@ Store in Memory
 
 Determines what information should be exposed to the next layer.
 
-```text
+```text id="8m3f0a"
 Memory
    ↓
 Useful Information
    ↓
 Output
 ```
+
+---
+
+## How the LSTM Decides What Each Gate Should Do
+
+Each gate is not manually programmed — it is learned during training.
+
+Every gate is actually a small neural network that outputs values between 0 and 1 using a sigmoid function.
+
+```text id="q9l2sp"
+0 → block completely
+1 → allow fully
+```
+
+So instead of rules like “if word = not then forget”, the model learns soft decisions.
+
+---
+
+## Gate Computation (Core Idea)
+
+Each gate looks at:
+
+```text id="b2m7vx"
+Current word + Previous hidden state
+```
+
+and produces a decision.
+
+For example:
+
+```math id="k8v9ds"
+f_t = σ(W_f [h_{t-1}, x_t] + b_f)
+```
+
+Where:
+
+* `f_t` = forget gate output
+* `σ` = sigmoid function
+* `h_{t-1}` = previous hidden state
+* `x_t` = current word embedding
+
+---
+
+## Forget Gate in Practice
+
+The forget gate decides what parts of old memory are no longer useful.
+
+Example sentence:
+
+```text id="t7p4lm"
+The movie was not good
+```
+
+When the model sees “not”, it may learn to:
+
+* reduce importance of earlier positive signals
+* keep negation-related context active
+
+So memory is continuously “filtered”.
+
+---
+
+## Input Gate Decision
+
+The input gate decides what new information is worth storing.
+
+It works in two steps:
+
+```text id="m3x9qv"
+Step 1: Decide what to update
+Step 2: Create candidate information
+```
+
+This means the model does not blindly store every word.
+
+For example:
+
+```text id="c8n1pl"
+"movie"
+```
+
+may be stored strongly because it defines topic.
+
+But:
+
+```text id="h4q7zt"
+"the"
+```
+
+may be mostly ignored.
+
+---
+
+## Candidate Memory Update
+
+The LSTM also generates a candidate memory vector:
+
+```text id="z6p1wa"
+~C_t = tanh(W_c [h_{t-1}, x_t] + b_c)
+```
+
+This represents “new information the model might add”.
+
+The input gate then decides how much of it is used.
+
+---
+
+## Output Gate Decision
+
+The output gate controls what part of memory becomes visible.
+
+Even if memory contains a lot of information, not all of it is exposed.
+
+```text id="v2k9sd"
+Memory → filtered → output
+```
+
+This helps the model focus on relevant context for the current prediction.
+
+---
+
+## How Everything Works Together
+
+At each time step:
+
+```text id="p1x8nv"
+1. Forget gate removes irrelevant old memory
+2. Input gate adds new relevant information
+3. Cell state is updated
+4. Output gate decides what to expose
+```
+
+---
+
+## Why This Is Powerful
+
+Instead of storing a single compressed memory like an RNN, LSTMs maintain:
+
+```text id="w9c2kx"
+Long-term memory (cell state)
++ 
+Short-term focus (hidden state)
+```
+
+This separation allows the model to:
+
+* remember early words in long sentences
+* ignore irrelevant noise
+* focus on important signals like negation or sentiment words
+
+---
+
+## Example Intuition
+
+Sentence:
+
+```text id="r8m0dp"
+Although the movie started slow, it became amazing later
+```
+
+The LSTM learns:
+
+* early words → low importance (forget gate reduces weight)
+* “amazing” → high importance (input gate increases storage)
+* final output → strong positive sentiment (output gate emphasizes key signal)
+
+---
+
+## Key Insight
+
+The model does NOT explicitly understand grammar.
+
+Instead, it learns:
+
+```text id="y4n6qp"
+Which information helps reduce prediction error
+```
+
+So the gates become learned decision-makers that continuously optimize memory flow.
+
+---
+
+## Summary
+
+LSTM gates are:
+
+* **Forget Gate** → removes unnecessary memory
+* **Input Gate** → adds new useful information
+* **Output Gate** → controls what is revealed
+
+Each gate is a learned function, not a rule-based system.
+
+Together, they allow LSTMs to selectively remember important information over long sequences while filtering out noise, which is why they outperform vanilla RNNs on complex language tasks.
 
 ---
 
