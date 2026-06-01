@@ -654,14 +654,14 @@ Positive Words
 great
 excellent
 fantastic
-      ● ● ●
+...
 
 Negative Words
 
 terrible
 awful
 horrible
-      ○ ○ ○
+...
 ```
 
 Words with similar meanings tend to occupy nearby regions of embedding space.
