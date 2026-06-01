@@ -125,3 +125,8 @@ chess-ai/venv
 03-deep-learning-foundations/project_5_cnn_visualization/.venv
 03-deep-learning-foundations/project_5_cnn_visualization/utils/__pycache__
 03-deep-learning-foundations/project_5_cnn_visualization/data
+
+03-deep-learning-foundations/project_6_text_classification_rnn/.venv
+03-deep-learning-foundations/project_6_text_classification_rnn/utils/__pycache__
+03-deep-learning-foundations/project_6_text_classification_rnn/data/__pycache__
+03-deep-learning-foundations/project_6_text_classification_rnn/models/__pycache__

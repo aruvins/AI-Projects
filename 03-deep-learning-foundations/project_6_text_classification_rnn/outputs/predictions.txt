@@ -1,0 +1,121 @@
+RNN vs LSTM Predictions
+==================================================
+Sentence: This was one of the best movies I have ever seen
+RNN Prediction : Negative
+RNN Confidence : 0.9126975536346436
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.7158377170562744
+--------------------------------------------------
+Sentence: Absolutely incredible acting and a fantastic story
+RNN Prediction : Positive
+RNN Confidence : 0.7936593890190125
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.8642145395278931
+--------------------------------------------------
+Sentence: I loved every minute of this film
+RNN Prediction : Positive
+RNN Confidence : 0.9986253976821899
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.9679381847381592
+--------------------------------------------------
+Sentence: The performances were outstanding and the ending was perfect
+RNN Prediction : Positive
+RNN Confidence : 0.9318904876708984
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.8448228240013123
+--------------------------------------------------
+Sentence: A fun movie with strong characters and good pacing
+RNN Prediction : Negative
+RNN Confidence : 0.5011608004570007
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.7613974213600159
+--------------------------------------------------
+Sentence: I enjoyed the film and would watch it again
+RNN Prediction : Negative
+RNN Confidence : 0.5570493340492249
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.7665927410125732
+--------------------------------------------------
+Sentence: The story was engaging and the visuals looked great
+RNN Prediction : Positive
+RNN Confidence : 0.5123787522315979
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.8223059177398682
+--------------------------------------------------
+Sentence: The movie was okay but nothing particularly memorable
+RNN Prediction : Negative
+RNN Confidence : 0.5156609416007996
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.7774880528450012
+--------------------------------------------------
+Sentence: Some parts were entertaining while others felt slow
+RNN Prediction : Negative
+RNN Confidence : 0.5302641987800598
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.7661340832710266
+--------------------------------------------------
+Sentence: The acting was decent but the plot was average
+RNN Prediction : Positive
+RNN Confidence : 0.9320449829101562
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.8297677636146545
+--------------------------------------------------
+Sentence: It was neither good nor bad, just an ordinary movie
+RNN Prediction : Positive
+RNN Confidence : 0.6124387383460999
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.7775940299034119
+--------------------------------------------------
+Sentence: The story dragged on and several scenes felt unnecessary
+RNN Prediction : Positive
+RNN Confidence : 0.5013089179992676
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.8112807273864746
+--------------------------------------------------
+Sentence: I expected more from the movie and left disappointed
+RNN Prediction : Negative
+RNN Confidence : 0.6771344542503357
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.762128472328186
+--------------------------------------------------
+Sentence: The acting was weak and the dialogue felt unnatural
+RNN Prediction : Negative
+RNN Confidence : 0.5235764980316162
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.7521805763244629
+--------------------------------------------------
+Sentence: One of the worst films I have ever watched
+RNN Prediction : Negative
+RNN Confidence : 0.9177075624465942
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.6186625957489014
+--------------------------------------------------
+Sentence: The plot made no sense and the acting was terrible
+RNN Prediction : Positive
+RNN Confidence : 0.7403545379638672
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.6175186634063721
+--------------------------------------------------
+Sentence: A complete waste of time from beginning to end
+RNN Prediction : Negative
+RNN Confidence : 0.5267094969749451
+
+LSTM Prediction: Positive
+LSTM Confidence : 0.7708665132522583
+--------------------------------------------------
