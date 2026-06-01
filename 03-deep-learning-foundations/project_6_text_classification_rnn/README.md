@@ -1532,7 +1532,7 @@ may be mostly ignored.
 
 The LSTM also generates a candidate memory vector:
 
-```text id="z6p1wa"
+```math id="z6p1wa"
 ~C_t = tanh(W_c [h_{t-1}, x_t] + b_c)
 ```
 
