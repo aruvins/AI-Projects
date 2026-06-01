@@ -1743,48 +1743,98 @@ Understanding RNNs and LSTMs first provides valuable intuition for why Transform
 
 ## 🧠 Deep Learning & NLP Fundamentals
 
-* [Understanding LSTM Networks (Colah’s Blog)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/?utm_source=chatgpt.com)
+* [Understanding LSTM Networks (Colah’s Blog)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
   One of the most intuitive explanations of LSTM architecture, gates, and memory flow.
 
-* [PyTorch RNN Documentation](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html?utm_source=chatgpt.com)
+* [PyTorch RNN Documentation](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html)
   Official PyTorch documentation for Recurrent Neural Networks.
 
-* [PyTorch LSTM Documentation](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html?utm_source=chatgpt.com)
+* [PyTorch LSTM Documentation](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html)
   Official reference for LSTM implementation and parameters.
 
 ---
 
 ## 🧾 Word Embeddings & NLP Concepts
 
-* [Word Embeddings Explained (Jay Alammar)](https://jalammar.github.io/illustrated-word2vec/?utm_source=chatgpt.com)
+* [Word Embeddings Explained (Jay Alammar)](https://jalammar.github.io/illustrated-word2vec/)
   Visual explanation of how embeddings capture semantic relationships between words.
 
-* [Word2Vec Paper (Mikolov et al.)](https://arxiv.org/abs/1301.3781?utm_source=chatgpt.com)
+* [Word2Vec Paper (Mikolov et al.)](https://arxiv.org/abs/1301.3781)
   Foundational paper introducing distributed word representations.
 
 ---
 
 ## 📊 Sequence Modeling & NLP Theory
 
-* [CS224N Stanford Lecture Notes (NLP with Deep Learning)](https://web.stanford.edu/class/cs224n/?utm_source=chatgpt.com)
+* [CS224N Stanford Lecture Notes (NLP with Deep Learning)](https://web.stanford.edu/class/cs224n/)
   Academic lecture series covering RNNs, LSTMs, and modern NLP architectures.
 
-* [Sequence Modeling Overview (Towards Data Science)](https://towardsdatascience.com/sequence-models-and-long-short-term-memory-networks-3b7b1535bfc3?utm_source=chatgpt.com)
+* [Sequence Modeling Overview (Towards Data Science)](https://towardsdatascience.com/sequence-models-and-long-short-term-memory-networks-3b7b1535bfc3m)
   Practical explanation of sequence modeling concepts in deep learning.
 
 ---
 
 ## 📦 Datasets & Tools
 
-* [Hugging Face Datasets Documentation](https://huggingface.co/docs/datasets/?utm_source=chatgpt.com)
+* [Hugging Face Datasets Documentation](https://huggingface.co/docs/datasets/)
   Official documentation for loading and processing NLP datasets like IMDB.
 
-* [IMDB Dataset (Stanford AI)](https://ai.stanford.edu/~amaas/data/sentiment/?utm_source=chatgpt.com)
+* [IMDB Dataset (Stanford AI)](https://ai.stanford.edu/~amaas/data/sentiment/)
   Original IMDB sentiment dataset used for binary classification tasks.
 
 ---
 
 ## ⚙️ Frameworks
 
-* [PyTorch Official Website](https://pytorch.org/?utm_source=chatgpt.com)
+* [PyTorch Official Website](https://pytorch.org/)
   Deep learning framework used to implement RNN and LSTM models.
+
+  Here are the **original foundational papers** for both RNNs and LSTMs (the ones you want for your README references section):
+
+---
+
+# 🧠 Recurrent Neural Networks (RNNs)
+
+### 📄 Rumelhart, Hinton & Williams (1986) — Backpropagation
+
+This paper introduced the training method (backpropagation) that made modern neural networks — including RNNs — practical.
+
+* 📌 Paper: *Learning representations by back-propagating errors*
+* 🔗 [https://www.nature.com/articles/323533a0](https://www.nature.com/articles/323533a0)
+  ([Nature][1])
+
+💡 Why it matters:
+
+* Introduced backpropagation
+* Foundation for training deep networks
+* Enabled later development of RNN training (BPTT)
+
+---
+
+### 📄 Elman (1990) — Simple Recurrent Neural Network (Elman Network)
+
+* 📌 Paper: *Finding Structure in Time*
+* 🔗 [https://gwern.net/doc/ai/nn/rnn/1990-elman.pdf](https://gwern.net/doc/ai/nn/rnn/1990-elman.pdf)
+  ([Gwern.net][2])
+
+💡 Why it matters:
+
+* One of the first practical modern RNN architectures
+* Introduced “hidden state memory”
+* Foundation of sequence modeling
+
+---
+
+# 🔁 LSTM (Long Short-Term Memory)
+
+### 📄 Hochreiter & Schmidhuber (1997) — Original LSTM Paper
+
+* 📌 Paper: *Long Short-Term Memory*
+* 🔗 [https://www.bioinf.jku.at/publications/older/2604.pdf](https://www.bioinf.jku.at/publications/older/2604.pdf)
+  ([bioinf.jku.at][3])
+
+💡 Why it matters:
+
+* Introduced the LSTM architecture
+* Solved the vanishing gradient problem in RNNs
+* Introduced memory cell + gates idea (foundation of modern LSTMs)
