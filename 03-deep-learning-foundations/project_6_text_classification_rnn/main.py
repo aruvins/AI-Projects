@@ -22,12 +22,13 @@ DEVICE = (
     else "cuda" if torch.cuda.is_available()
     else "cpu"
 )
+print(f"Using device: {DEVICE}")
 
 # Training data
 train_texts, train_labels, test_texts, test_labels, vocab = load_imdb()
 
-train_loader = create_loader(train_texts, train_labels, vocab)
-test_loader = create_loader(test_texts, test_labels, vocab)
+train_loader = create_loader(train_texts, train_labels, vocab, batch_size=512)
+test_loader = create_loader(test_texts, test_labels, vocab, batch_size=512)
 
 # --------------------------- RNN Model ----------------------------
 rnn_model = RNNClassifier(
@@ -42,6 +43,13 @@ rnn_losses, rnn_accuracies = train_model(
     DEVICE,
     epochs=30
 )
+
+torch.save(
+    rnn_model.state_dict(),
+    "outputs/rnn_model.pth"
+)
+
+print("Saved RNN model -> outputs/rnn_model.pth")
 
 plot_metrics(
     "RNN Model",
@@ -61,10 +69,18 @@ lstm_losses, lstm_accuracies = train_model(
     DEVICE,
     epochs=30
 )
+
+torch.save(
+    rnn_model.state_dict(),
+    "outputs/lstm_model.pth"
+)
+
+print("Saved LSTM model -> outputs/lstm_model.pth")
+
 plot_metrics(
     "LSTM Model",
-    rnn_losses,
-    rnn_accuracies
+    lstm_losses,
+    lstm_accuracies
 )
 
 # Compare LSTM vs RNN

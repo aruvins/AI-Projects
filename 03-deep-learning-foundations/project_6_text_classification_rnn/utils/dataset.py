@@ -37,7 +37,7 @@ def collate_fn(batch):
     
     return texts, labels
 
-def create_loader(texts, labels, vocab, batch_size=32):
+def create_loader(texts, labels, vocab, batch_size=64):
     dataset = TextDataset(texts, labels, vocab)
 
     return DataLoader(
