@@ -2,120 +2,120 @@ RNN vs LSTM Predictions
 ==================================================
 Sentence: This was one of the best movies I have ever seen
 RNN Prediction : Negative
-RNN Confidence : 0.9126975536346436
+RNN Confidence : 0.5552613735198975
 
 LSTM Prediction: Positive
-LSTM Confidence : 0.7158377170562744
+LSTM Confidence : 0.9524906277656555
 --------------------------------------------------
 Sentence: Absolutely incredible acting and a fantastic story
 RNN Prediction : Positive
-RNN Confidence : 0.7936593890190125
+RNN Confidence : 0.7720558643341064
 
 LSTM Prediction: Positive
-LSTM Confidence : 0.8642145395278931
+LSTM Confidence : 0.9770326614379883
 --------------------------------------------------
 Sentence: I loved every minute of this film
-RNN Prediction : Positive
-RNN Confidence : 0.9986253976821899
+RNN Prediction : Negative
+RNN Confidence : 0.5797508955001831
 
 LSTM Prediction: Positive
-LSTM Confidence : 0.9679381847381592
+LSTM Confidence : 0.7150967717170715
 --------------------------------------------------
 Sentence: The performances were outstanding and the ending was perfect
 RNN Prediction : Positive
-RNN Confidence : 0.9318904876708984
+RNN Confidence : 0.8431139588356018
 
 LSTM Prediction: Positive
-LSTM Confidence : 0.8448228240013123
+LSTM Confidence : 0.9343595504760742
 --------------------------------------------------
 Sentence: A fun movie with strong characters and good pacing
-RNN Prediction : Negative
-RNN Confidence : 0.5011608004570007
+RNN Prediction : Positive
+RNN Confidence : 0.876758873462677
 
 LSTM Prediction: Positive
-LSTM Confidence : 0.7613974213600159
+LSTM Confidence : 0.9794857501983643
 --------------------------------------------------
 Sentence: I enjoyed the film and would watch it again
-RNN Prediction : Negative
-RNN Confidence : 0.5570493340492249
+RNN Prediction : Positive
+RNN Confidence : 0.903006911277771
 
 LSTM Prediction: Positive
-LSTM Confidence : 0.7665927410125732
+LSTM Confidence : 0.8367009162902832
 --------------------------------------------------
 Sentence: The story was engaging and the visuals looked great
 RNN Prediction : Positive
-RNN Confidence : 0.5123787522315979
+RNN Confidence : 0.8623323440551758
 
 LSTM Prediction: Positive
-LSTM Confidence : 0.8223059177398682
+LSTM Confidence : 0.7059612274169922
 --------------------------------------------------
 Sentence: The movie was okay but nothing particularly memorable
 RNN Prediction : Negative
-RNN Confidence : 0.5156609416007996
+RNN Confidence : 0.8672364354133606
 
-LSTM Prediction: Positive
-LSTM Confidence : 0.7774880528450012
+LSTM Prediction: Negative
+LSTM Confidence : 0.6385581493377686
 --------------------------------------------------
 Sentence: Some parts were entertaining while others felt slow
 RNN Prediction : Negative
-RNN Confidence : 0.5302641987800598
+RNN Confidence : 0.8008715510368347
 
-LSTM Prediction: Positive
-LSTM Confidence : 0.7661340832710266
+LSTM Prediction: Negative
+LSTM Confidence : 0.6472489833831787
 --------------------------------------------------
 Sentence: The acting was decent but the plot was average
 RNN Prediction : Positive
-RNN Confidence : 0.9320449829101562
+RNN Confidence : 0.8865896463394165
 
-LSTM Prediction: Positive
-LSTM Confidence : 0.8297677636146545
+LSTM Prediction: Negative
+LSTM Confidence : 0.7272710800170898
 --------------------------------------------------
 Sentence: It was neither good nor bad, just an ordinary movie
-RNN Prediction : Positive
-RNN Confidence : 0.6124387383460999
+RNN Prediction : Negative
+RNN Confidence : 0.5514410734176636
 
-LSTM Prediction: Positive
-LSTM Confidence : 0.7775940299034119
+LSTM Prediction: Negative
+LSTM Confidence : 0.9871576428413391
 --------------------------------------------------
 Sentence: The story dragged on and several scenes felt unnecessary
 RNN Prediction : Positive
-RNN Confidence : 0.5013089179992676
+RNN Confidence : 0.5199763774871826
 
-LSTM Prediction: Positive
-LSTM Confidence : 0.8112807273864746
+LSTM Prediction: Negative
+LSTM Confidence : 0.6184725761413574
 --------------------------------------------------
 Sentence: I expected more from the movie and left disappointed
-RNN Prediction : Negative
-RNN Confidence : 0.6771344542503357
+RNN Prediction : Positive
+RNN Confidence : 0.6738227605819702
 
 LSTM Prediction: Positive
-LSTM Confidence : 0.762128472328186
+LSTM Confidence : 0.5140745639801025
 --------------------------------------------------
 Sentence: The acting was weak and the dialogue felt unnatural
-RNN Prediction : Negative
-RNN Confidence : 0.5235764980316162
+RNN Prediction : Positive
+RNN Confidence : 0.8821339011192322
 
-LSTM Prediction: Positive
-LSTM Confidence : 0.7521805763244629
+LSTM Prediction: Negative
+LSTM Confidence : 0.7141469717025757
 --------------------------------------------------
 Sentence: One of the worst films I have ever watched
 RNN Prediction : Negative
-RNN Confidence : 0.9177075624465942
+RNN Confidence : 0.6120511889457703
 
-LSTM Prediction: Positive
-LSTM Confidence : 0.6186625957489014
+LSTM Prediction: Negative
+LSTM Confidence : 0.6924457550048828
 --------------------------------------------------
 Sentence: The plot made no sense and the acting was terrible
 RNN Prediction : Positive
-RNN Confidence : 0.7403545379638672
+RNN Confidence : 0.9123165011405945
 
-LSTM Prediction: Positive
-LSTM Confidence : 0.6175186634063721
+LSTM Prediction: Negative
+LSTM Confidence : 0.8693951964378357
 --------------------------------------------------
 Sentence: A complete waste of time from beginning to end
-RNN Prediction : Negative
-RNN Confidence : 0.5267094969749451
+RNN Prediction : Positive
+RNN Confidence : 0.5319479703903198
 
-LSTM Prediction: Positive
-LSTM Confidence : 0.7708665132522583
+LSTM Prediction: Negative
+LSTM Confidence : 0.9210413694381714
 --------------------------------------------------
