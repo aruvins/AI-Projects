@@ -1,0 +1,20 @@
+Sentence:
+the cat sat on the mat
+
+Tokens:
+['the', 'cat', 'sat', 'on', 'the', 'mat']
+
+Embedding Shape:
+torch.Size([6, 8])
+
+Q Shape: torch.Size([6, 8])
+K Shape: torch.Size([6, 8])
+V Shape: torch.Size([6, 8])
+
+Attention Matrix Shape:
+torch.Size([6, 6])
+
+Context Shape:
+torch.Size([6, 8])
+
+Saved: outputs/attention_heatmap.png
