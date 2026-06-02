@@ -1,6 +1,9 @@
 import torch
+from tqdm import tqdm
 import torch.nn as nn
 import torch.optim as optim
+
+from tqdm import tqdm
 
 def train_epoch(model, loader, criterion, optimizer, device):
     model.train()
@@ -9,27 +12,37 @@ def train_epoch(model, loader, criterion, optimizer, device):
     correct = 0
     total = 0
 
-    for texts, labels in loader:
+    progress_bar = tqdm(
+        loader,
+        desc="Training",
+        leave=False
+    )
+
+    for texts, labels in progress_bar:
         texts = texts.to(device)
         labels = labels.to(device)
 
         optimizer.zero_grad()
+
         outputs = model(texts)
         loss = criterion(outputs, labels)
 
         loss.backward()
         optimizer.step()
+
         total_loss += loss.item()
 
-        predictions = outputs.argmax(1)
+        predictions = outputs.argmax(dim=1)
 
-        correct += (
-            predictions == labels
-        ).sum().item()
-
+        correct += (predictions == labels).sum().item()
         total += labels.size(0)
 
-    return(total_loss/len(loader), correct/total)
+        progress_bar.set_postfix(
+            loss=f"{loss.item():.4f}",
+            acc=f"{100 * correct / total:.2f}%"
+        )
+
+    return total_loss / len(loader), correct / total
 
 def train_model(model, loader, device, epochs=20):
     criterion = nn.CrossEntropyLoss()
@@ -60,3 +73,4 @@ def train_model(model, loader, device, epochs=20):
         )
 
     return losses, accuracies
+

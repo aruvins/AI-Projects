@@ -39,13 +39,14 @@ print("\nTraining RNN...\n")
 rnn_losses, rnn_accuracies = train_model(
     rnn_model,
     train_loader,
-    DEVICE
+    DEVICE,
+    epochs=30
 )
 
 plot_metrics(
     "RNN Model",
     rnn_losses,
-    rnn_accuracies
+    rnn_accuracies,
 )
 
 # --------------------------- LSTM Model ---------------------------
@@ -57,7 +58,8 @@ print("\nTraining LSTM...\n")
 lstm_losses, lstm_accuracies = train_model(
     lstm_model,
     train_loader,
-    DEVICE
+    DEVICE,
+    epochs=30
 )
 plot_metrics(
     "LSTM Model",
