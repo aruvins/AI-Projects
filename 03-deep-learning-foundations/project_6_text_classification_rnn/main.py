@@ -27,8 +27,8 @@ print(f"Using device: {DEVICE}")
 # Training data
 train_texts, train_labels, test_texts, test_labels, vocab = load_imdb()
 
-train_loader = create_loader(train_texts, train_labels, vocab, batch_size=512)
-test_loader = create_loader(test_texts, test_labels, vocab, batch_size=512)
+train_loader = create_loader(train_texts, train_labels, vocab, batch_size=256)
+test_loader = create_loader(test_texts, test_labels, vocab, batch_size=256)
 
 # --------------------------- RNN Model ----------------------------
 rnn_model = RNNClassifier(
@@ -71,7 +71,7 @@ lstm_losses, lstm_accuracies = train_model(
 )
 
 torch.save(
-    rnn_model.state_dict(),
+    lstm_model.state_dict(),
     "outputs/lstm_model.pth"
 )
 
