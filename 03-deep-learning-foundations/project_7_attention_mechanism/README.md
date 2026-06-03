@@ -704,6 +704,9 @@ Jay Alammar
 Article:
 https://jalammar.github.io/illustrated-transformer/
 
+Article 2:
+https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/
+
 One of the best visual explanations of attention and Transformers available online. Highly recommended before reading the original Transformer paper.
 
 ---
