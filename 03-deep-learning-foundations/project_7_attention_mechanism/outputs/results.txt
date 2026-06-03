@@ -1,20 +1,27 @@
+Please enter an example sentence: The stock market crashed but investors remained optimistic    
+
 Sentence:
-the cat sat on the mat
+The stock market crashed but investors remained optimistic
 
 Tokens:
-['the', 'cat', 'sat', 'on', 'the', 'mat']
+['the', 'stock', 'market', 'crashed', 'but', 'investors', 'remained', 'optimistic']
 
 Embedding Shape:
-torch.Size([6, 8])
+torch.Size([8, 8])
 
-Q Shape: torch.Size([6, 8])
-K Shape: torch.Size([6, 8])
-V Shape: torch.Size([6, 8])
+Q Shape: torch.Size([8, 8])
+K Shape: torch.Size([8, 8])
+V Shape: torch.Size([8, 8])
 
 Attention Matrix Shape:
-torch.Size([6, 6])
+torch.Size([8, 8])
 
 Context Shape:
-torch.Size([6, 8])
+torch.Size([8, 8])
 
-Saved: outputs/attention_heatmap.png
+Saved visualizations:
+ outputs/attention_heatmap.png
+ outputs/raw_scores.png
+ outputs/query_vectors.png
+ outputs/key_vectors.png
+ outputs/value_vectors.png

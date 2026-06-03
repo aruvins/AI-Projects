@@ -9,18 +9,14 @@ from utils.tokenizer import (
 from models.attention import SelfAttention
 
 from utils.visualization import (
-    plot_attention
+    plot_attention,
+    plot_scores,
+    plot_vectors
 )
 
 os.makedirs("outputs",exist_ok=True)
 
-EXAMPLE_SENTENCES = [
-    "the cat sat on the mat",
-    "the dog chased the cat",
-    "attention helps models focus",
-]
-
-sentence = EXAMPLE_SENTENCES[0]
+sentence = input("Please enter an example sentence: ")
 
 print("\nSentence:")
 print(sentence)
@@ -79,7 +75,36 @@ plot_attention(
     "outputs/attention_heatmap.png"
 )
 
-print(
-    "\nSaved:"
-    " outputs/attention_heatmap.png"
+plot_scores(
+    scores.detach().numpy(),
+    tokens,
+    "outputs/raw_scores.png"
 )
+
+plot_vectors(
+    Q.detach().numpy(),
+    tokens,
+    "Query Vectors",
+    "outputs/query_vectors.png"
+)
+
+plot_vectors(
+    K.detach().numpy(),
+    tokens,
+    "Key Vectors",
+    "outputs/key_vectors.png"
+)
+
+plot_vectors(
+    V.detach().numpy(),
+    tokens,
+    "Value Vectors",
+    "outputs/value_vectors.png"
+)
+
+print("\nSaved visualizations:")
+print(" outputs/attention_heatmap.png")
+print(" outputs/raw_scores.png")
+print(" outputs/query_vectors.png")
+print(" outputs/key_vectors.png")
+print(" outputs/value_vectors.png")
