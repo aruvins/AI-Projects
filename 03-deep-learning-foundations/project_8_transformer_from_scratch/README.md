@@ -649,8 +649,6 @@ Add & Normalize
 Output
 ```
 
-Your simplified implementation likely omits LayerNorm and multi-head attention, but the core ideas remain the same.
-
 ---
 
 # Input Shape
