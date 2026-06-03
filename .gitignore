@@ -134,3 +134,7 @@ chess-ai/venv
 03-deep-learning-foundations/project_7_attention_mechanism/.venv
 03-deep-learning-foundations/project_7_attention_mechanism/utils/__pycache__
 03-deep-learning-foundations/project_7_attention_mechanism/models/__pycache__
+
+03-deep-learning-foundations/project_8_transformer_from_scratch/.venv
+03-deep-learning-foundations/project_8_transformer_from_scratch/models/__pycache__
+03-deep-learning-foundations/project_8_transformer_from_scratch/utils/__pycache__
