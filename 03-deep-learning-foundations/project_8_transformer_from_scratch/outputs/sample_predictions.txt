@@ -1,0 +1,68 @@
+Review:
+This was one of the best movies I have ever seen
+Prediction: Positive
+--------------------------------------------------
+Review:
+Absolutely incredible acting and a fantastic story
+Prediction: Positive
+--------------------------------------------------
+Review:
+I loved every minute of this film
+Prediction: Positive
+--------------------------------------------------
+Review:
+The performances were outstanding and the ending was perfect
+Prediction: Positive
+--------------------------------------------------
+Review:
+A fun movie with strong characters and good pacing
+Prediction: Positive
+--------------------------------------------------
+Review:
+I enjoyed the film and would watch it again
+Prediction: Positive
+--------------------------------------------------
+Review:
+The story was engaging and the visuals looked great
+Prediction: Positive
+--------------------------------------------------
+Review:
+The movie was okay but nothing particularly memorable
+Prediction: Negative
+--------------------------------------------------
+Review:
+Some parts were entertaining while others felt slow
+Prediction: Positive
+--------------------------------------------------
+Review:
+The acting was decent but the plot was average
+Prediction: Negative
+--------------------------------------------------
+Review:
+It was neither good nor bad, just an ordinary movie
+Prediction: Negative
+--------------------------------------------------
+Review:
+The story dragged on and several scenes felt unnecessary
+Prediction: Positive
+--------------------------------------------------
+Review:
+I expected more from the movie and left disappointed
+Prediction: Negative
+--------------------------------------------------
+Review:
+The acting was weak and the dialogue felt unnatural
+Prediction: Negative
+--------------------------------------------------
+Review:
+One of the worst films I have ever watched
+Prediction: Negative
+--------------------------------------------------
+Review:
+The plot made no sense and the acting was terrible
+Prediction: Negative
+--------------------------------------------------
+Review:
+A complete waste of time from beginning to end
+Prediction: Negative
+--------------------------------------------------

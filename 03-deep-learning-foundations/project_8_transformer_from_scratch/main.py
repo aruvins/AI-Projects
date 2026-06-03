@@ -201,11 +201,34 @@ plot_positional_encoding(
 print("Generating Predictions...\n")
 
 sample_reviews = [
-    "This movie was absolutely amazing and emotional.",
-    "Terrible acting and a boring story.",
-    "One of the best films I have ever seen.",
-    "I regret wasting two hours watching this."
+    # Very Positive
+    "This was one of the best movies I have ever seen",
+    "Absolutely incredible acting and a fantastic story",
+    "I loved every minute of this film",
+    "The performances were outstanding and the ending was perfect",
+
+    # Positive
+    "A fun movie with strong characters and good pacing",
+    "I enjoyed the film and would watch it again",
+    "The story was engaging and the visuals looked great",
+
+    # Neutral / Mixed
+    "The movie was okay but nothing particularly memorable",
+    "Some parts were entertaining while others felt slow",
+    "The acting was decent but the plot was average",
+    "It was neither good nor bad, just an ordinary movie",
+
+    # Negative
+    "The story dragged on and several scenes felt unnecessary",
+    "I expected more from the movie and left disappointed",
+    "The acting was weak and the dialogue felt unnatural",
+
+    # Very Negative
+    "One of the worst films I have ever watched",
+    "The plot made no sense and the acting was terrible",
+    "A complete waste of time from beginning to end"
 ]
+
 
 results = []
 

@@ -1,10 +1,23 @@
+import os
 import re
+import tarfile
+import urllib.request
+
 from collections import Counter
 
 import torch
 from torch.utils.data import Dataset, DataLoader
 
-from datasets import load_dataset
+
+# =====================================================
+# CONFIG
+# =====================================================
+
+URL = "https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
+
+# Reduce during development if desired
+MAX_TRAIN_SAMPLES = None
+MAX_TEST_SAMPLES = None
 
 
 # =====================================================
@@ -35,9 +48,12 @@ def clean_text(text):
 # VOCABULARY
 # =====================================================
 
-def build_vocab(texts, vocab_size=20000):
+def build_vocab(
+    texts,
+    vocab_size=20000
+):
     """
-    Build a vocabulary dictionary.
+    Build vocabulary.
 
     Example:
 
@@ -45,7 +61,6 @@ def build_vocab(texts, vocab_size=20000):
         "<PAD>": 0,
         "<UNK>": 1,
         "movie": 2,
-        "great": 3,
         ...
     }
     """
@@ -77,12 +92,16 @@ def build_vocab(texts, vocab_size=20000):
 
 
 # =====================================================
-# TEXT -> INTEGER TOKENS
+# ENCODING
 # =====================================================
 
-def encode_text(text,vocab, max_length):
+def encode_text(
+    text,
+    vocab,
+    max_length
+):
     """
-    Convert sentence to integer IDs.
+    Convert text into token ids.
     """
 
     tokens = clean_text(text)
@@ -110,11 +129,18 @@ def encode_text(text,vocab, max_length):
 
 
 # =====================================================
-# IMDB DATASET CLASS
+# DATASET
 # =====================================================
 
 class IMDBDataset(Dataset):
-    def __init__(self, texts, labels, vocab,max_length):
+
+    def __init__(
+        self,
+        texts,
+        labels,
+        vocab,
+        max_length
+    ):
         self.texts = texts
         self.labels = labels
         self.vocab = vocab
@@ -131,18 +157,83 @@ class IMDBDataset(Dataset):
             self.max_length
         )
 
-        label = self.labels[idx]
-
         return (
             torch.tensor(
                 encoded_text,
                 dtype=torch.long
             ),
             torch.tensor(
-                label,
+                self.labels[idx],
                 dtype=torch.long
             )
         )
+
+
+# =====================================================
+# DOWNLOAD DATASET
+# =====================================================
+
+def download_and_extract(
+    data_dir="data"
+):
+    """
+    Download Stanford IMDB dataset.
+    """
+
+    os.makedirs(
+        data_dir,
+        exist_ok=True
+    )
+
+    tar_path = os.path.join(
+        data_dir,
+        "aclImdb_v1.tar.gz"
+    )
+
+    extract_path = os.path.join(
+        data_dir,
+        "aclImdb"
+    )
+
+    if os.path.exists(extract_path):
+
+        print(
+            "Using existing dataset."
+        )
+
+        return extract_path
+
+    print(
+        "⬇ Downloading IMDB dataset..."
+    )
+
+    urllib.request.urlretrieve(
+        URL,
+        tar_path
+    )
+
+    print(
+        "📦 Extracting dataset..."
+    )
+
+    with tarfile.open(
+        tar_path,
+        "r:gz"
+    ) as tar:
+
+        try:
+            tar.extractall(
+                path=data_dir,
+                filter="data"
+            )
+        except TypeError:
+            tar.extractall(
+                path=data_dir
+            )
+
+    print("✅ Done.")
+
+    return extract_path
 
 
 # =====================================================
@@ -151,17 +242,100 @@ class IMDBDataset(Dataset):
 
 def load_imdb():
 
-    print("Downloading IMDB dataset...")
+    base_path = download_and_extract()
 
-    dataset = load_dataset("imdb")
+    train_texts = []
+    train_labels = []
 
-    train_texts = dataset["train"]["text"]
-    train_labels = dataset["train"]["label"]
+    test_texts = []
+    test_labels = []
 
-    test_texts = dataset["test"]["text"]
-    test_labels = dataset["test"]["label"]
+    # -------------------------
+    # TRAIN
+    # -------------------------
 
-    print("Dataset loaded.")
+    for label in ["pos", "neg"]:
+
+        folder = os.path.join(
+            base_path,
+            "train",
+            label
+        )
+
+        for filename in os.listdir(folder):
+
+            file_path = os.path.join(
+                folder,
+                filename
+            )
+
+            with open(
+                file_path,
+                "r",
+                encoding="utf-8"
+            ) as f:
+
+                train_texts.append(
+                    f.read()
+                )
+
+                train_labels.append(
+                    1 if label == "pos" else 0
+                )
+
+    # -------------------------
+    # TEST
+    # -------------------------
+
+    for label in ["pos", "neg"]:
+
+        folder = os.path.join(
+            base_path,
+            "test",
+            label
+        )
+
+        for filename in os.listdir(folder):
+
+            file_path = os.path.join(
+                folder,
+                filename
+            )
+
+            with open(
+                file_path,
+                "r",
+                encoding="utf-8"
+            ) as f:
+
+                test_texts.append(
+                    f.read()
+                )
+
+                test_labels.append(
+                    1 if label == "pos" else 0
+                )
+
+    # Optional smaller dataset
+    if MAX_TRAIN_SAMPLES:
+
+        train_texts = train_texts[
+            :MAX_TRAIN_SAMPLES
+        ]
+
+        train_labels = train_labels[
+            :MAX_TRAIN_SAMPLES
+        ]
+
+    if MAX_TEST_SAMPLES:
+
+        test_texts = test_texts[
+            :MAX_TEST_SAMPLES
+        ]
+
+        test_labels = test_labels[
+            :MAX_TEST_SAMPLES
+        ]
 
     return (
         train_texts,
@@ -172,7 +346,7 @@ def load_imdb():
 
 
 # =====================================================
-# DATALOADER CREATION
+# CREATE DATALOADERS
 # =====================================================
 
 def create_dataloaders(
@@ -180,9 +354,6 @@ def create_dataloaders(
     max_length=200,
     batch_size=64
 ):
-    """
-    Main function called by main.py
-    """
 
     (
         train_texts,
@@ -191,7 +362,9 @@ def create_dataloaders(
         test_labels
     ) = load_imdb()
 
-    print("Building vocabulary...")
+    print(
+        "Building vocabulary..."
+    )
 
     vocab = build_vocab(
         train_texts,
