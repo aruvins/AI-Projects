@@ -141,7 +141,28 @@ Words with similar meanings tend to occupy nearby regions of embedding space.
 
 ---
 
-## Positional Encodings
+## Positional Encoding
+
+Unlike RNNs and LSTMs, Transformers process all tokens simultaneously. 
+
+Because of this, they need an explicit way to understand word order. 
+
+Sinusoidal positional encodings are added to embeddings:
+
+
+Embedding + Position Information allowing the model to distinguish:
+
+```text
+Dog bites man
+```
+
+from:
+
+```text
+Man bites dog
+```
+
+---
 
 Positional encoding is one of the most elegant ideas in the original Transformer paper because it solves a fundamental problem:
 
@@ -399,7 +420,7 @@ because we simply add them.
 x = embedding + positional_encoding
 ```
 
-This is exactly what your code does:
+This is exactly what the code does:
 
 ```python
 return x + self.pe[:, :seq_len]
@@ -584,6 +605,623 @@ Multiple encoder blocks can be stacked to build deeper Transformers.
 
 ---
 
+# High-Level Purpose
+
+An encoder block takes a sequence of embeddings:
+
+```text
+"The movie was amazing"
+```
+
+and transforms them into richer contextual representations.
+
+Initially:
+
+```text
+movie = "movie"
+```
+
+After several encoder blocks:
+
+```text
+movie = "movie in the context of this sentence"
+```
+
+The representation becomes increasingly aware of surrounding words.
+
+---
+
+# Full Encoder Architecture
+
+The actual encoder block from the original Transformer paper is:
+
+```text
+Input
+  ↓
+Multi-Head Self Attention
+  ↓
+Add & Normalize
+  ↓
+Feed Forward Network
+  ↓
+Add & Normalize
+  ↓
+Output
+```
+
+Your simplified implementation likely omits LayerNorm and multi-head attention, but the core ideas remain the same.
+
+---
+
+# Input Shape
+
+Suppose:
+
+```text
+Sentence:
+"The movie was amazing"
+```
+
+Tokenized:
+
+```text
+[17, 42, 8, 119]
+```
+
+Embedded:
+
+```text
+[
+ e1,
+ e2,
+ e3,
+ e4
+]
+```
+
+If:
+
+```text
+sequence_length = 4
+embedding_size = 128
+```
+
+the tensor entering the encoder block has shape:
+
+```text
+(4, 128)
+```
+
+or in batch form:
+
+```text
+(batch_size, 4, 128)
+```
+
+---
+
+# Step 1: Self-Attention
+
+This is the most important component.
+
+---
+
+## The Problem
+
+Consider:
+
+```text
+"The movie was surprisingly good."
+```
+
+To understand:
+
+```text
+good
+```
+
+the model should pay attention to:
+
+```text
+movie
+surprisingly
+```
+
+rather than every word equally.
+
+---
+
+## Query, Key, Value
+
+For each word embedding:
+
+```text
+x
+```
+
+the model creates:
+
+```text
+Q = xWQ
+K = xWK
+V = xWV
+```
+
+These are learned linear projections.
+
+---
+
+Imagine:
+
+```text
+movie
+```
+
+becomes:
+
+```text
+Qmovie
+Kmovie
+Vmovie
+```
+
+and:
+
+```text
+good
+```
+
+becomes:
+
+```text
+Qgood
+Kgood
+Vgood
+```
+
+---
+
+## Computing Attention
+
+The model asks:
+
+> "How much should word A pay attention to word B?"
+
+Using:
+
+Attention(Q,K,V)=\mathrm{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+
+---
+
+### Example
+
+Suppose:
+
+```text
+good
+```
+
+looks at:
+
+```text
+the
+movie
+was
+surprisingly
+good
+```
+
+Attention scores might become:
+
+```text
+[
+ 0.05,
+ 0.30,
+ 0.10,
+ 0.35,
+ 0.20
+]
+```
+
+Meaning:
+
+```text
+5%   → the
+30%  → movie
+10%  → was
+35%  → surprisingly
+20%  → itself
+```
+
+These weights sum to:
+
+```text
+1.0
+```
+
+---
+
+## Result
+
+The word:
+
+```text
+good
+```
+
+gets replaced by:
+
+```text
+weighted combination
+of all words
+```
+
+creating a context-aware representation.
+
+---
+
+# Step 2: Residual Connection
+
+After attention:
+
+```text
+attention_output
+```
+
+we add the original input:
+
+```text
+input + attention_output
+```
+
+Diagram:
+
+```text
+Input --------+
+              |
+              v
+        Self Attention
+              |
+              +
+              |
+           Output
+```
+
+---
+
+## Why?
+
+Deep networks often suffer from:
+
+```text
+vanishing gradients
+```
+
+Residual connections provide a shortcut.
+
+Instead of learning:
+
+```text
+Output
+```
+
+the layer learns:
+
+```text
+Difference from Input
+```
+
+This dramatically improves training stability.
+
+This idea originated in the paper introducing Deep Residual Learning for Image Recognition.
+
+---
+
+# Step 3: Layer Normalization
+
+Usually:
+
+```python
+x = LayerNorm(
+    x + attention_output
+)
+```
+
+---
+
+## Why?
+
+Different features may have wildly different scales.
+
+Example:
+
+```text
+Feature 1 = 0.2
+Feature 2 = 500
+Feature 3 = -20
+```
+
+Training becomes unstable.
+
+LayerNorm rescales activations:
+
+```text
+mean ≈ 0
+std ≈ 1
+```
+
+making optimization easier.
+
+---
+
+# Step 4: Feed Forward Network
+
+Many beginners assume attention is where all learning happens.
+
+Actually, attention mostly moves information around.
+
+The feed-forward network performs substantial computation.
+
+Typically:
+
+```text
+128
+ ↓
+512
+ ↓
+128
+```
+
+or:
+
+```python
+Linear(128,512)
+ReLU()
+Linear(512,128)
+```
+
+---
+
+## Why Expand?
+
+Suppose the attention layer creates:
+
+```text
+movie representation
+```
+
+The FFN can then learn:
+
+```text
+sentiment
+genre
+emotion
+negation
+sarcasm
+```
+
+and other complex features.
+
+---
+
+Diagram:
+
+```text
+128 dims
+    ↓
+512 dims
+    ↓
+128 dims
+```
+
+This gives the network more expressive power.
+
+---
+
+# Step 5: Second Residual Connection
+
+Again:
+
+```python
+output = x + ffn_output
+```
+
+Diagram:
+
+```text
+Input
+  ↓
+Attention
+  ↓
+Add
+  ↓
+FFN
+  ↓
+Add
+  ↓
+Output
+```
+
+Now both major computations have shortcut paths.
+
+---
+
+# What Happens Across Multiple Layers?
+
+One encoder block is useful.
+
+Multiple blocks are powerful.
+
+Suppose:
+
+```text
+"The stock crashed after earnings."
+```
+
+---
+
+### Encoder Block 1
+
+Learns:
+
+```text
+stock
+earnings
+crashed
+```
+
+are related.
+
+---
+
+### Encoder Block 2
+
+Learns:
+
+```text
+crashed → negative event
+```
+
+---
+
+### Encoder Block 3
+
+Learns:
+
+```text
+earnings caused crash
+```
+
+---
+
+### Encoder Block 4
+
+Builds a richer semantic understanding.
+
+Each layer increases abstraction.
+
+This is similar to CNNs:
+
+```text
+Edges
+ ↓
+Shapes
+ ↓
+Objects
+```
+
+except for language.
+
+---
+
+# Why Stacking Works
+
+Each block receives:
+
+```text
+contextualized representations
+```
+
+from the previous block.
+
+Not raw words.
+
+So deeper layers can reason about increasingly complex relationships.
+
+---
+
+# Shape Tracking Example
+
+Assume:
+
+```text
+batch_size = 64
+sequence_length = 200
+embedding_size = 128
+```
+
+Input:
+
+```text
+(64, 200, 128)
+```
+
+After attention:
+
+```text
+(64, 200, 128)
+```
+
+After residual:
+
+```text
+(64, 200, 128)
+```
+
+After feed-forward:
+
+```text
+(64, 200, 128)
+```
+
+Output:
+
+```text
+(64, 200, 128)
+```
+
+Notice:
+
+**the shape never changes.**
+
+This is why encoder blocks can be stacked repeatedly:
+
+```text
+Encoder 1
+ ↓
+Encoder 2
+ ↓
+Encoder 3
+ ↓
+Encoder 4
+```
+
+Every block accepts and returns the same tensor dimensions.
+
+---
+
+# Intuition
+
+A useful mental model is:
+
+```text
+Embeddings
+    ↓
+"What do words mean?"
+```
+
+```text
+Self-Attention
+    ↓
+"Which words matter to each other?"
+```
+
+```text
+Feed Forward Network
+    ↓
+"What higher-level features can I learn?"
+```
+
+```text
+Residual Connections
+    ↓
+"Keep training stable."
+```
+
+Stack enough encoder blocks together and you get the foundation of models like BERT. The decoder architecture used by models such as GPT-2 uses the same core ideas but adds causal masking so the model can generate text one token at a time.
+
+---
+
 # 📊 Dataset
 
 This project uses the IMDB Movie Review Dataset.
@@ -617,42 +1255,6 @@ Mean Pooling
 Linear Classifier
       ↓
 Positive / Negative
-```
-
----
-
-# 🚀 Running the Project
-
-Create a virtual environment:
-
-```bash
-python -m venv .venv
-```
-
-Activate it:
-
-### macOS / Linux
-
-```bash
-source .venv/bin/activate
-```
-
-### Windows
-
-```powershell
-.venv\Scripts\activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the project:
-
-```bash
-python main.py
 ```
 
 ---
