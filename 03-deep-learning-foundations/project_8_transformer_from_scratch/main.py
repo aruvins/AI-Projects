@@ -20,6 +20,7 @@ from utils.predictor import (
 )
 
 from utils.visualize import (
+    plot_embedding_space,
     plot_loss_curve,
     plot_attention_heatmap,
     plot_positional_encoding
@@ -192,6 +193,12 @@ positional_encoding = (
 plot_positional_encoding(
     positional_encoding,
     save_path="outputs/positional_encoding.png"
+)
+
+plot_embedding_space(
+    model.embedding.weight,
+    vocab,
+    save_path="outputs/embedding_space.png"
 )
 
 # =====================================================

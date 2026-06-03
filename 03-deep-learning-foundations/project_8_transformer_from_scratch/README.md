@@ -787,7 +787,9 @@ The model asks:
 
 Using:
 
+```math
 Attention(Q,K,V)=\mathrm{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+```
 
 ---
 

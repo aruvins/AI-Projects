@@ -190,7 +190,6 @@ def plot_embedding_space(
     )
 
     plt.tight_layout()
-
     plt.savefig(save_path)
-
     plt.show()
+    
