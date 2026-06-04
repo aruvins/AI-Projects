@@ -140,3 +140,8 @@ chess-ai/venv
 03-deep-learning-foundations/project_8_transformer_from_scratch/utils/__pycache__
 
 03-deep-learning-foundations/project_8_transformer_from_scratch/data
+
+03-deep-learning-foundations/project_9_transfer_learning_classifier/.venv
+03-deep-learning-foundations/project_9_transfer_learning_classifier/utils/__pycache__
+03-deep-learning-foundations/project_9_transfer_learning_classifier/data
+03-deep-learning-foundations/project_9_transfer_learning_classifier/models/__pycache__
