@@ -145,3 +145,9 @@ chess-ai/venv
 03-deep-learning-foundations/project_9_transfer_learning_classifier/utils/__pycache__
 03-deep-learning-foundations/project_9_transfer_learning_classifier/data
 03-deep-learning-foundations/project_9_transfer_learning_classifier/models/__pycache__
+
+03-deep-learning-foundations/project_10_gpu_suite/.venv
+03-deep-learning-foundations/project_10_gpu_suite/experiments/__pycache__
+03-deep-learning-foundations/project_10_gpu_suite/models/__pycache__
+03-deep-learning-foundations/project_10_gpu_suite/utils/__pycache__
+03-deep-learning-foundations/project_10_gpu_suite/data
