@@ -35,7 +35,6 @@ By the end of this project you will understand how modern computer vision system
 
 ```text
 project_9_transfer_learning_classifier/
-
 │
 ├── main.py
 │
@@ -56,7 +55,6 @@ project_9_transfer_learning_classifier/
 │   └── transfer_model.pth
 │
 ├── requirements.txt
-│
 └── README.md
 ```
 
@@ -267,74 +265,577 @@ by Kaiming He et al. (2015).
 
 ---
 
-# The Problem With Deep Networks
+ResNet is one of the most important breakthroughs in deep learning because it solved a problem that was preventing neural networks from getting deeper.
 
-As neural networks become deeper:
+Before ResNet, researchers believed:
 
-```text
-10 Layers
-50 Layers
-100 Layers
-```
+> Deeper networks should perform better because they can learn more complex features.
 
-training becomes difficult.
-
-Gradients can vanish.
-
-Performance may stop improving.
-
-Sometimes deeper models perform worse.
+In practice, this wasn't always true.
 
 ---
 
-# Residual Connections
+# The Problem ResNet Solved
 
-ResNet introduced shortcut connections.
+Imagine training CNNs of increasing depth:
+
+```text
+5 Layers
+ ↓
+10 Layers
+ ↓
+20 Layers
+ ↓
+50 Layers
+ ↓
+100 Layers
+```
+
+You might expect accuracy to continuously improve.
+
+Instead researchers observed:
+
+```text
+20 Layers  → Good
+34 Layers  → Better
+56 Layers  → Worse
+100 Layers → Even Worse
+```
+
+The deeper model often had **higher training error**, not just test error.
+
+This was surprising.
+
+A deeper network should at least be able to learn the same solution as a shallower network.
+
+Yet optimization became extremely difficult.
+
+---
+
+# Why Deep Networks Fail
+
+The main issue is gradient flow.
+
+During backpropagation:
+
+```text
+Output Layer
+     ↑
+Layer 50
+     ↑
+Layer 49
+     ↑
+Layer 48
+     ↑
+...
+     ↑
+Layer 1
+```
+
+the gradient must travel through every layer.
+
+As networks become deeper:
+
+```text
+Gradient
+   × 0.9
+   × 0.9
+   × 0.9
+   × 0.9
+   ...
+```
+
+Eventually:
+
+```text
+0.9^100 ≈ 0.000026
+```
+
+The gradient becomes tiny.
+
+This is called:
+
+```text
+Vanishing Gradients
+```
+
+Early layers stop learning.
+
+---
+
+# The Core Idea of ResNet
 
 Instead of learning:
 
 ```text
-Output
+Desired Output
 ```
 
-a layer learns:
+ResNet learns:
 
 ```text
 Difference From Input
 ```
 
-Diagram:
+or:
 
 ```text
-Input --------+
-              |
-              v
-          Conv Layer
-              |
-              +
-              |
-           Output
+Residual
 ```
 
-This allows gradients to flow more easily through very deep networks.
+Hence the name:
+
+```text
+Residual Network
+```
 
 ---
 
-# Why ResNet Became Important
+# Standard CNN Layer
 
-ResNet made it practical to train:
+A normal CNN block learns:
 
 ```text
-18 Layers
-34 Layers
-50 Layers
-101 Layers
-152 Layers
+Input
+  ↓
+Conv
+  ↓
+ReLU
+  ↓
+Output
 ```
 
-deep neural networks.
+Mathematically:
 
-Many modern vision systems are built upon ideas introduced by ResNet.
+```text
+Output = F(x)
+```
+
+where:
+
+```text
+x = input
+F(x) = learned transformation
+```
+
+---
+
+# Residual Block
+
+ResNet changes this to:
+
+```text
+Input
+  ├───────────────┐
+  │               │
+  ▼               │
+Conv → ReLU → Conv
+  │               │
+  └─────── + ◄────┘
+          │
+          ▼
+       Output
+```
+
+Instead of:
+
+```text
+Output = F(x)
+```
+
+the block computes:
+
+y=F(x)+x
+
+This tiny change transformed deep learning.
+
+---
+
+# Why This Helps
+
+Suppose a layer isn't needed.
+
+A normal network must learn:
+
+```text
+F(x) = x
+```
+
+which is surprisingly difficult.
+
+ResNet only needs:
+
+```text
+F(x) = 0
+```
+
+because:
+
+```text
+Output = x + 0 = x
+```
+
+This is much easier.
+
+---
+
+# Intuition
+
+Think of the skip connection as a highway.
+
+Without ResNet:
+
+```text
+Input
+ ↓
+Layer 1
+ ↓
+Layer 2
+ ↓
+Layer 3
+ ↓
+Layer 4
+ ↓
+Output
+```
+
+Information must travel through every layer.
+
+With ResNet:
+
+```text
+Input
+ ├───────────────►
+ │
+ ▼
+Layers
+ │
+ ▼
+Add
+ │
+ ▼
+Output
+```
+
+Information can bypass layers entirely.
+
+---
+
+# Gradient Flow
+
+The real magic appears during backpropagation.
+
+Without residual connections:
+
+```text
+Gradient
+ ↓
+Layer
+ ↓
+Layer
+ ↓
+Layer
+ ↓
+Layer
+```
+
+The gradient shrinks repeatedly.
+
+With ResNet:
+
+```text
+Gradient
+  ├──────────────►
+  │
+  ▼
+Layers
+```
+
+The shortcut provides a direct route.
+
+This dramatically improves gradient flow.
+
+---
+
+# Residual Block Internals
+
+A basic ResNet block looks like:
+
+```text
+Input
+ ↓
+3×3 Conv
+ ↓
+BatchNorm
+ ↓
+ReLU
+ ↓
+3×3 Conv
+ ↓
+BatchNorm
+ ↓
+Add Input
+ ↓
+ReLU
+```
+
+This is called a:
+
+```text
+Basic Block
+```
+
+and is used in ResNet18 and ResNet34.
+
+---
+
+# What Is BatchNorm?
+
+Batch normalization stabilizes training.
+
+Instead of activations becoming:
+
+```text
+0.1
+15
+-40
+200
+```
+
+they are normalized.
+
+This makes optimization easier.
+
+A typical CNN block becomes:
+
+```text
+Conv
+ ↓
+BatchNorm
+ ↓
+ReLU
+```
+
+---
+
+# ResNet18 Architecture
+
+Your project uses ResNet18.
+
+The architecture:
+
+```text
+Image
+ ↓
+7×7 Conv
+ ↓
+MaxPool
+ ↓
+Residual Block × 2
+ ↓
+Residual Block × 2
+ ↓
+Residual Block × 2
+ ↓
+Residual Block × 2
+ ↓
+Global Average Pool
+ ↓
+Fully Connected Layer
+ ↓
+Prediction
+```
+
+Total:
+
+```text
+18 layers
+```
+
+Hence:
+
+```text
+ResNet18
+```
+
+---
+
+# Feature Learning Through the Network
+
+As the image moves deeper:
+
+### Early Layers
+
+Learn:
+
+```text
+Edges
+Corners
+Lines
+```
+
+Example:
+
+```text
+|  /  —
+```
+
+---
+
+### Middle Layers
+
+Learn:
+
+```text
+Textures
+Patterns
+Fur
+Wheels
+Windows
+```
+
+---
+
+### Deep Layers
+
+Learn:
+
+```text
+Dog Face
+Car Shape
+Bird Wing
+Human Eye
+```
+
+---
+
+### Final Layers
+
+Learn:
+
+```text
+Dog
+Cat
+Truck
+Airplane
+```
+
+This hierarchy is why CNNs work so well.
+
+---
+
+# Why Pretrained ResNet Is So Powerful
+
+A ResNet trained on ImageNet has already seen:
+
+```text
+Millions of Images
+```
+
+and learned:
+
+```text
+Edges
+Textures
+Shapes
+Objects
+```
+
+When you perform transfer learning:
+
+```text
+ImageNet ResNet
+      +
+New Classifier
+```
+
+you inherit all of this knowledge.
+
+---
+
+# Why Freeze Layers?
+
+In your project:
+
+```python
+for param in model.parameters():
+    param.requires_grad = False
+```
+
+Initially freezes the network.
+
+This preserves the pretrained visual features.
+
+Only the final classifier learns:
+
+```text
+CIFAR Features
+      ↓
+New Labels
+```
+
+Training becomes:
+
+* Faster
+* More stable
+* Less prone to overfitting
+
+---
+
+# Why ResNet Dominated Computer Vision
+
+Before ResNet:
+
+```text
+Very Deep Networks
+      ↓
+Hard To Train
+```
+
+After ResNet:
+
+```text
+Residual Connections
+      ↓
+Easy Gradient Flow
+      ↓
+100+ Layer Networks
+```
+
+ResNet won the prestigious ImageNet Large Scale Visual Recognition Challenge 2015 and became the foundation for much of modern computer vision.
+
+Many later architectures—including DenseNet, EfficientNet, and even some ideas used in Vision Transformers—build upon the principle that information and gradients need efficient paths through very deep models.
+
+---
+
+# The Big Picture
+
+A useful mental model is:
+
+```text
+CNN
+ ↓
+Learns Features
+```
+
+```text
+ResNet
+ ↓
+Learns Features
++
+Preserves Information
+```
+
+The key innovation is not the convolution itself.
+
+The key innovation is the shortcut:
+
+```text
+Output = Learned Features
+       + Original Input
+```
+
+That simple addition allowed neural networks to scale from a few layers to hundreds of layers and helped launch the modern era of deep computer vision.
 
 ---
 
