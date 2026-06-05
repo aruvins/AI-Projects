@@ -239,13 +239,9 @@ def run_mixed_precision_benchmark(
 def main():
 
     print("\nLoading CIFAR-10...\n")
-
     dataset = load_dataset()
-
     logger = BenchmarkLogger()
-
     device = get_device()
-
     print(f"Using device: {device}")
 
     run_cpu_vs_gpu(
@@ -273,13 +269,10 @@ def main():
     print("\n" + "=" * 50)
     print("Benchmark Summary")
     print("=" * 50)
-
     logger.summary()
-
     logger.save_csv(
         "benchmark_results.csv"
     )
-
     print("\nDone.\n")
 
 
