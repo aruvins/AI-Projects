@@ -1,0 +1,111 @@
+Loading CIFAR-10...
+
+Using device: mps
+
+==================================================
+CPU vs GPU Benchmark
+==================================================
+{'device': 'cpu', 'epoch_time': 48.217465541000024, 'throughput': 1036.9686469207772}
+{'device': 'mps', 'epoch_time': 1.886450707999984, 'throughput': 26504.800675661452}
+
+==================================================
+Batch Size Benchmark
+==================================================
+Batch=16 Time=6.90s
+Batch=32 Time=3.90s
+Batch=64 Time=2.48s
+Batch=128 Time=1.74s
+Batch=256 Time=1.55s
+Batch=512 Time=1.48s
+{'batch_size': 16, 'epoch_time': 6.897022124999921, 'throughput': 7249.505524821057}
+{'batch_size': 32, 'epoch_time': 3.8985839169999963, 'throughput': 12825.169616581077}
+{'batch_size': 64, 'epoch_time': 2.4820360420000043, 'throughput': 20144.75179003058}
+{'batch_size': 128, 'epoch_time': 1.7445979169999646, 'throughput': 28659.898944497603}
+{'batch_size': 256, 'epoch_time': 1.5543460000000096, 'throughput': 32167.86995945542}
+{'batch_size': 512, 'epoch_time': 1.476648207999915, 'throughput': 33860.46841022738}
+
+==================================================
+DataLoader Worker Benchmark
+==================================================
+Workers=0 Time=1.70s
+Workers=2 Time=14.18s
+Workers=4 Time=26.63s
+Workers=8 Time=51.26s
+{'workers': 0, 'epoch_time': 1.7029707079999525}
+{'workers': 2, 'epoch_time': 14.18347966600004}
+{'workers': 4, 'epoch_time': 26.634225042000025}
+{'workers': 8, 'epoch_time': 51.26371804199994}
+
+==================================================
+NOTE ON MACOS RESULTS
+==================================================
+
+    On most Linux and CUDA systems, increasing DataLoader workers
+    typically reduces training time because multiple processes can
+    prepare future batches while the GPU trains on the current batch.
+
+    Expected behavior:
+
+    Workers=0 -> Slowest
+    Workers=2 -> Faster
+    Workers=4 -> Faster
+    Workers=8 -> Saturates
+
+    However, on macOS (especially Apple Silicon), the opposite can occur.
+
+    Reasons:
+
+    1. Worker Startup Overhead
+    macOS uses the 'spawn' multiprocessing method, which creates
+    entirely new Python processes. Starting these workers can be
+    expensive and may dominate benchmark runtime.
+
+    2. Small Dataset Size
+    CIFAR-10 images are only 32x32 pixels and require very little
+    preprocessing. The cost of loading each sample is often smaller
+    than the cost of managing additional worker processes.
+
+    3. Inter-Process Communication
+    Data must be transferred between worker processes and the main
+    training process. This introduces additional overhead.
+
+    4. MPS Training Characteristics
+    Apple's Metal Performance Shaders (MPS) backend often benefits
+    less from aggressive DataLoader parallelism than CUDA systems.
+
+    As a result, results such as:
+
+    Workers=0 -> 1.7s
+    Workers=2 -> 14.5s
+    Workers=4 -> 26.7s
+
+    can be completely valid on macOS and demonstrate that adding more
+    workers is not always beneficial. Performance optimization is highly
+    dependent on the hardware platform, dataset size, and preprocessing
+    pipeline.
+    
+
+Skipping mixed precision benchmark (CUDA unavailable)
+
+==================================================
+Benchmark Summary
+==================================================
+
+===== Benchmark Summary =====
+
+   device  epoch_time    throughput  batch_size  workers
+0     cpu   48.217466   1036.968647         NaN      NaN
+1     mps    1.886451  26504.800676         NaN      NaN
+2     NaN    6.897022   7249.505525        16.0      NaN
+3     NaN    3.898584  12825.169617        32.0      NaN
+4     NaN    2.482036  20144.751790        64.0      NaN
+5     NaN    1.744598  28659.898944       128.0      NaN
+6     NaN    1.554346  32167.869959       256.0      NaN
+7     NaN    1.476648  33860.468410       512.0      NaN
+8     NaN    1.702971           NaN         NaN      0.0
+9     NaN   14.183480           NaN         NaN      2.0
+10    NaN   26.634225           NaN         NaN      4.0
+11    NaN   51.263718           NaN         NaN      8.0
+Saved benchmark to outputs/logs/benchmark_results.csv
+
+Done.

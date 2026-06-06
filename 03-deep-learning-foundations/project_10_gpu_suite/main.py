@@ -261,6 +261,58 @@ def main():
         logger,
     )
 
+    print("\n" + "=" * 50)
+    print("NOTE ON MACOS RESULTS")
+    print("=" * 50)
+
+    print(
+        """
+    On most Linux and CUDA systems, increasing DataLoader workers
+    typically reduces training time because multiple processes can
+    prepare future batches while the GPU trains on the current batch.
+
+    Expected behavior:
+
+    Workers=0 -> Slowest
+    Workers=2 -> Faster
+    Workers=4 -> Faster
+    Workers=8 -> Saturates
+
+    However, on macOS (especially Apple Silicon), the opposite can occur.
+
+    Reasons:
+
+    1. Worker Startup Overhead
+    macOS uses the 'spawn' multiprocessing method, which creates
+    entirely new Python processes. Starting these workers can be
+    expensive and may dominate benchmark runtime.
+
+    2. Small Dataset Size
+    CIFAR-10 images are only 32x32 pixels and require very little
+    preprocessing. The cost of loading each sample is often smaller
+    than the cost of managing additional worker processes.
+
+    3. Inter-Process Communication
+    Data must be transferred between worker processes and the main
+    training process. This introduces additional overhead.
+
+    4. MPS Training Characteristics
+    Apple's Metal Performance Shaders (MPS) backend often benefits
+    less from aggressive DataLoader parallelism than CUDA systems.
+
+    As a result, results such as:
+
+    Workers=0 -> 1.7s
+    Workers=2 -> 14.5s
+    Workers=4 -> 26.7s
+
+    can be completely valid on macOS and demonstrate that adding more
+    workers is not always beneficial. Performance optimization is highly
+    dependent on the hardware platform, dataset size, and preprocessing
+    pipeline.
+    """
+    )
+
     run_mixed_precision_benchmark(
         dataset,
         logger,
