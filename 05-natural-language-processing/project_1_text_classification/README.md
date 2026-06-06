@@ -265,7 +265,7 @@ TF(w, d) = count(w in d)
 
 Measures how rare a word is across all documents:
 
-```text
+```math
 IDF(w) = log(N / DF(w))
 ```
 
@@ -342,7 +342,7 @@ Despite its name, logistic regression is a **linear classification model**, not 
 
 It learns a linear decision boundary:
 
-```text
+```math
 y = sigmoid(w · x + b)
 ```
 
@@ -356,7 +356,7 @@ Where:
 
 ### Sigmoid function:
 
-```text
+```math
 σ(z) = 1 / (1 + e^{-z})
 ```
 
