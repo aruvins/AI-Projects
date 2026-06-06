@@ -22,8 +22,9 @@ This project shifts the focus from model accuracy to computational efficiency. W
 ---
 
 # Project Structure
-project_10_gpu_benchmark/
 
+```text
+project_10_gpu_benchmark/
 │
 ├── experiments/
 │   ├── cpu_vs_gpu.py
@@ -49,6 +50,7 @@ project_10_gpu_benchmark/
 ├── main.py
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
