@@ -732,6 +732,7 @@ BF16 (Brain Floating 16 [1 sign bit | 8 exponent bits | 7 mantissa bits])
 ```text
 TF32 (TensorFloat 32 = FP32 storage + Tensor Core execution)
 ```
+
 ```text
 FP8 (Floating Point 8)
 ```
