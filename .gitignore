@@ -151,3 +151,9 @@ chess-ai/venv
 03-deep-learning-foundations/project_10_gpu_suite/models/__pycache__
 03-deep-learning-foundations/project_10_gpu_suite/utils/__pycache__
 03-deep-learning-foundations/project_10_gpu_suite/data
+
+# Phase 5 - Natural Language Processing
+05-natural-language-processing/project_1_text_classification/.venv
+05-natural-language-processing/project_1_text_classification/utils/__pycache__
+05-natural-language-processing/project_1_text_classification/data
+05-natural-language-processing/project_1_text_classification/models/__pycache__
