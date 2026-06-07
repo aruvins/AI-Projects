@@ -99,22 +99,7 @@ Classify text into categories (spam, sentiment, topic).
 
 ---
 
-## 🟢 Project 2 — Sentiment Analysis Pipeline
-
-### 🎯 Goal
-Understand real-world NLP pipelines.
-
-### Concepts
-- preprocessing text
-- feature extraction
-- model evaluation
-
-### Outcome
-Detect positive/negative sentiment in text.
-
----
-
-## 🟢 Project 3 — Text Summarization System
+## 🟢 Project 2 — Text Summarization System
 
 ### 🎯 Goal
 Learn sequence compression and abstraction.
@@ -128,7 +113,7 @@ Summarize articles into short descriptions.
 
 ---
 
-## 🟡 Project 4 — Chatbot Basics
+## 🟡 Project 3 — Chatbot Basics
 
 ### 🎯 Goal
 Understand conversational AI structure.
@@ -143,7 +128,7 @@ Simple rule-based or ML chatbot.
 
 ---
 
-## 🟡 Project 5 — Transformer From Scratch
+## 🟡 Project 4 — Transformer From Scratch
 
 ### 🎯 Goal
 Deep understanding of modern NLP architecture.
@@ -158,7 +143,7 @@ Minimal transformer model trained on small dataset.
 
 ---
 
-## 🟡 Project 6 — Document Q&A System
+## 🟡 Project 5 — Document Q&A System
 
 ### 🎯 Goal
 Learn question answering over documents.
@@ -173,7 +158,7 @@ Ask questions about uploaded documents.
 
 ---
 
-## 🟡 Project 7 — Vector Database Search Engine
+## 🟡 Project 6 — Vector Database Search Engine
 
 ### 🎯 Goal
 Understand semantic search systems.
@@ -188,7 +173,7 @@ Search documents by meaning, not keywords.
 
 ---
 
-## 🔵 Project 8 — RAG (Retrieval-Augmented Generation) System
+## 🔵 Project 7 — RAG (Retrieval-Augmented Generation) System
 
 ### 🎯 Goal
 Combine retrieval + LLM generation.
@@ -203,7 +188,7 @@ AI system that answers questions using external knowledge.
 
 ---
 
-## 🔵 Project 9 — AI Research Assistant
+## 🔵 Project 8 — AI Research Assistant
 
 ### 🎯 Goal
 Build a practical LLM-powered tool.
@@ -218,7 +203,7 @@ AI that can summarize and analyze research papers.
 
 ---
 
-## 🔴 Project 10 — Local LLM Inference Stack
+## 🔴 Project 9 — Local LLM Inference Stack
 
 ### 🎯 Goal
 Understand deployment of modern LLM systems.

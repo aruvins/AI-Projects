@@ -157,3 +157,7 @@ chess-ai/venv
 05-natural-language-processing/project_1_text_classification/utils/__pycache__
 05-natural-language-processing/project_1_text_classification/data
 05-natural-language-processing/project_1_text_classification/models/__pycache__
+
+05-natural-language-processing/project_2_text_summarization/.venv
+05-natural-language-processing/project_2_text_summarization/models/__pycache__
+05-natural-language-processing/project_2_text_summarization/utils/__pycache__
