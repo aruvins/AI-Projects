@@ -58,6 +58,52 @@ project_2_text_summarization/
 
 ---
 
+# ⚙️ Installation
+
+## 1. CD into Repository
+
+```bash
+cd 05-natural-language-processing/project_2_text_summarization
+```
+
+---
+
+## 2. Create Virtual Environment
+
+### Mac/Linux
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+
+```
+
+### Windows
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+
+```
+
+---
+
+## 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# 4. Run the Project
+```bash
+python main.py
+```
+
+
+---
+
 # 🧹 1. Text Preprocessing (Foundation Layer)
 
 Before any AI model can understand text, we must convert raw language into structured tokens.
