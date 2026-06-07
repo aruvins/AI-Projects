@@ -383,9 +383,7 @@ Attention allows the model to focus on important words:
 Example:
 
 ```text
-
 Apple announced a new AI assistant
-
 ```
 
 The model focuses on:
@@ -521,3 +519,59 @@ Summarization is not just a task — it is a study of:
 This project builds intuition for both:
 - classical NLP systems
 - modern large language models
+
+---
+
+## 📚 References
+
+This project is built on foundational concepts from classical NLP and modern transformer-based architectures.
+
+---
+
+### 📖 Foundational Papers
+
+- Bahdanau, D., Cho, K., & Bengio, Y. (2014)  
+  *Neural Machine Translation by Jointly Learning to Align and Translate*  
+  https://arxiv.org/abs/1409.0473  
+
+- Vaswani, A. et al. (2017)  
+  *Attention Is All You Need*  
+  https://arxiv.org/abs/1706.03762  
+
+---
+
+### 🤖 Summarization-Specific Models
+
+- Lewis, M. et al. (2019)  
+  *BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation*  
+  https://arxiv.org/abs/1910.13461  
+
+- Raffel, C. et al. (2020)  
+  *Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (T5)*  
+  https://arxiv.org/abs/1910.10683  
+
+- Zhang, J. et al. (2020)  
+  *PEGASUS: Pre-training with Extracted Gap-sentences for Abstractive Summarization*  
+  https://arxiv.org/abs/1912.08777  
+
+---
+
+### 🧠 Libraries & Frameworks
+
+- Hugging Face Transformers  
+  https://huggingface.co/docs/transformers  
+
+- PyTorch  
+  https://pytorch.org/  
+
+- scikit-learn  
+  https://scikit-learn.org/  
+
+---
+
+### 💡 Key Conceptual Ideas
+
+- Extractive summarization (TF-IDF, sentence ranking)  
+- Abstractive summarization (encoder-decoder transformers)  
+- Attention mechanisms and contextual representation learning  
+- ROUGE-based evaluation for summarization quality  
