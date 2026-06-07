@@ -347,7 +347,6 @@ This is what enables:
 - translation
 - question answering
 - modern LLMs like GPT-style systems
-```
 
 ---
 
@@ -356,9 +355,7 @@ This is what enables:
 Instead of counting words, transformers learn:
 
 ```text
-
 Meaning + Context + Relationships
-
 ```
 
 ---
@@ -366,7 +363,6 @@ Meaning + Context + Relationships
 ## Architecture
 
 ```text
-
 Input Text
 ↓
 Tokenizer
@@ -376,7 +372,6 @@ Encoder (understanding)
 Decoder (generation)
 ↓
 Summary
-
 ```
 
 ---
