@@ -164,11 +164,9 @@ This is a **statistical approach** to summarization.
 We compute how often each word appears:
 
 ```text
-
 assistant → 5
 apple → 2
 productivity → 3
-
 ```
 
 This is a simple form of **statistical importance estimation**.
@@ -186,10 +184,8 @@ Sentence score = sum(word frequencies)
 So:
 
 ```text
-
 "Apple announced a new AI assistant"
 → high score
-
 ```
 
 ---
@@ -199,9 +195,7 @@ So:
 We select top-k scoring sentences:
 
 ```text
-
 Top sentences → final summary
-
 ```
 
 ---
@@ -211,9 +205,7 @@ Top sentences → final summary
 This method assumes:
 
 ```text
-
 frequency ≈ importance
-
 ```
 
 Limitations:
@@ -222,6 +214,7 @@ Limitations:
 - cannot paraphrase
 
 But it is:
+ 
 ✔ fast  
 ✔ interpretable  
 ✔ strong baseline  
