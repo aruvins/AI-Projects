@@ -283,8 +283,71 @@ And highlights:
 
 This project also includes a deep learning model using pretrained transformers.
 
-Example model:
-- :contentReference[oaicite:1]{index=1}
+### Example Models
+
+- **BART (Bidirectional and Auto-Regressive Transformers)**  
+  A sequence-to-sequence model developed by Meta AI that is widely used for text summarization tasks. It is trained to reconstruct text from corrupted inputs, making it effective for generating coherent summaries.
+
+- **T5 (Text-to-Text Transfer Transformer)**  
+  A unified framework from Google that treats every NLP task as a text-to-text problem, including summarization, translation, and question answering.
+
+- **PEGASUS**  
+  A model specifically designed for abstractive summarization. It is pretrained with a gap-sentence generation objective, making it highly effective at learning how to summarize long documents.
+
+
+---
+
+## 🧠 Core Idea
+
+Instead of counting words (TF-IDF), transformers learn:
+
+- meaning
+- context
+- relationships between words
+
+This allows the model to **generate new sentences**, not just extract existing ones.
+
+---
+
+## ⚙️ How it works
+
+```text
+Input Text
+↓
+Tokenizer
+↓
+Encoder (context understanding)
+↓
+Decoder (text generation)
+↓
+Summary
+```
+
+---
+
+## 🔥 Why this is powerful
+
+Unlike classical NLP:
+
+| Method | Output style |
+|--------|-------------|
+| TF-IDF / Extractive | selects original sentences |
+| Transformer | writes new sentences |
+
+---
+
+## 🧠 Key Concept: Attention
+
+Transformers use attention to decide:
+
+> which words in the input matter most for each generated word
+
+This is what enables:
+- summarization
+- translation
+- question answering
+- modern LLMs like GPT-style systems
+```
 
 ---
 
