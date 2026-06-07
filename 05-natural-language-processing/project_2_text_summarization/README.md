@@ -240,11 +240,32 @@ Not all words are equally important:
 
 ## Formula
 
-:contentReference[oaicite:0]{index=0}
+```math
+TF\text{-}IDF(t, d, D) = TF(t, d) \times IDF(t, D)
+```
 
 Where:
+
 - TF = term frequency in document
+
+```math
+TF(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{total terms in document } d}
+```
+
 - IDF = how rare the word is across all documents
+
+```math
+IDF(t, D) = \log \left( \frac{N}{1 + |\{ d \in D : t \in d \}|} \right)
+```
+
+And:
+
+* ( t ) = term (word)
+* ( d ) = document
+* ( D ) = corpus (all documents)
+* ( N ) = total number of documents
+
+
 
 ---
 
