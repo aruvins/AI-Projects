@@ -1,0 +1,288 @@
+
+CHATBOT BASICS PROJECT
+
+Existing trained model found.
+Retrain model? (y/n): y
+
+============================================================
+TRAINING CHATBOT MODEL
+============================================================
+[nltk_data] Downloading package punkt to /Users/aruvins/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+Epoch [100/1000] Loss: 0.9748
+Epoch [200/1000] Loss: 0.4508
+Epoch [300/1000] Loss: 0.1122
+Epoch [400/1000] Loss: 0.0390
+Epoch [500/1000] Loss: 0.0191
+Epoch [600/1000] Loss: 0.0113
+Epoch [700/1000] Loss: 0.0074
+Epoch [800/1000] Loss: 0.0052
+Epoch [900/1000] Loss: 0.0039
+Epoch [1000/1000] Loss: 0.0030
+
+Training Complete
+Model saved to chatbot_model.pth
+
+============================================================
+LAUNCHING CHATBOT
+============================================================
+[nltk_data] Downloading package punkt to /Users/aruvins/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+
+============================================================
+CHATBOT BASICS PROJECT
+============================================================
+
+Conversation Pipeline
+
+
+User Input
+      ↓
+Tokenization
+      ↓
+Bag of Words
+      ↓
+Neural Network
+      ↓
+Intent Prediction
+      ↓
+Response Selection
+      ↓
+Bot Response
+
+============================================================
+
+Vocabulary Learned:
+
+['appreci', 'bye', 'good', 'goodby', 'hello', 'hey', 'hi', 'it', 'later', 'morn', 'see', 'thank', 'you']
+
+Intent Classes:
+
+['goodbye', 'greeting', 'thanks']
+
+Neural Network Architecture:
+
+ChatbotNN(
+  (net): Sequential(
+    (0): Linear(in_features=13, out_features=8, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=8, out_features=8, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=8, out_features=3, bias=True)
+  )
+)
+
+Type 'quit' to exit.
+
+
+============================================================
+You: Hi
+
+[1] TOKENIZATION
+['Hi']
+
+[2] BAG OF WORDS VECTOR
+[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0.]
+
+[3] INTENT PROBABILITIES
+goodbye    -> 0.0020
+greeting   -> 0.9949
+thanks     -> 0.0031
+
+[4] MODEL PREDICTION
+Predicted Intent : greeting
+Confidence       : 99.49%
+
+[5] RESPONSE GENERATION
+Intent 'greeting' matched.
+Selected Response:
+Bot: Hi there!
+
+============================================================
+You: Good Morning 
+
+[1] TOKENIZATION
+['Good', 'Morning']
+
+[2] BAG OF WORDS VECTOR
+[0. 0. 1. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0.]
+
+[3] INTENT PROBABILITIES
+goodbye    -> 0.0000
+greeting   -> 0.9998
+thanks     -> 0.0001
+
+[4] MODEL PREDICTION
+Predicted Intent : greeting
+Confidence       : 99.98%
+
+[5] RESPONSE GENERATION
+Intent 'greeting' matched.
+Selected Response:
+Bot: Nice to meet you!
+
+============================================================
+You: Goodbye 
+
+[1] TOKENIZATION
+['Goodbye']
+
+[2] BAG OF WORDS VECTOR
+[0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+
+[3] INTENT PROBABILITIES
+goodbye    -> 0.9930
+greeting   -> 0.0047
+thanks     -> 0.0023
+
+[4] MODEL PREDICTION
+Predicted Intent : goodbye
+Confidence       : 99.30%
+
+[5] RESPONSE GENERATION
+Intent 'goodbye' matched.
+Selected Response:
+Bot: See you soon!
+
+============================================================
+You: Bye
+
+[1] TOKENIZATION
+['Bye']
+
+[2] BAG OF WORDS VECTOR
+[0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+
+[3] INTENT PROBABILITIES
+goodbye    -> 0.9975
+greeting   -> 0.0018
+thanks     -> 0.0007
+
+[4] MODEL PREDICTION
+Predicted Intent : goodbye
+Confidence       : 99.75%
+
+[5] RESPONSE GENERATION
+Intent 'goodbye' matched.
+Selected Response:
+Bot: See you soon!
+
+============================================================
+You: See you later 
+
+[1] TOKENIZATION
+['See', 'you', 'later']
+
+[2] BAG OF WORDS VECTOR
+[0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 1. 0. 1.]
+
+[3] INTENT PROBABILITIES
+goodbye    -> 0.9994
+greeting   -> 0.0003
+thanks     -> 0.0004
+
+[4] MODEL PREDICTION
+Predicted Intent : goodbye
+Confidence       : 99.94%
+
+[5] RESPONSE GENERATION
+Intent 'goodbye' matched.
+Selected Response:
+Bot: See you soon!
+
+============================================================
+You: Thank you
+
+[1] TOKENIZATION
+['Thank', 'you']
+
+[2] BAG OF WORDS VECTOR
+[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1.]
+
+[3] INTENT PROBABILITIES
+goodbye    -> 0.0004
+greeting   -> 0.0008
+thanks     -> 0.9988
+
+[4] MODEL PREDICTION
+Predicted Intent : thanks
+Confidence       : 99.88%
+
+[5] RESPONSE GENERATION
+Intent 'thanks' matched.
+Selected Response:
+Bot: You're welcome!
+
+============================================================
+You: Thanks 
+
+[1] TOKENIZATION
+['Thanks']
+
+[2] BAG OF WORDS VECTOR
+[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0.]
+
+[3] INTENT PROBABILITIES
+goodbye    -> 0.0022
+greeting   -> 0.0053
+thanks     -> 0.9925
+
+[4] MODEL PREDICTION
+Predicted Intent : thanks
+Confidence       : 99.25%
+
+[5] RESPONSE GENERATION
+Intent 'thanks' matched.
+Selected Response:
+Bot: Happy to help!
+
+============================================================
+You: You're welcome 
+
+[1] TOKENIZATION
+['You', "'re", 'welcome']
+
+[2] BAG OF WORDS VECTOR
+[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]
+
+[3] INTENT PROBABILITIES
+goodbye    -> 0.1751
+greeting   -> 0.1323
+thanks     -> 0.6926
+
+[4] MODEL PREDICTION
+Predicted Intent : thanks
+Confidence       : 69.26%
+
+[5] RESPONSE GENERATION
+Intent 'thanks' matched.
+Selected Response:
+Bot: Happy to help!
+
+============================================================
+You: How are you 
+
+[1] TOKENIZATION
+['How', 'are', 'you']
+
+[2] BAG OF WORDS VECTOR
+[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]
+
+[3] INTENT PROBABILITIES
+goodbye    -> 0.1751
+greeting   -> 0.1323
+thanks     -> 0.6926
+
+[4] MODEL PREDICTION
+Predicted Intent : thanks
+Confidence       : 69.26%
+
+[5] RESPONSE GENERATION
+Intent 'thanks' matched.
+Selected Response:
+Bot: You're welcome!
+
+============================================================
+You: quit
+
+Goodbye!
