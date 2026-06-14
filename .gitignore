@@ -166,3 +166,6 @@ chess-ai/venv
 05-natural-language-processing/project_3_chatbot_basics/utils/__pycache__
 
 05-natural-language-processing/project_4_transformer_from_scratch/.venv
+05-natural-language-processing/project_4_transformer_from_scratch/models/__pycache__
+05-natural-language-processing/project_4_transformer_from_scratch/utils/__pycache__
+05-natural-language-processing/project_4_transformer_from_scratch/data

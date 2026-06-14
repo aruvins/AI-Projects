@@ -108,10 +108,10 @@ else:
             model,
             train_loader,
             test_loader,
-            criterion,
             optimizer,
+            criterion,
             device,
-            epochs=5
+            epochs=10
         )
     )
 
@@ -119,6 +119,8 @@ else:
         model.state_dict(),
         MODEL_PATH
     )
+
+    torch.save(vocab, "outputs/vocab.pth")
 
     print(
         f"\nModel saved to:"
