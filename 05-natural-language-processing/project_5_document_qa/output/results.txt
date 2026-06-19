@@ -1,0 +1,17 @@
+Ask a question: Where is the eiffel tower 
+
+Retreived Context:
+
+The Eiffel Tower is located in Paris. Paris is the capital of France. France is located in Europe.
+
+Ask a question: Where is Paris 
+
+Retreived Context:
+
+The Eiffel Tower is located in Paris. Paris is the capital of France. France is located in Europe.
+
+Ask a question: Where is France 
+
+Retreived Context:
+
+The Eiffel Tower is located in Paris. Paris is the capital of France. France is located in Europe.
