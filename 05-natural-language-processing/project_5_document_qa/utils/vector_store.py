@@ -20,7 +20,7 @@ class VectorStore:
             embed_text(chunk) for chunk in chunks
         ]
 
-    def search(self, query, top_k = 3):
+    def search(self, query, top_k = 1):
         query_embedding = embed_text(query)
         similarities = cosine_similarity(
             [query_embedding],

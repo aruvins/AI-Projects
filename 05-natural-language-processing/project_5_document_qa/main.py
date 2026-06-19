@@ -4,7 +4,7 @@ from utils.qa import DocumentQA
 with open("data/document.txt", "r",encoding="utf-8") as file:
     document = file.read()
 
-chunks = chunk_text(document, chunk_size=128)
+chunks = chunk_text(document)
 qa = DocumentQA(chunks)
 
 while True:

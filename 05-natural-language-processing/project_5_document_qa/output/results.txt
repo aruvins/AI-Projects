@@ -1,17 +1,84 @@
-Ask a question: Where is the eiffel tower 
+
+Ask a question: lucky
 
 Retreived Context:
 
-The Eiffel Tower is located in Paris. Paris is the capital of France. France is located in Europe.
+I got lucky with my investment.
 
-Ask a question: Where is Paris 
-
-Retreived Context:
-
-The Eiffel Tower is located in Paris. Paris is the capital of France. France is located in Europe.
-
-Ask a question: Where is France 
+Ask a question: cat
 
 Retreived Context:
 
-The Eiffel Tower is located in Paris. Paris is the capital of France. France is located in Europe.
+I have a black cat.
+
+Ask a question: cat name 
+
+Retreived Context:
+
+The cats name is lucky.
+
+Ask a question: dog 
+
+Retreived Context:
+
+I have a dog.
+
+Ask a question: dog name 
+
+Retreived Context:
+
+The dog's name is Spot.
+
+Ask a question: paris
+
+Retreived Context:
+
+Paris is the capital of France.
+
+Ask a question: where is paris 
+
+Retreived Context:
+
+Paris is the capital of France.
+
+Ask a question: where is the eiffel tower?
+
+Retreived Context:
+
+The Eiffel Tower is located in Paris.
+
+Ask a question: Where is france
+
+Retreived Context:
+
+France is located in Europe.
+
+Ask a question: I hate cats
+
+Retreived Context:
+
+I like cats.
+
+Ask a question: Black cats are lucky 
+
+Retreived Context:
+
+The cats name is lucky.
+
+Ask a question: I had a black cat in paris when I lived next to the eiffel tower. I bought the apartment and I got lucky with my investment. I have a dog also. I named the dog Spot.        
+
+Retreived Context:
+
+I have a black cat.
+
+Ask a question: I had a black cat in paris when I lived next to the eiffel tower. I bought the apartment and I got lucky with my investment. I have a dog also. I named the dog Spot.
+
+Retreived Context:
+
+I have a black cat.
+
+Ask a question: I had a black cat in paris when I lived next to the eiffel tower. I bought the apartment and I got lucky with my investment. I have a dog also.                      
+
+Retreived Context:
+
+I have a black cat.

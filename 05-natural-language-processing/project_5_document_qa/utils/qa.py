@@ -6,6 +6,6 @@ class DocumentQA:
         self.store.add_document(chunks)
 
     def answer(self, question):
-        results = self.store.search(question, top_k=3)
+        results = self.store.search(question, top_k=1)
 
         return "\n\n".join(results)

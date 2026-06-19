@@ -3,3 +3,15 @@ The Eiffel Tower is located in Paris.
 Paris is the capital of France.
 
 France is located in Europe.
+
+I have a dog.
+
+The dog's name is Spot.
+
+I like cats.
+
+I have a black cat.
+
+The cats name is lucky.
+
+I got lucky with my investment.
