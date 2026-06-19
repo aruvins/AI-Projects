@@ -1,0 +1,5 @@
+The Eiffel Tower is located in Paris.
+
+Paris is the capital of France.
+
+France is located in Europe.
