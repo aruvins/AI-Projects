@@ -1,0 +1,13 @@
+The Eiffel Tower is located in Paris.
+
+Paris is the capital of France.
+
+Machine learning uses data to learn patterns.
+
+Neural networks are trained using gradient descent.
+
+Dogs are loyal animals.
+
+Cats are independent pets.
+
+Artificial intelligence is transforming industries.

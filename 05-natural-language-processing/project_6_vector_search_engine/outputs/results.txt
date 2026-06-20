@@ -1,0 +1,46 @@
+==================================================
+VECTOR DATABASE SEARCH ENGINE
+==================================================
+
+[1/3] Generating Embeddings...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights: 100%|████████████████████| 103/103 [00:00<00:00, 12583.77it/s]
+Generated embeddings for 7 documents
+
+[2/3] Building FAISS Index...
+Indexed 7 documents
+
+[3/3] Starting Search Engine...
+Loading weights: 100%|████████████████████| 103/103 [00:00<00:00, 24713.31it/s]
+
+Ask a question ('quit' to exit): Dogs
+
+Top Results:
+
+1. Dogs are loyal animals.
+
+Ask a question ('quit' to exit): Paris 
+
+Top Results:
+
+1. Paris is the capital of France.
+
+Ask a question ('quit' to exit): I had a dog in paris 
+
+Top Results:
+
+1. Paris is the capital of France.
+
+Ask a question ('quit' to exit): I had a loyal dog in paris 
+
+Top Results:
+
+1. Dogs are loyal animals.
+
+Ask a question ('quit' to exit): How to build a Neural Network through Artificial intelligence 
+
+Top Results:
+
+1. Neural networks are trained using gradient descent.
+
+Ask a question ('quit' to exit): quit

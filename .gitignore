@@ -172,3 +172,6 @@ chess-ai/venv
 
 05-natural-language-processing/project_5_document_qa/.venv
 05-natural-language-processing/project_5_document_qa/utils/__pycache__
+
+05-natural-language-processing/project_6_vector_search_engine/.venv
+05-natural-language-processing/project_6_vector_search_engine/src/__pycache__
