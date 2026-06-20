@@ -43,4 +43,22 @@ Top Results:
 
 1. Neural networks are trained using gradient descent.
 
+Ask a question ('quit' to exit): I want a frog 
+
+Top Results:
+
+1. Cats are independent pets.
+
+Ask a question ('quit' to exit): I am buying a car 
+
+Top Results:
+
+1. Paris is the capital of France.
+
+Ask a question ('quit' to exit): Can you teach me about loss functions 
+
+Top Results:
+
+1. Neural networks are trained using gradient descent.
+
 Ask a question ('quit' to exit): quit
