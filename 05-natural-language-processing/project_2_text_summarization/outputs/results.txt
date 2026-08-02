@@ -4,5 +4,4 @@ apple announced a new ai assistant the assistant improves productivity the assis
 
 TRANSFORMER SUMMARY
 
-Your max_length is set to 142, but your input_length is only 31. Since this is a summarization task, where outputs shorter than the input are typically wanted, you might consider decreasing max_length manually, e.g. summarizer('...', max_length=15)
 Apple announced a new AI assistant. The assistant works across devices. Apple said the assistant will improve productivity and help people make better decisions. Apple announced the new assistant on Monday. It will be available in the next few weeks. It is not yet clear if it will work on iPhones or iPads.
